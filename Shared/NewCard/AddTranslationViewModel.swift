@@ -119,10 +119,23 @@ class AddTranslationViewModel: ObservableObject {
         }
         
         self.translations.forEach { tr in
-            let newWordTranslation = CardVariant(context: context)
-            newWordTranslation.text = tr.translation
-            newWordTranslation.language_code = tr.target.rawValue
-            newWord?.addToVariants(newWordTranslation)
+            var newWordTranslation: CardVariant?
+            var isCreating: Bool = false
+            
+            newWordTranslation = newWord?.variants?.first(where: {
+                ($0 as? CardVariant)?.language_code == tr.target.rawValue
+            }) as? CardVariant
+            
+            if newWordTranslation == nil {
+                newWordTranslation = CardVariant(context: context)
+                isCreating = true
+            }
+            
+            newWordTranslation!.text = tr.translation
+            newWordTranslation!.language_code = tr.target.rawValue
+            if isCreating {
+                newWord?.addToVariants(newWordTranslation!)
+            }
         }
         
         do {
@@ -135,9 +148,24 @@ class AddTranslationViewModel: ObservableObject {
         
     }
     
+    func deleteCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
+        if let card = card {
+            context.delete(card)
+            
+            do {
+                try context.save()
+            } catch {
+                let nsError = error as NSError
+                print("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+            
+            onFinished()
+        }
+    }
+    
     func saveCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
-        let imageURL = images?[selectedImageID].url
-        if let imageURL = imageURL {
+        if selectedImageID > -1,
+            let imageURL = images?[selectedImageID].url {
             URLSession.shared.dataTask(with: imageURL) { data, _, _ in
                 self.saveCard(withImage: data, context: context, onFinished: onFinished)
             }.resume()

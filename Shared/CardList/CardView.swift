@@ -11,13 +11,17 @@ struct CardView: View {
     var word: Card
     var translations: [Translation]
     var visibleLanguages: [Language]
+    var namespace: Namespace.ID
+    var isSource: Bool
     
-    init(word: Card, languages: [Language], visibleLanguages: [Language]) {
+    init(word: Card, languages: [Language], visibleLanguages: [Language], namespace: Namespace.ID, isSource: Bool) {
         self.word = word
         self.translations = languages.map { lang in
             Translation(original: "", translation: "", source: .Unknown, target: .Unknown)
         }
         self.visibleLanguages = visibleLanguages
+        self.namespace = namespace
+        self.isSource = isSource
 
         if let trs = word.variants?.sortedArray(using: []) as? [CardVariant] {
             trs.forEach { tr in
@@ -47,6 +51,7 @@ struct CardView: View {
                 .opacity(0.7)
             
         }
+        .matchedGeometryEffect(id: "\(word.id.hashValue)-title", in: namespace, isSource: isSource)
     }
     
     var body: some View {
@@ -60,6 +65,7 @@ struct CardView: View {
                         .fontWeight(.bold)
                     
                 }
+                .matchedGeometryEffect(id: "\(word.id.hashValue)-\(tr.target.code)", in: namespace, isSource: isSource)
                 .padding(.horizontal)
             }
             
@@ -69,6 +75,8 @@ struct CardView: View {
             background
         )
         .clipped()
+        .clipShape(Rectangle())
+        .contentShape(Rectangle())
         .shadow(color: Color.gray.opacity(0.15), radius: 15, x: 0, y: 0)
         .padding(10)
     }

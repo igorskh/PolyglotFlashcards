@@ -47,4 +47,21 @@ enum Language: String {
             return "❓"
         }
     }
+    
+    var name: String {
+        switch self {
+        case .Spanish:
+            return "Spanish"
+        case .Russian:
+            return "Russian"
+        case .German:
+            return "German"
+        case .English:
+            return "English"
+        case .Dutch:
+            return "Dutch"
+        case .Unknown:
+            return "Unknown"
+        }
+    }
 }

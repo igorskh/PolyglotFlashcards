@@ -24,7 +24,7 @@ struct ImageCarouselView: View {
                                 content: { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
+                                        .aspectRatio(contentMode: .fit)
                                         .frame(minWidth: UIScreen.main.bounds.width, maxHeight: 250)
                                         .clipped()
                                         .clipShape(Rectangle())

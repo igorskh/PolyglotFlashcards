@@ -15,8 +15,6 @@
 		CB15494B274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
 		CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
-		CB233DB12747DCCB00EFCEFE /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */; };
-		CB233DB22747DCCB00EFCEFE /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */; };
 		CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
 		CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
 		CB38250B271C8B0B0022E3DA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */; };
@@ -41,8 +39,8 @@
 		CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382541271DEEB30022E3DA /* PixabayService.swift */; };
 		CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
 		CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
-		CB38254A271DEF100022E3DA /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* AddCardView.swift */; };
-		CB38254B271DEF100022E3DA /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* AddCardView.swift */; };
+		CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* CardDetailView.swift */; };
+		CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* CardDetailView.swift */; };
 		CB38254D271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */; };
 		CB38254E271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */; };
 		CB382551271DEF460022E3DA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382550271DEF460022E3DA /* CardView.swift */; };
@@ -76,7 +74,6 @@
 		CB154946274E73060060706F /* Config.default.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.default.xcconfig; sourceTree = "<group>"; };
 		CB154949274E73550060706F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
-		CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
 		CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotFlashcardsApp.swift; sourceTree = "<group>"; };
 		CB3824F3271C8B090022E3DA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -96,7 +93,7 @@
 		CB38253E271DEE960022E3DA /* DeepLTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLTranslator.swift; sourceTree = "<group>"; };
 		CB382541271DEEB30022E3DA /* PixabayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayService.swift; sourceTree = "<group>"; };
 		CB382545271DEED10022E3DA /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
-		CB382549271DEF100022E3DA /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		CB382549271DEF100022E3DA /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTranslationViewModel.swift; sourceTree = "<group>"; };
 		CB382550271DEF460022E3DA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CB382553271DEF560022E3DA /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
@@ -242,7 +239,7 @@
 		CB382548271DEF010022E3DA /* NewCard */ = {
 			isa = PBXGroup;
 			children = (
-				CB382549271DEF100022E3DA /* AddCardView.swift */,
+				CB382549271DEF100022E3DA /* CardDetailView.swift */,
 				CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */,
 				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
 			);
@@ -254,7 +251,6 @@
 			children = (
 				CB382550271DEF460022E3DA /* CardView.swift */,
 				CB382553271DEF560022E3DA /* CardsListView.swift */,
-				CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -426,7 +422,7 @@
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
 				CB382534271DEE030022E3DA /* Language.swift in Sources */,
 				CB382520271C8B0B0022E3DA /* Persistence.swift in Sources */,
-				CB38254A271DEF100022E3DA /* AddCardView.swift in Sources */,
+				CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
 				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
@@ -434,7 +430,6 @@
 				CB15494A274E73550060706F /* Configuration.swift in Sources */,
 				CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
-				CB233DB12747DCCB00EFCEFE /* CardDetailView.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListView.swift in Sources */,
 				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */,
@@ -451,14 +446,13 @@
 				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
 				CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */,
-				CB38254B271DEF100022E3DA /* AddCardView.swift in Sources */,
+				CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CB38254E271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */,
 				CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */,
 				CB15494B274E73550060706F /* Configuration.swift in Sources */,
 				CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382555271DEF560022E3DA /* CardsListView.swift in Sources */,
-				CB233DB22747DCCB00EFCEFE /* CardDetailView.swift in Sources */,
 				CB382552271DEF460022E3DA /* CardView.swift in Sources */,
 				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
