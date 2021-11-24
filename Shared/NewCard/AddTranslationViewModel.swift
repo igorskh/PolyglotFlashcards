@@ -1,0 +1,148 @@
+//
+//  AddTranslationViewModel.swift
+//  PolyglotFlashcards
+//
+//  Created by Igor Kim on 18.10.21.
+//
+
+import Foundation
+import CoreData
+
+class AddTranslationViewModel: ObservableObject {
+    @Published var translations: [Translation] = []
+    @Published var errorMessage: String = ""
+    @Published var images: [RemoteImage]?
+    
+    @Published var selectedImageID = 0
+    
+    private var translator: TranslationService = DeepLTranslator.shared
+    private var imageSearch: ImageService = PixabayService.shared
+    
+    private let lock = NSLock()
+    let card: Card?
+    
+    @Published var nQueuedRequests: Int = 0
+    
+    init(card: Card? = nil) {
+        self.card = card
+        translations = Language.all.map { lang in
+            var translation = ""
+            if let card = card {
+                let variant = (card.variants?.sortedArray(using: []) as? [CardVariant])?.first { $0.language_code ==  lang.code }
+                translation = variant?.text ?? ""
+            }
+            return Translation(original: "", translation: translation, source: .Unknown, target: lang)
+        }
+    }
+    
+    func getTranslation(text: String, from source: Language, for target: Language) {
+        var sourceLang: Language? = nil
+        if source != .Unknown {
+            sourceLang = source
+        }
+        
+        translator.Translate(text: text, source: sourceLang, target: target) { result in
+            switch result {
+            case .success(let remoteTranslations):
+                DispatchQueue.main.async {
+                    guard let translation = remoteTranslations?.first else {
+                        self.errorMessage = "Could not get translations"
+                        return
+                    }
+                    if let index = Language.all.firstIndex(of: translation.target) {
+                        self.translations[index].translation = translation.translation
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.lock.lock()
+                self.nQueuedRequests -= 1
+                self.lock.unlock()
+            }
+        }
+    }
+    
+    func getTranslation(from sourceLanguage: Language) {
+        errorMessage = ""
+//        translations = []
+        
+        let targetLanguages = Language.all.filter { lang in
+            lang != sourceLanguage
+        }
+        nQueuedRequests = targetLanguages.count
+        
+        let index = Language.all.firstIndex(of: sourceLanguage)
+        let text = translations[index!].translation
+        
+        translations.indices.forEach { idx in
+            if translations[idx].target != sourceLanguage {
+                translations[idx].translation = ""
+            }
+        }
+        
+        targetLanguages.forEach {
+            getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0)
+        }
+        
+        imageSearch.Search(q: text, language: sourceLanguage) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let images):
+                    if let images = images, images.count > 0 {
+                        self.selectedImageID = 0
+                    } else {
+                        self.selectedImageID = -1
+                    }
+                    self.images = images
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func saveCard(withImage imageData: Data?, context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
+        var newWord: Card?
+        if let card = card {
+            newWord = card
+        } else {
+            newWord = Card(context: context)
+        }
+        newWord?.timestamp = Date()
+        if let imageData = imageData {
+            newWord?.image = imageData
+        }
+        
+        self.translations.forEach { tr in
+            let newWordTranslation = CardVariant(context: context)
+            newWordTranslation.text = tr.translation
+            newWordTranslation.language_code = tr.target.rawValue
+            newWord?.addToVariants(newWordTranslation)
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
+        }
+        onFinished()
+        
+    }
+    
+    func saveCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
+        let imageURL = images?[selectedImageID].url
+        if let imageURL = imageURL {
+            URLSession.shared.dataTask(with: imageURL) { data, _, _ in
+                self.saveCard(withImage: data, context: context, onFinished: onFinished)
+            }.resume()
+        } else {
+            self.saveCard(withImage: nil, context: context, onFinished: onFinished)
+        }
+    }
+}

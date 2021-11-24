@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PIXABAY_TOKEN</key>
+	<string>$(PIXABAY_TOKEN)</string>
+	<key>DEEPL_TOKEN</key>
+	<string>$(DEEPL_TOKEN)</string>
+</dict>
+</plist>

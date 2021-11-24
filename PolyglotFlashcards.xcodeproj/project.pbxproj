@@ -1,0 +1,903 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB154943274E70410060706F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154942274E70310060706F /* Config.xcconfig */; };
+		CB154944274E70410060706F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154942274E70310060706F /* Config.xcconfig */; };
+		CB154947274E73060060706F /* Config.default.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154946274E73060060706F /* Config.default.xcconfig */; };
+		CB154948274E73060060706F /* Config.default.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154946274E73060060706F /* Config.default.xcconfig */; };
+		CB15494A274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
+		CB15494B274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
+		CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
+		CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
+		CB233DB12747DCCB00EFCEFE /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */; };
+		CB233DB22747DCCB00EFCEFE /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */; };
+		CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
+		CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
+		CB38250B271C8B0B0022E3DA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */; };
+		CB38250D271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250C271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift */; };
+		CB382517271C8B0B0022E3DA /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382516271C8B0B0022E3DA /* Tests_macOS.swift */; };
+		CB382519271C8B0B0022E3DA /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382518271C8B0B0022E3DA /* Tests_macOSLaunchTests.swift */; };
+		CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */; };
+		CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */; };
+		CB382520271C8B0B0022E3DA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3824F3271C8B090022E3DA /* Persistence.swift */; };
+		CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3824F3271C8B090022E3DA /* Persistence.swift */; };
+		CB382522271C8B0B0022E3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3824F4271C8B0B0022E3DA /* Assets.xcassets */; };
+		CB382523271C8B0B0022E3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3824F4271C8B0B0022E3DA /* Assets.xcassets */; };
+		CB382534271DEE030022E3DA /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382533271DEE020022E3DA /* Language.swift */; };
+		CB382535271DEE050022E3DA /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382533271DEE020022E3DA /* Language.swift */; };
+		CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382537271DEE3A0022E3DA /* TranslationService.swift */; };
+		CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382537271DEE3A0022E3DA /* TranslationService.swift */; };
+		CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38253B271DEE5E0022E3DA /* ImageService.swift */; };
+		CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38253B271DEE5E0022E3DA /* ImageService.swift */; };
+		CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38253E271DEE960022E3DA /* DeepLTranslator.swift */; };
+		CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38253E271DEE960022E3DA /* DeepLTranslator.swift */; };
+		CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382541271DEEB30022E3DA /* PixabayService.swift */; };
+		CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382541271DEEB30022E3DA /* PixabayService.swift */; };
+		CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
+		CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
+		CB38254A271DEF100022E3DA /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* AddCardView.swift */; };
+		CB38254B271DEF100022E3DA /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* AddCardView.swift */; };
+		CB38254D271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */; };
+		CB38254E271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */; };
+		CB382551271DEF460022E3DA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382550271DEF460022E3DA /* CardView.swift */; };
+		CB382552271DEF460022E3DA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382550271DEF460022E3DA /* CardView.swift */; };
+		CB382554271DEF560022E3DA /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382553271DEF560022E3DA /* CardsListView.swift */; };
+		CB382555271DEF560022E3DA /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382553271DEF560022E3DA /* CardsListView.swift */; };
+		CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
+		CB8493D02741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB382507271C8B0B0022E3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB3824EA271C8B080022E3DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB3824F8271C8B0B0022E3DA;
+			remoteInfo = "PolyglotFlashcards (iOS)";
+		};
+		CB382513271C8B0B0022E3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB3824EA271C8B080022E3DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB3824FE271C8B0B0022E3DA;
+			remoteInfo = "PolyglotFlashcards (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CB154942274E70310060706F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Shared/Config.xcconfig; sourceTree = SOURCE_ROOT; };
+		CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--iOS--Info.plist"; sourceTree = "<group>"; };
+		CB154946274E73060060706F /* Config.default.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.default.xcconfig; sourceTree = "<group>"; };
+		CB154949274E73550060706F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
+		CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotFlashcardsApp.swift; sourceTree = "<group>"; };
+		CB3824F3271C8B090022E3DA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		CB3824F4271C8B0B0022E3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB3824F9271C8B0B0022E3DA /* PolyglotFlashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyglotFlashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB3824FF271C8B0B0022E3DA /* PolyglotFlashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyglotFlashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB382501271C8B0B0022E3DA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		CB382506271C8B0B0022E3DA /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		CB38250C271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		CB382512271C8B0B0022E3DA /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB382516271C8B0B0022E3DA /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		CB382518271C8B0B0022E3DA /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		CB382533271DEE020022E3DA /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		CB382537271DEE3A0022E3DA /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
+		CB38253B271DEE5E0022E3DA /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		CB38253E271DEE960022E3DA /* DeepLTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLTranslator.swift; sourceTree = "<group>"; };
+		CB382541271DEEB30022E3DA /* PixabayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayService.swift; sourceTree = "<group>"; };
+		CB382545271DEED10022E3DA /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
+		CB382549271DEF100022E3DA /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTranslationViewModel.swift; sourceTree = "<group>"; };
+		CB382550271DEF460022E3DA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		CB382553271DEF560022E3DA /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
+		CB8493CE2741597400A8FC7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB3824F6271C8B0B0022E3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB3824FC271C8B0B0022E3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB382503271C8B0B0022E3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB38250F271C8B0B0022E3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB3824E9271C8B080022E3DA = {
+			isa = PBXGroup;
+			children = (
+				CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */,
+				CB3824EE271C8B080022E3DA /* Shared */,
+				CB382500271C8B0B0022E3DA /* macOS */,
+				CB382509271C8B0B0022E3DA /* Tests iOS */,
+				CB382515271C8B0B0022E3DA /* Tests macOS */,
+				CB3824FA271C8B0B0022E3DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB3824EE271C8B080022E3DA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CB154946274E73060060706F /* Config.default.xcconfig */,
+				CB154942274E70310060706F /* Config.xcconfig */,
+				CB38254F271DEF380022E3DA /* CardList */,
+				CB382548271DEF010022E3DA /* NewCard */,
+				CB382544271DEEC50022E3DA /* Components */,
+				CB38253A271DEE510022E3DA /* ImageService */,
+				CB382536271DEE290022E3DA /* TranslationService */,
+				CB382532271DEDF60022E3DA /* Models */,
+				CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */,
+				CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */,
+				CB3824F3271C8B090022E3DA /* Persistence.swift */,
+				CB3824F4271C8B0B0022E3DA /* Assets.xcassets */,
+				CB8493CE2741597400A8FC7E /* ContentView.swift */,
+				CB154949274E73550060706F /* Configuration.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		CB3824FA271C8B0B0022E3DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB3824F9271C8B0B0022E3DA /* PolyglotFlashcards.app */,
+				CB3824FF271C8B0B0022E3DA /* PolyglotFlashcards.app */,
+				CB382506271C8B0B0022E3DA /* Tests iOS.xctest */,
+				CB382512271C8B0B0022E3DA /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB382500271C8B0B0022E3DA /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB382501271C8B0B0022E3DA /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		CB382509271C8B0B0022E3DA /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */,
+				CB38250C271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		CB382515271C8B0B0022E3DA /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB382516271C8B0B0022E3DA /* Tests_macOS.swift */,
+				CB382518271C8B0B0022E3DA /* Tests_macOSLaunchTests.swift */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		CB382532271DEDF60022E3DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB382533271DEE020022E3DA /* Language.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB382536271DEE290022E3DA /* TranslationService */ = {
+			isa = PBXGroup;
+			children = (
+				CB382537271DEE3A0022E3DA /* TranslationService.swift */,
+				CB38253E271DEE960022E3DA /* DeepLTranslator.swift */,
+			);
+			path = TranslationService;
+			sourceTree = "<group>";
+		};
+		CB38253A271DEE510022E3DA /* ImageService */ = {
+			isa = PBXGroup;
+			children = (
+				CB38253B271DEE5E0022E3DA /* ImageService.swift */,
+				CB382541271DEEB30022E3DA /* PixabayService.swift */,
+			);
+			path = ImageService;
+			sourceTree = "<group>";
+		};
+		CB382544271DEEC50022E3DA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CB382545271DEED10022E3DA /* LanguagePicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CB382548271DEF010022E3DA /* NewCard */ = {
+			isa = PBXGroup;
+			children = (
+				CB382549271DEF100022E3DA /* AddCardView.swift */,
+				CB38254C271DEF260022E3DA /* AddTranslationViewModel.swift */,
+				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
+			);
+			path = NewCard;
+			sourceTree = "<group>";
+		};
+		CB38254F271DEF380022E3DA /* CardList */ = {
+			isa = PBXGroup;
+			children = (
+				CB382550271DEF460022E3DA /* CardView.swift */,
+				CB382553271DEF560022E3DA /* CardsListView.swift */,
+				CB233DB02747DCCA00EFCEFE /* CardDetailView.swift */,
+			);
+			path = CardList;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB3824F8271C8B0B0022E3DA /* PolyglotFlashcards (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB382526271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "PolyglotFlashcards (iOS)" */;
+			buildPhases = (
+				CB3824F5271C8B0B0022E3DA /* Sources */,
+				CB3824F6271C8B0B0022E3DA /* Frameworks */,
+				CB3824F7271C8B0B0022E3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PolyglotFlashcards (iOS)";
+			productName = "PolyglotFlashcards (iOS)";
+			productReference = CB3824F9271C8B0B0022E3DA /* PolyglotFlashcards.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB3824FE271C8B0B0022E3DA /* PolyglotFlashcards (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB382529271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "PolyglotFlashcards (macOS)" */;
+			buildPhases = (
+				CB3824FB271C8B0B0022E3DA /* Sources */,
+				CB3824FC271C8B0B0022E3DA /* Frameworks */,
+				CB3824FD271C8B0B0022E3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PolyglotFlashcards (macOS)";
+			productName = "PolyglotFlashcards (macOS)";
+			productReference = CB3824FF271C8B0B0022E3DA /* PolyglotFlashcards.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB382505271C8B0B0022E3DA /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB38252C271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				CB382502271C8B0B0022E3DA /* Sources */,
+				CB382503271C8B0B0022E3DA /* Frameworks */,
+				CB382504271C8B0B0022E3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB382508271C8B0B0022E3DA /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = CB382506271C8B0B0022E3DA /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		CB382511271C8B0B0022E3DA /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB38252F271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				CB38250E271C8B0B0022E3DA /* Sources */,
+				CB38250F271C8B0B0022E3DA /* Frameworks */,
+				CB382510271C8B0B0022E3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB382514271C8B0B0022E3DA /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = CB382512271C8B0B0022E3DA /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB3824EA271C8B080022E3DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					CB3824F8271C8B0B0022E3DA = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					CB3824FE271C8B0B0022E3DA = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					CB382505271C8B0B0022E3DA = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = CB3824F8271C8B0B0022E3DA;
+					};
+					CB382511271C8B0B0022E3DA = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = CB3824FE271C8B0B0022E3DA;
+					};
+				};
+			};
+			buildConfigurationList = CB3824ED271C8B080022E3DA /* Build configuration list for PBXProject "PolyglotFlashcards" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB3824E9271C8B080022E3DA;
+			productRefGroup = CB3824FA271C8B0B0022E3DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB3824F8271C8B0B0022E3DA /* PolyglotFlashcards (iOS) */,
+				CB3824FE271C8B0B0022E3DA /* PolyglotFlashcards (macOS) */,
+				CB382505271C8B0B0022E3DA /* Tests iOS */,
+				CB382511271C8B0B0022E3DA /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB3824F7271C8B0B0022E3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB154947274E73060060706F /* Config.default.xcconfig in Resources */,
+				CB154943274E70410060706F /* Config.xcconfig in Resources */,
+				CB382522271C8B0B0022E3DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB3824FD271C8B0B0022E3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB154948274E73060060706F /* Config.default.xcconfig in Resources */,
+				CB154944274E70410060706F /* Config.xcconfig in Resources */,
+				CB382523271C8B0B0022E3DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB382504271C8B0B0022E3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB382510271C8B0B0022E3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB3824F5271C8B0B0022E3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB38254D271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */,
+				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
+				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
+				CB382534271DEE030022E3DA /* Language.swift in Sources */,
+				CB382520271C8B0B0022E3DA /* Persistence.swift in Sources */,
+				CB38254A271DEF100022E3DA /* AddCardView.swift in Sources */,
+				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
+				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
+				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
+				CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */,
+				CB15494A274E73550060706F /* Configuration.swift in Sources */,
+				CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */,
+				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
+				CB233DB12747DCCB00EFCEFE /* CardDetailView.swift in Sources */,
+				CB382554271DEF560022E3DA /* CardsListView.swift in Sources */,
+				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
+				CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB3824FB271C8B0B0022E3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
+				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
+				CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
+				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
+				CB382535271DEE050022E3DA /* Language.swift in Sources */,
+				CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */,
+				CB38254B271DEF100022E3DA /* AddCardView.swift in Sources */,
+				CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
+				CB38254E271DEF260022E3DA /* AddTranslationViewModel.swift in Sources */,
+				CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */,
+				CB15494B274E73550060706F /* Configuration.swift in Sources */,
+				CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */,
+				CB382555271DEF560022E3DA /* CardsListView.swift in Sources */,
+				CB233DB22747DCCB00EFCEFE /* CardDetailView.swift in Sources */,
+				CB382552271DEF460022E3DA /* CardView.swift in Sources */,
+				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
+				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB382502271C8B0B0022E3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB38250D271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift in Sources */,
+				CB38250B271C8B0B0022E3DA /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB38250E271C8B0B0022E3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB382519271C8B0B0022E3DA /* Tests_macOSLaunchTests.swift in Sources */,
+				CB382517271C8B0B0022E3DA /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB382508271C8B0B0022E3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB3824F8271C8B0B0022E3DA /* PolyglotFlashcards (iOS) */;
+			targetProxy = CB382507271C8B0B0022E3DA /* PBXContainerItemProxy */;
+		};
+		CB382514271C8B0B0022E3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB3824FE271C8B0B0022E3DA /* PolyglotFlashcards (macOS) */;
+			targetProxy = CB382513271C8B0B0022E3DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CB382524271C8B0B0022E3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CB382525271C8B0B0022E3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		CB382527271C8B0B0022E3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PolyglotFlashcards--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
+				PRODUCT_NAME = PolyglotFlashcards;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB382528271C8B0B0022E3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PolyglotFlashcards--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
+				PRODUCT_NAME = PolyglotFlashcards;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB38252A271C8B0B0022E3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
+				PRODUCT_NAME = PolyglotFlashcards;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CB38252B271C8B0B0022E3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
+				PRODUCT_NAME = PolyglotFlashcards;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CB38252D271C8B0B0022E3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "one.beagile.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PolyglotFlashcards (iOS)";
+			};
+			name = Debug;
+		};
+		CB38252E271C8B0B0022E3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "one.beagile.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PolyglotFlashcards (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB382530271C8B0B0022E3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "one.beagile.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "PolyglotFlashcards (macOS)";
+			};
+			name = Debug;
+		};
+		CB382531271C8B0B0022E3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "one.beagile.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "PolyglotFlashcards (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB3824ED271C8B080022E3DA /* Build configuration list for PBXProject "PolyglotFlashcards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB382524271C8B0B0022E3DA /* Debug */,
+				CB382525271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB382526271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "PolyglotFlashcards (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB382527271C8B0B0022E3DA /* Debug */,
+				CB382528271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB382529271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "PolyglotFlashcards (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB38252A271C8B0B0022E3DA /* Debug */,
+				CB38252B271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB38252C271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB38252D271C8B0B0022E3DA /* Debug */,
+				CB38252E271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB38252F271C8B0B0022E3DA /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB382530271C8B0B0022E3DA /* Debug */,
+				CB382531271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */,
+			);
+			currentVersion = CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */;
+			path = PolyglotFlashcards.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CB3824EA271C8B080022E3DA /* Project object */;
+}
