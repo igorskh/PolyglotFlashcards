@@ -15,6 +15,7 @@ enum Language: String {
     case Russian = "ru"
     case Spanish = "es"
     case Dutch = "nl"
+    case Japanese = "ja"
     case Unknown = ""
     
     static var all: [Language] {
@@ -24,6 +25,7 @@ enum Language: String {
             Language.Russian,
             Language.Spanish,
             Language.Dutch,
+            Language.Japanese,
         ]
     }
     
@@ -43,6 +45,8 @@ enum Language: String {
             return "🇺🇸"
         case .Dutch:
             return "🇳🇱"
+        case .Japanese:
+            return "🇯🇵"
         case .Unknown:
             return "❓"
         }
@@ -60,6 +64,8 @@ enum Language: String {
             return "English"
         case .Dutch:
             return "Dutch"
+        case .Japanese:
+            return "Japanese"
         case .Unknown:
             return "Unknown"
         }

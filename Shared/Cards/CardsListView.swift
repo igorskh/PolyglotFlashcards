@@ -73,9 +73,10 @@ struct CardsListView: View {
                     languages: languages,
                     visibleLanguages: visibleLanguages,
                     namespace: namespace,
-                    isSource: !showDetailCard
+                    show: selectedCard != nil && selectedCard!.id == item.id
                 )
                     .padding()
+                    .opacity(selectedCard != nil && selectedCard!.id == item.id ? 0.0 : 1.0)
                     .onTapGesture {
                         toggleCard(destination: item)
                     }

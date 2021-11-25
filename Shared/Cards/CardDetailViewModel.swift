@@ -1,5 +1,5 @@
 //
-//  AddTranslationViewModel.swift
+//  CardDetailViewModel.swift
 //  PolyglotFlashcards
 //
 //  Created by Igor Kim on 18.10.21.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class AddTranslationViewModel: ObservableObject {
+class CardDetailViewModel: ObservableObject {
     @Published var translations: [Translation] = []
     @Published var errorMessage: String = ""
     @Published var images: [RemoteImage]?
@@ -19,6 +19,7 @@ class AddTranslationViewModel: ObservableObject {
     private var imageSearch: ImageService = PixabayService.shared
     
     private let lock = NSLock()
+    private let speechSynth: SpeechSynthesizer = .init()
     let card: Card?
     
     @Published var nQueuedRequests: Int = 0
@@ -69,7 +70,6 @@ class AddTranslationViewModel: ObservableObject {
     
     func getTranslation(from sourceLanguage: Language) {
         errorMessage = ""
-//        translations = []
         
         let targetLanguages = Language.all.filter { lang in
             lang != sourceLanguage
@@ -172,5 +172,9 @@ class AddTranslationViewModel: ObservableObject {
         } else {
             self.saveCard(withImage: nil, context: context, onFinished: onFinished)
         }
+    }
+    
+    func speak(at translationID: Int) {
+        speechSynth.speak(string: translations[translationID].translation, language: translations[translationID].target.code)
     }
 }

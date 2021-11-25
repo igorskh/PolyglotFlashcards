@@ -12,16 +12,16 @@ struct CardView: View {
     var translations: [Translation]
     var visibleLanguages: [Language]
     var namespace: Namespace.ID
-    var isSource: Bool
+    var show: Bool
     
-    init(word: Card, languages: [Language], visibleLanguages: [Language], namespace: Namespace.ID, isSource: Bool) {
+    init(word: Card, languages: [Language], visibleLanguages: [Language], namespace: Namespace.ID, show: Bool) {
         self.word = word
         self.translations = languages.map { lang in
             Translation(original: "", translation: "", source: .Unknown, target: .Unknown)
         }
         self.visibleLanguages = visibleLanguages
         self.namespace = namespace
-        self.isSource = isSource
+        self.show = show
 
         if let trs = word.variants?.sortedArray(using: []) as? [CardVariant] {
             trs.forEach { tr in
@@ -51,7 +51,7 @@ struct CardView: View {
                 .opacity(0.7)
             
         }
-        .matchedGeometryEffect(id: "\(word.id.hashValue)-title", in: namespace, isSource: isSource)
+        .matchedGeometryEffect(id: show ? "\(word.id.hashValue)-title" : "", in: namespace, isSource: false)
     }
     
     var body: some View {
@@ -65,7 +65,7 @@ struct CardView: View {
                         .fontWeight(.bold)
                     
                 }
-                .matchedGeometryEffect(id: "\(word.id.hashValue)-\(tr.target.code)", in: namespace, isSource: isSource)
+                .matchedGeometryEffect(id: show ? "\(word.id.hashValue)-\(tr.target.code)" : "", in: namespace, isSource: false)
                 .padding(.horizontal)
             }
             
