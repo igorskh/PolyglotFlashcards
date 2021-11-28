@@ -13,16 +13,19 @@ struct ContentView: View {
             CardsListView()
                 .tabItem {
                     Image(systemName: "menucard.fill")
+                    Text("Card")
                 }
             
             Text("Play")
                 .tabItem {
                     Image(systemName: "play.circle.fill")
+                    Text("Play")
                 }
             
-            Text("Settings")
+            SettingsScreen()
                 .tabItem {
                     Image(systemName: "gear.circle.fill")
+                    Text("Settings")
                 }
         }
     }

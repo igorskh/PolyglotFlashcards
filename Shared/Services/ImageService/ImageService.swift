@@ -13,5 +13,5 @@ struct RemoteImage: Codable, Identifiable {
 }
 
 protocol ImageService {
-    func Search(q: String, language: Language?, onResponse: @escaping (Result<[RemoteImage]?, Error>) -> Void)
+    func Search(q: String, onResponse: @escaping (Result<[RemoteImage]?, Error>) -> Void)
 }

@@ -19,12 +19,18 @@ extension NLLanguage {
             lang = NLLanguage.russian
         case .Spanish:
             lang = NLLanguage.spanish
+        case .Italian:
+            lang = NLLanguage.italian
         case .Dutch:
             lang = NLLanguage.dutch
         case .Japanese:
             lang = NLLanguage.japanese
         case .Unknown:
             lang = NLLanguage.undetermined
+        case .French:
+            lang = NLLanguage.french
+        case .Greek:
+            lang = NLLanguage.greek
         }
         self.init(rawValue: lang.rawValue)
     }

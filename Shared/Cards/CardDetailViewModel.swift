@@ -14,19 +14,20 @@ class CardDetailViewModel: ObservableObject {
     @Published var images: [RemoteImage]?
     
     @Published var selectedImageID = 0
+    @Published var nQueuedRequests: Int = 0
     
     private var translator: TranslationService = DeepLTranslator.shared
     private var imageSearch: ImageService = PixabayService.shared
+    private let speechSynth: SpeechSynthesizer = .init()
+
+    @Preference(\.languages) var languages
     
     private let lock = NSLock()
-    private let speechSynth: SpeechSynthesizer = .init()
     let card: Card?
-    
-    @Published var nQueuedRequests: Int = 0
     
     init(card: Card? = nil) {
         self.card = card
-        translations = Language.all.map { lang in
+        translations =  languages.map { lang in
             var translation = ""
             if let card = card {
                 let variant = (card.variants?.sortedArray(using: []) as? [CardVariant])?.first { $0.language_code ==  lang.code }
@@ -50,7 +51,10 @@ class CardDetailViewModel: ObservableObject {
                         self.errorMessage = "Could not get translations"
                         return
                     }
-                    if let index = Language.all.firstIndex(of: translation.target) {
+                    if let index = self.languages.firstIndex(of: translation.target) {
+                        if translation.target == .English && self.languages.contains(.English) {
+                            self.getImage(query: translation.translation)
+                        }
                         self.translations[index].translation = translation.translation
                     }
                 }
@@ -71,13 +75,15 @@ class CardDetailViewModel: ObservableObject {
     func getTranslation(from sourceLanguage: Language) {
         errorMessage = ""
         
-        let targetLanguages = Language.all.filter { lang in
+        let targetLanguages = self.languages.filter { lang in
             lang != sourceLanguage
         }
         nQueuedRequests = targetLanguages.count
         
-        let index = Language.all.firstIndex(of: sourceLanguage)
-        let text = translations[index!].translation
+        let index = languages.firstIndex(of: sourceLanguage)
+        if sourceLanguage == .English || !languages.contains(.English) {
+            getImage(query: translations[index!].translation)
+        }
         
         translations.indices.forEach { idx in
             if translations[idx].target != sourceLanguage {
@@ -88,8 +94,10 @@ class CardDetailViewModel: ObservableObject {
         targetLanguages.forEach {
             getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0)
         }
-        
-        imageSearch.Search(q: text, language: sourceLanguage) { result in
+    }
+    
+    func getImage(query: String) {
+        imageSearch.Search(q: query) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let images):

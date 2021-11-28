@@ -7,10 +7,19 @@
 
 import SwiftUI
 
+extension Image {
+    init(image: UIImage) {
+#if os(iOS) || os(watchOS) || os(tvOS)
+        self.init(uiImage: image)
+#elseif os(macOS)
+        self.init(nsImage: image)
+#endif
+    }
+}
+
 struct CardDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel: CardDetailViewModel
-    @Environment(\.presentationMode) var presentationMode
     var onClose: () -> Void = {}
     var namespace: Namespace.ID
     
@@ -28,60 +37,72 @@ struct CardDetailView: View {
     }
     
     func closeCard() {
-        presentationMode.wrappedValue.dismiss()
         onClose()
     }
     
-    
-    var background: some View {
+    var image: some View {
         ZStack {
             if let card = viewModel.card,
-               let imageData = card.image,
-               let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
+               let uiImage = card.uiImage {
+                Image(image: uiImage)
                     .resizable()
+                    .frame(maxWidth: .infinity)
                     .offset(x: offset.width/6, y: -1*abs(offset.height)/6)
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
                     .matchedGeometryEffect(id: "\(card.id.hashValue)-title", in: namespace)
+            } else {
+                Text("No image selected")
             }
         }
     }
     
     var header: some View {
         VStack {
-            HStack {
-                Text(viewModel.card != nil ? "Edit Card" : "New Card")
-                    .font(.title)
-                Spacer()
-                
-                Image(systemName: "pencil.circle.fill")
-                    .opacity(0.7)
-                    .font(.title)
-                    .onTapGesture {
-                        editEnabled.toggle()
-                    }
-                
-                Image(systemName: "xmark.circle.fill")
-                    .opacity(0.7)
-                    .font(.title)
-                    .onTapGesture {
-                        closeCard()
-                    }
-            }
-            
             ZStack {
                 VStack {
                     if viewModel.images != nil && viewModel.nQueuedRequests == 0 {
                         ImageCarouselView(
                             selectedItemID: $viewModel.selectedImageID,
-                            images: viewModel.images ?? []
+                            images: viewModel.images ?? [],
+                            contentMode: .fill,
+                            height: 200
                         )
                     } else {
-                        background
+                        image
                     }
                 }
                 .frame(height: 200)
+                .clipped()
                 
+                VStack {
+                    HStack {
+                        Text(viewModel.card != nil ? "Edit Card" : "New Card")
+                            .font(.title)
+                        Spacer()
+                        
+                        Image(systemName: "pencil.circle.fill")
+                            .opacity(0.7)
+                            .font(.title)
+                            .onTapGesture {
+                                editEnabled.toggle()
+                            }
+                        
+                        Image(systemName: "xmark.circle.fill")
+                            .opacity(0.7)
+                            .font(.title)
+                            .onTapGesture {
+                                closeCard()
+                            }
+                    }
+                    .padding(.vertical)
+                    .padding(.horizontal)
+                    .background(
+                        Color.black.opacity(0.5)
+                    )
+                    
+                    Spacer()
+                }
                 
             }
             .frame(height: 200)
@@ -99,7 +120,6 @@ struct CardDetailView: View {
                     if editEnabled {
                         TextField("", text: $viewModel.translations[i].translation)
                     } else {
-//                        Text(viewModel.translations[i].translation)
                         AttributedText(viewModel.translations[i].attributedString)
                             .padding(5)
                             .background(Color.white)
@@ -129,26 +149,27 @@ struct CardDetailView: View {
     
     var buttons: some View {
         HStack {
-            Button(action: {
+            FilledButton(
+                title: viewModel.card == nil ? "Create" : "Save",
+                color: Color.accentColor
+            ) {
                 viewModel.saveCard(context: viewContext) {
                     closeCard()
                 }
-            }) {
-                Text(viewModel.card == nil ? "Create" : "Save")
             }
             
             if viewModel.card != nil {
-                Spacer()
-                Button(action: {
+                FilledButton(
+                    title: "Delete",
+                    color: Color.red
+                ) {
                     viewModel.deleteCard(context: viewContext) {
                         closeCard()
                     }
-                }) {
-                    Text("Delete")
-                        .foregroundColor(.red)
                 }
             }
         }
+        .padding(.vertical)
     }
     
     var body: some View {
@@ -157,20 +178,24 @@ struct CardDetailView: View {
         
             if viewModel.errorMessage != "" {
                 Text(viewModel.errorMessage)
+                    .padding(.horizontal)
                     .foregroundColor(.red)
             }
             
             if viewModel.nQueuedRequests > 0 {
                 ProgressView()
+            } else if editEnabled {
+                Text("Enter text in fields below")
             }
             
             translationsList
+                .padding(.horizontal)
             
             Spacer()
             
             buttons
+                .padding(.horizontal)
         }
-        .padding()
         .background(
             Rectangle()
                 .colorInvert()

@@ -41,12 +41,13 @@ struct CardView: View {
         ZStack {
             if let imageData = word.image,
                let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
+                Image(image: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipped()
                 
             }
+            
             Color.black
                 .opacity(0.7)
             

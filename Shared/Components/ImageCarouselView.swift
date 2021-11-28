@@ -8,24 +8,31 @@
 import SwiftUI
 
 struct ImageCarouselView: View {
-    let cardWidth = UIScreen.main.bounds.width - 20
+    #if os(iOS) || os(watchOS) || os(tvOS)
+        var cardWidth: CGFloat = UIScreen.main.bounds.width - 20
+    #elseif os(macOS)
+        var cardWidth: CGFloat = 200
+    #endif
     @State var currentItemID = 0
     @Binding var selectedItemID: Int
+//    = UIScreen.main.bounds.width - 20
     let images: [RemoteImage]
+    let contentMode: ContentMode
+    let height: CGFloat
     
     var body: some View {
         ScrollView(.horizontal) {
             ScrollViewReader { proxy in
                 LazyHStack {
                     ForEach(images) { rImage in
-                        if #available(iOS 15.0, *) {
+                        if #available(iOS 15.0, macOS 12.0, *) {
                             AsyncImage(
                                 url: rImage.url,
                                 content: { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(minWidth: UIScreen.main.bounds.width, maxHeight: 250)
+                                        .aspectRatio(contentMode: contentMode)
+                                        .frame(minWidth: cardWidth, maxHeight: height)
                                         .clipped()
                                         .clipShape(Rectangle())
                                         .contentShape(Rectangle())
@@ -34,7 +41,7 @@ struct ImageCarouselView: View {
                                 },
                                 placeholder: {
                                     ProgressView()
-                                        .frame(minWidth: UIScreen.main.bounds.width, maxHeight: 250)
+                                        .frame(minWidth: cardWidth, maxHeight: height)
                                 }
                             )
                         }

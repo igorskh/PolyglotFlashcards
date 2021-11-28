@@ -37,8 +37,6 @@
 		CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38253E271DEE960022E3DA /* DeepLTranslator.swift */; };
 		CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382541271DEEB30022E3DA /* PixabayService.swift */; };
 		CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382541271DEEB30022E3DA /* PixabayService.swift */; };
-		CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
-		CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382545271DEED10022E3DA /* LanguagePicker.swift */; };
 		CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* CardDetailView.swift */; };
 		CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382549271DEF100022E3DA /* CardDetailView.swift */; };
 		CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38254C271DEF260022E3DA /* CardDetailViewModel.swift */; };
@@ -50,9 +48,24 @@
 		CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */; };
 		CB7169CA2750276700F9F6CA /* WordTagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C92750276700F9F6CA /* WordTagger.swift */; };
 		CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */; };
-		CB7169CE27502B9B00F9F6CA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CD27502B9B00F9F6CA /* AttributedText.swift */; };
 		CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
 		CB8493D02741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
+		CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
+		CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
+		CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */; };
+		CBBD31EF2752CFEF00F275E9 /* LanguageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */; };
+		CBBD31F42753A30F00F275E9 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31F32753A30F00F275E9 /* Preferences.swift */; };
+		CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31F32753A30F00F275E9 /* Preferences.swift */; };
+		CBBD31FA2753C79100F275E9 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31F92753C79100F275E9 /* UIImage.swift */; };
+		CBBD31FB2753C7EB00F275E9 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */; };
+		CBBD32002753C8FF00F275E9 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31FF2753C8FF00F275E9 /* AttributedText.swift */; };
+		CBBD32012753CA0300F275E9 /* WordTagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C92750276700F9F6CA /* WordTagger.swift */; };
+		CBBD32022753CA1200F275E9 /* Language+NaturalLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */; };
+		CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE12753CB78001607FA /* AttributedText.swift */; };
+		CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
+		CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
+		CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE82753D65C001607FA /* FilledButton.swift */; };
+		CBFFDCEA2753D65C001607FA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE82753D65C001607FA /* FilledButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +109,6 @@
 		CB38253B271DEE5E0022E3DA /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		CB38253E271DEE960022E3DA /* DeepLTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLTranslator.swift; sourceTree = "<group>"; };
 		CB382541271DEEB30022E3DA /* PixabayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayService.swift; sourceTree = "<group>"; };
-		CB382545271DEED10022E3DA /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 		CB382549271DEF100022E3DA /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		CB38254C271DEF260022E3DA /* CardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewModel.swift; sourceTree = "<group>"; };
 		CB382550271DEF460022E3DA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -104,8 +116,16 @@
 		CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+NaturalLanguage.swift"; sourceTree = "<group>"; };
 		CB7169C92750276700F9F6CA /* WordTagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTagger.swift; sourceTree = "<group>"; };
 		CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
-		CB7169CD27502B9B00F9F6CA /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		CB8493CE2741597400A8FC7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilter.swift; sourceTree = "<group>"; };
+		CBBD31F32753A30F00F275E9 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CBBD31F92753C79100F275E9 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		CBBD31FF2753C8FF00F275E9 /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
+		CBFFDCE12753CB78001607FA /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
+		CBFFDCE32753CB89001607FA /* Card+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+UIImage.swift"; sourceTree = "<group>"; };
+		CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--macOS--Info.plist"; sourceTree = "<group>"; };
+		CBFFDCE82753D65C001607FA /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +163,7 @@
 		CB3824E9271C8B080022E3DA = {
 			isa = PBXGroup;
 			children = (
+				CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */,
 				CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */,
 				CB3824EE271C8B080022E3DA /* Shared */,
 				CB382500271C8B0B0022E3DA /* macOS */,
@@ -157,6 +178,8 @@
 			children = (
 				CB154946274E73060060706F /* Config.default.xcconfig */,
 				CB154942274E70310060706F /* Config.xcconfig */,
+				CBBD31E92752CF1800F275E9 /* Settings */,
+				CBBD31E52752CD5400F275E9 /* PropertyWrappers */,
 				CB7169C82750276000F9F6CA /* Services */,
 				CB7169C52750266A00F9F6CA /* Extensions */,
 				CB38254F271DEF380022E3DA /* Cards */,
@@ -187,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				CB382501271C8B0B0022E3DA /* macOS.entitlements */,
+				CBBD31F92753C79100F275E9 /* UIImage.swift */,
+				CBBD31FF2753C8FF00F275E9 /* AttributedText.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -238,9 +263,10 @@
 		CB382544271DEEC50022E3DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CBFFDCE12753CB78001607FA /* AttributedText.swift */,
 				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
-				CB382545271DEED10022E3DA /* LanguagePicker.swift */,
-				CB7169CD27502B9B00F9F6CA /* AttributedText.swift */,
+				CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */,
+				CBFFDCE82753D65C001607FA /* FilledButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -259,6 +285,7 @@
 		CB7169C52750266A00F9F6CA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CBFFDCE32753CB89001607FA /* Card+UIImage.swift */,
 				CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */,
 			);
 			path = Extensions;
@@ -273,6 +300,22 @@
 				CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CBBD31E52752CD5400F275E9 /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD31F32753A30F00F275E9 /* Preferences.swift */,
+			);
+			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
+		CBBD31E92752CF1800F275E9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */,
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
@@ -445,18 +489,21 @@
 				CB382520271C8B0B0022E3DA /* Persistence.swift in Sources */,
 				CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
-				CB7169CE27502B9B00F9F6CA /* AttributedText.swift in Sources */,
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
 				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
+				CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
 				CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */,
+				CBBD31F42753A30F00F275E9 /* Preferences.swift in Sources */,
 				CB15494A274E73550060706F /* Configuration.swift in Sources */,
+				CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */,
 				CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */,
+				CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */,
 				CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListView.swift in Sources */,
+				CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
 				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
-				CB382546271DEED10022E3DA /* LanguagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,18 +513,27 @@
 			files = (
 				CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
+				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
+				CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */,
 				CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
 				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
 				CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */,
 				CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
+				CBBD31EF2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
+				CBFFDCEA2753D65C001607FA /* FilledButton.swift in Sources */,
 				CB38254E271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
-				CB382547271DEED10022E3DA /* LanguagePicker.swift in Sources */,
+				CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
+				CBBD32002753C8FF00F275E9 /* AttributedText.swift in Sources */,
 				CB15494B274E73550060706F /* Configuration.swift in Sources */,
 				CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */,
+				CBBD31FB2753C7EB00F275E9 /* SpeechSynthesizer.swift in Sources */,
 				CB382555271DEF560022E3DA /* CardsListView.swift in Sources */,
+				CBBD32012753CA0300F275E9 /* WordTagger.swift in Sources */,
+				CBBD32022753CA1200F275E9 /* Language+NaturalLanguage.swift in Sources */,
 				CB382552271DEF460022E3DA /* CardView.swift in Sources */,
+				CBBD31FA2753C79100F275E9 /* UIImage.swift in Sources */,
 				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
 			);
@@ -708,6 +764,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PolyglotFlashcards--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -738,6 +795,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PolyglotFlashcards--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

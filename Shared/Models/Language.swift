@@ -7,25 +7,33 @@
 
 import Foundation
 
-enum Language: String {
+var defaultActiveLanguages: [Language] = [.English, .Russian, .German]
+
+enum Language: String, Codable {
     typealias RawValue = String
     
     case English = "en"
     case German = "de"
     case Russian = "ru"
     case Spanish = "es"
+    case Italian = "it"
     case Dutch = "nl"
     case Japanese = "ja"
+    case French = "fr"
+    case Greek = "el"
     case Unknown = ""
     
     static var all: [Language] {
         return [
-            Language.English,
-            Language.German,
-            Language.Russian,
-            Language.Spanish,
-            Language.Dutch,
-            Language.Japanese,
+            .English,
+            .German,
+            .Russian,
+            .Spanish,
+            .Italian,
+            .Dutch,
+            .Japanese,
+            .French,
+            .Greek,
         ]
     }
     
@@ -49,6 +57,12 @@ enum Language: String {
             return "🇯🇵"
         case .Unknown:
             return "❓"
+        case .Italian:
+            return "🇮🇹"
+        case .French:
+            return "🇫🇷"
+        case .Greek:
+            return "🇬🇷"
         }
     }
     
@@ -66,8 +80,14 @@ enum Language: String {
             return "Dutch"
         case .Japanese:
             return "Japanese"
+        case .Italian:
+            return "Italian"
         case .Unknown:
             return "Unknown"
+        case .French:
+            return "French"
+        case .Greek:
+            return "Greek"
         }
     }
 }

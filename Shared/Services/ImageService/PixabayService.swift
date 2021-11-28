@@ -31,7 +31,7 @@ class PixabayService: ImageService {
     
     static let shared = PixabayService()
     
-    func Search(q: String, language: Language?, onResponse: @escaping (Result<[RemoteImage]?, Error>) -> Void) {
+    func Search(q: String, onResponse: @escaping (Result<[RemoteImage]?, Error>) -> Void) {
         var url = URLComponents(string: "\(PixabayService.baseURL)/")!
         url.queryItems = [
             URLQueryItem(name: "key", value: PixabayService.apiKey),

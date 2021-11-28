@@ -16,52 +16,28 @@ struct CardsListView: View {
         animation: .default)
     private var items: FetchedResults<Card>
     
-    @State var showAddCard: Bool = false
-    
     @State var selectedCard: Card?
     @State var showDetailCard: Bool = false
     @State var showLanguageFilter: Bool = false
     
-    @State var languages: [Language] = Language.all
-    @State var visibleLanguages: [Language] = Language.all
+    @Preference(\.languages) var languages
+    @Preference(\.filteredLanguages) var storedFilteredLanguages
+    @State var filteredLanguages: [Language] = []
+    
+    init() {
+        _filteredLanguages = State(wrappedValue: storedFilteredLanguages)
+    }
     
     func addCard() {
-        showAddCard.toggle()
-    }
-    
-    func toggleLanguage(language: Language) {
-        if visibleLanguages.contains(language) {
-            visibleLanguages.removeAll {
-                $0 == language
-            }
-        } else {
-            visibleLanguages.append(language)
+        withAnimation(.easeInOut) {
+            showDetailCard = true
         }
     }
-    
+
     func toggleCard(destination: Card? = nil) {
         withAnimation(.easeInOut) {
-            showDetailCard.toggle()
+            showDetailCard = false
             selectedCard = destination
-        }
-    }
-    
-    var languageFilter: some View {
-        ForEach(Language.all, id: \.self) { lang in
-            HStack {
-                Text(lang.flag)
-                
-                Spacer()
-                
-                Text(lang.name)
-            }
-            .padding(5.0)
-            .background(
-                Color.white.opacity(visibleLanguages.contains(lang) ? 0.5 : 0.01)
-            )
-            .onTapGesture {
-                toggleLanguage(language: lang)
-            }
         }
     }
     
@@ -71,7 +47,7 @@ struct CardsListView: View {
                 CardView(
                     word: item,
                     languages: languages,
-                    visibleLanguages: visibleLanguages,
+                    visibleLanguages: filteredLanguages,
                     namespace: namespace,
                     show: selectedCard != nil && selectedCard!.id == item.id
                 )
@@ -84,12 +60,30 @@ struct CardsListView: View {
         }
     }
     
+    var languageFilter: some View {
+        VStack {
+            Text("Filter Languages")
+                .font(.title)
+            
+            LanguageFilter(languages: languages, selected: $filteredLanguages)
+                .onChange(of: filteredLanguages) {
+                    storedFilteredLanguages = $0
+                }
+            
+            Button {
+                showLanguageFilter = false
+            } label: { Text("Set") }
+            
+            Spacer()
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack {
                 HStack {
                     Text("Polyglot Flashcards")
-                        .font(.largeTitle)
+                        .font(.title)
                     
                     Spacer()
                     
@@ -101,26 +95,21 @@ struct CardsListView: View {
                         Image(systemName: "line.3.horizontal.decrease.circle")
                     }
                     .sheet(isPresented: $showLanguageFilter) {
-                        VStack {
-                            Text("Filter Languages")
-                                .font(.largeTitle)
-                            
-                            languageFilter
-                            Spacer()
-                        }
-                        .padding()
+                        languageFilter
+                            .padding()
                     }
                 }
-                .padding(.horizontal)
+                .padding()
                 
                 cardsList
             }
-            .sheet(isPresented: $showAddCard) {
-                CardDetailView(namespace: namespace)
-            }
             
-            if let selectedCard = selectedCard {
-                CardDetailView(card: selectedCard,  onClose: { toggleCard() }, namespace: namespace)
+            if  selectedCard != nil || showDetailCard {
+                CardDetailView(
+                    card: selectedCard,
+                    onClose: { toggleCard() },
+                    namespace: namespace
+                )
             }
         }
     }

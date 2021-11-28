@@ -52,6 +52,7 @@ class DeepLTranslator: TranslationService {
             if let error = error {
                 return onResponse(.failure(error))
             }
+            
             guard let data = data else {
                 return onResponse(.success(nil))
             }
