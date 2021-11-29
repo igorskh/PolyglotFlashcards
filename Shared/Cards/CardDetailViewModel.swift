@@ -121,10 +121,13 @@ class CardDetailViewModel: ObservableObject {
         } else {
             newWord = Card(context: context)
         }
-        newWord?.timestamp = Date()
         if let imageData = imageData {
             newWord?.image = imageData
         }
+        
+        newWord?.languages = self.translations.reduce("|", { partialResult, tr in
+            return partialResult + tr.target.code + "|"
+        })
         
         self.translations.forEach { tr in
             var newWordTranslation: CardVariant?

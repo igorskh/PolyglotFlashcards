@@ -32,7 +32,7 @@ struct LanguageFilter: View {
             }
             .padding(5.0)
             .background(
-                Color.white.opacity(selected.contains(lang) ? 0.5 : 0.01)
+                Color.green.opacity(selected.contains(lang) ? 0.5 : 0.01)
             )
             .onTapGesture {
                 toggleLanguage(language: lang)

@@ -16,7 +16,7 @@ struct ContentView: View {
                     Text("Card")
                 }
             
-            Text("Play")
+            GamesScreen()
                 .tabItem {
                     Image(systemName: "play.circle.fill")
                     Text("Play")

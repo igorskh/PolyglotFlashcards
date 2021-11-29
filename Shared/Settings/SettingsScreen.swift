@@ -17,8 +17,12 @@ struct SettingsScreen: View {
     
     var body: some View {
         VStack {
-            Text("Active Languages")
-                .font(.title)
+            HStack {
+                Text("Active Languages")
+                    .font(.title)
+                
+                Spacer()
+            }
             ScrollView {
                 LanguageFilter(languages: Language.all, selected: $activeLanguages)
                     .onChange(of: activeLanguages) {

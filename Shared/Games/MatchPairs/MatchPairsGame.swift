@@ -1,0 +1,109 @@
+//
+//  MatchPairsGame.swift
+//  PolyglotFlashcards
+//
+//  Created by Igor Kim on 29.11.21.
+//
+
+import SwiftUI
+import CoreData
+
+class MatchPairsGame: ObservableObject {
+    @Published var selectedLanguages: [Language] = []
+    
+    @Published var selectedVariantIDs: [ObjectIdentifier] = []
+    
+    @Published var numberOfAttempts = 0
+    @Published var numberOfCorrect = 0
+    
+    var cards: [Card] = []
+    
+    var gameStep: MatchPairsGameStep?
+    var numberOfCards: Int = 4
+    
+    func start(limit: Int = 0, viewContext: NSManagedObjectContext, onSuccess: () -> Void) {
+        if selectedLanguages.count < 2 {
+            return
+        }
+        let fetchRequest: NSFetchRequest<Card>
+        fetchRequest = Card.fetchRequest()
+        
+        let predicates: [NSPredicate] = selectedLanguages.map { lang -> NSPredicate in
+            return NSPredicate(format: "languages CONTAINS %@", "|\(lang.code)|")
+        }
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        let objects = try? viewContext.fetch(fetchRequest)
+        cards = (objects ?? []).shuffled()
+        
+        numberOfAttempts = 0
+        numberOfCorrect = 0
+        nextCard()
+        if cards.count > 1 {
+            onSuccess()
+        }
+    }
+    
+    func makeStep() -> MatchPairsGameStep? {
+        let currentCard = cards.randomElement()!
+        let otherCards = cards.filter { c in
+            c.id != currentCard.id
+        }[0..<min(cards.count-1, numberOfCards-1)]
+        
+        let allCards = [Card](([currentCard] + otherCards).shuffled())
+        let selectedLanguage: Language = selectedLanguages.randomElement()!
+        
+        let mainVariant = currentCard.variants?.first(where: {
+            ($0 as? CardVariant)?.language_code == selectedLanguage.rawValue
+        }) as? CardVariant
+        
+        var correctVariantID: ObjectIdentifier?
+        let variantChoices = allCards.map { c -> CardVariant in
+            let variants = c.variants?.filter({
+                let language_code = ($0 as? CardVariant)?.language_code
+                return (language_code != selectedLanguage.rawValue && selectedLanguages.contains(Language(rawValue: language_code!)!))
+            }) as! [CardVariant]
+            
+            let otherVariant = variants.randomElement()!
+            if mainVariant!.card == c {
+                correctVariantID = otherVariant.id
+            }
+            return otherVariant
+        }.shuffled()
+        
+        if let mainVariant = mainVariant,
+           let correctVariantID = correctVariantID {
+            return MatchPairsGameStep(
+                mainVariant: mainVariant,
+                variantChoices: variantChoices,
+                correctVariantID: correctVariantID
+            )
+        }
+        return nil
+    }
+    
+    func nextCard() {
+        gameStep = makeStep()
+        
+        selectedVariantIDs = []
+    }
+    
+    func checkStep(variant: CardVariant, onSuccess: (Bool) -> Void) {
+        if selectedVariantIDs.contains(gameStep!.correctVariantID) || selectedVariantIDs.contains(variant.id) {
+            return
+        }
+        
+        numberOfAttempts += 1
+        if variant.id == gameStep!.correctVariantID {
+            numberOfCorrect += 1
+        }
+        
+        selectedVariantIDs.append(variant.id)
+        onSuccess(variant.id == gameStep!.correctVariantID)
+    }
+    
+    func nextStep() {
+        nextCard()
+    }
+}

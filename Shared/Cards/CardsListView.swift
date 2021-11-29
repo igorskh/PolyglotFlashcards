@@ -12,7 +12,7 @@ struct CardsListView: View {
     @Namespace var namespace
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Card.timestamp, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: false)],
         animation: .default)
     private var items: FetchedResults<Card>
     
@@ -21,6 +21,7 @@ struct CardsListView: View {
     @State var showLanguageFilter: Bool = false
     
     @Preference(\.languages) var languages
+    
     @Preference(\.filteredLanguages) var storedFilteredLanguages
     @State var filteredLanguages: [Language] = []
     

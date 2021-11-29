@@ -13,7 +13,10 @@ struct FilledButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(title, action: action)
+        Button(action: action) {
+            Text(title)
+                .fontWeight(.heavy)
+        }
             .foregroundColor(.white)
             .padding(10)
             .background(color)
