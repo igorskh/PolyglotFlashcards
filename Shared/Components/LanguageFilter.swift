@@ -25,10 +25,8 @@ struct LanguageFilter: View {
         ForEach(languages, id: \.self) { lang in
             HStack {
                 Text(lang.flag)
-                
-                Spacer()
-                
                 Text(lang.name)
+                Spacer()
             }
             .padding(5.0)
             .background(
