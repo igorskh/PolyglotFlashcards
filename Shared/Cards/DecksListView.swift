@@ -109,7 +109,7 @@ struct DecksListView: View {
                         Button {
                             deleteDeck(deck: d)
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
+                            Image(systemName: "trash.circle.fill")
                                 .font(.title)
                         }
                         .buttonStyle(PlainButtonStyle())
