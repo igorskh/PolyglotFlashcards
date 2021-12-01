@@ -17,6 +17,7 @@ struct FilledButton: View {
             Text(title)
                 .fontWeight(.heavy)
         }
+            .buttonStyle(PlainButtonStyle())
             .foregroundColor(.white)
             .padding(10)
             .background(color)
