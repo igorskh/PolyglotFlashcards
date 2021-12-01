@@ -248,8 +248,10 @@ struct CardDetailView: View {
                     }
                 }
                 .onEnded { _ in
-                    self.offset = .zero
-                    self.zoomFactor = 1.0
+                    if abs(self.offset.height) < 50 {
+                        self.offset = .zero
+                        self.zoomFactor = 1.0
+                    }
                 }
         )
         .onAppear {
