@@ -15,7 +15,6 @@ struct ImageCarouselView: View {
     #endif
     @State var currentItemID = 0
     @Binding var selectedItemID: Int
-//    = UIScreen.main.bounds.width - 20
     let images: [RemoteImage]
     let contentMode: ContentMode
     let height: CGFloat
@@ -44,9 +43,20 @@ struct ImageCarouselView: View {
                                         .frame(minWidth: cardWidth, maxHeight: height)
                                 }
                             )
+                        } else {
+                            WebImage(
+                                withURL: rImage.url.absoluteString
+                            )
+                                .aspectRatio(contentMode: contentMode)
+                                .frame(minWidth: cardWidth, maxHeight: height)
+                                .clipped()
+                                .clipShape(Rectangle())
+                                .contentShape(Rectangle())
+                                .padding(.horizontal)
+                                .id(rImage.id)
                         }
                     }
-                
+                    
                 }
                 .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                 .onEnded({ value in
