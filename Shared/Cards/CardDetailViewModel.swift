@@ -12,7 +12,8 @@ class CardDetailViewModel: ObservableObject {
     @Published var translations: [Translation] = []
     @Published var errorMessage: String = ""
     @Published var images: [RemoteImage]?
-    
+    @Published var decks: [Deck]
+
     @Published var selectedImageID = 0
     @Published var nQueuedRequests: Int = 0
     
@@ -27,6 +28,8 @@ class CardDetailViewModel: ObservableObject {
     
     init(card: Card? = nil) {
         self.card = card
+        self.decks = card?.decks?.sortedArray(using: []) as? [Deck] ?? []
+        
         translations =  languages.map { lang in
             var translation = ""
             if let card = card {
@@ -128,6 +131,7 @@ class CardDetailViewModel: ObservableObject {
         newWord?.languages = self.translations.reduce("|", { partialResult, tr in
             return partialResult + tr.target.code + "|"
         })
+        newWord?.decks = Set<Deck>(decks) as NSSet
         
         self.translations.forEach { tr in
             var newWordTranslation: CardVariant?

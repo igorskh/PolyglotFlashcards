@@ -16,6 +16,7 @@ struct CardDetailView: View {
     @State private var offset = CGSize.zero
     @State private var zoomFactor: CGFloat = 1.0
     @State private var editEnabled: Bool = false
+    @State private var showDecks: Bool = false
     	
     init(card: Card? = nil, onClose: (() -> Void)? = nil, namespace: Namespace.ID) {
         viewModel = CardDetailViewModel(card: card)
@@ -69,9 +70,10 @@ struct CardDetailView: View {
                     HStack {
                         Text(viewModel.card != nil ? "Edit Card" : "New Card")
                             .font(.title)
+                            .foregroundColor(.white)
                         Spacer()
                         
-                        Image(systemName: "pencil.circle.fill")
+                        Image(systemName: editEnabled ? "eye.circle.fill" : "pencil.circle.fill" )
                             .opacity(0.7)
                             .font(.title)
                             .onTapGesture {
@@ -87,6 +89,7 @@ struct CardDetailView: View {
                     }
                     .padding(.vertical)
                     .padding(.horizontal)
+                    .foregroundColor(Color.white)
                     .background(
                         Color.black.opacity(0.5)
                     )
@@ -109,18 +112,23 @@ struct CardDetailView: View {
                     
                     if editEnabled {
                         TextField("", text: $viewModel.translations[i].translation)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                     } else {
                         AttributedText(viewModel.translations[i].attributedString)
                             .padding(5)
                             .background(Color.white)
+                            .onTapGesture {
+                                editEnabled.toggle()
+                            }
                     }
                     
                     if editEnabled {
                         Button {
                             viewModel.getTranslation(from: viewModel.translations[i].target)
                         } label: {
-                            Image(systemName: "arrow.left.arrow.right")
+                            Image(systemName: "globe")
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
                     
                     Button {
@@ -128,6 +136,7 @@ struct CardDetailView: View {
                     } label: {
                         Image(systemName: "speaker.wave.3")
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .matchedGeometryEffect(id: "\(viewModel.card?.id.hashValue ?? -1)-\(viewModel.translations[i].target.code)", in: namespace)
                 .padding(.vertical, 5)
@@ -176,7 +185,40 @@ struct CardDetailView: View {
                 ProgressView()
             } else if editEnabled {
                 Text("Enter text in fields below")
+            } else {
+                Text(" ")
             }
+            
+            HStack {
+                Text("Decks")
+                
+                ScrollView([.horizontal]) {
+                    HStack {
+                        ForEach(viewModel.decks) { d in
+                            DeckCapsuleView(title: d.title ?? "N/A") {
+                                viewModel.decks.remove(at: viewModel.decks.firstIndex(of: d)!)
+                            }
+                        }
+                    }
+                }
+                .onTapGesture {}
+                
+                Spacer()
+                
+                Button {
+                    showDecks.toggle()
+                } label: {
+                    Image(systemName: "ellipsis.circle.fill")
+                        .font(.title)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .sheet(isPresented: $showDecks) {
+                    DecksListView(selectedDecks: $viewModel.decks)
+                }
+                
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
             
             translationsList
                 .padding(.horizontal)
@@ -186,6 +228,7 @@ struct CardDetailView: View {
             buttons
                 .padding(.horizontal)
         }
+        .frame(maxWidth: 600)
         .background(
             Rectangle()
                 .colorInvert()
@@ -199,14 +242,14 @@ struct CardDetailView: View {
                 .onChanged { gesture in
                     self.zoomFactor = gesture.startLocation.y/gesture.location.y
                     self.offset = gesture.translation
-                }
-                .onEnded { _ in
+                    
                     if abs(self.offset.height) > 50 {
                         closeCard()
-                    } else {
-                        self.offset = .zero
-                        self.zoomFactor = 1.0
                     }
+                }
+                .onEnded { _ in
+                    self.offset = .zero
+                    self.zoomFactor = 1.0
                 }
         )
         .onAppear {

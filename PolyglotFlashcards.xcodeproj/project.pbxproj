@@ -50,6 +50,12 @@
 		CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */; };
 		CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
 		CB8493D02741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
+		CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */; };
+		CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */; };
+		CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535E27582CA70036C9EE /* DecksListView.swift */; };
+		CBA3536027582CA70036C9EE /* DecksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535E27582CA70036C9EE /* DecksListView.swift */; };
+		CBA3536227582CBD0036C9EE /* DeckCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */; };
+		CBA3536327582CBD0036C9EE /* DeckCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */; };
 		CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */; };
@@ -69,6 +75,10 @@
 		CBC4CB6E2755398F009CCB32 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB6C2755398F009CCB32 /* GameCardView.swift */; };
 		CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB6F275539AB009CCB32 /* MatchPairsGameScreen.swift */; };
 		CBC4CB71275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB6F275539AB009CCB32 /* MatchPairsGameScreen.swift */; };
+		CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7227553E84009CCB32 /* TabRouter.swift */; };
+		CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7227553E84009CCB32 /* TabRouter.swift */; };
+		CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7527558841009CCB32 /* WebImage.swift */; };
+		CBC4CB7727558841009CCB32 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7527558841009CCB32 /* WebImage.swift */; };
 		CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE12753CB78001607FA /* AttributedText.swift */; };
 		CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
 		CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
@@ -137,6 +147,9 @@
 		CB7169C92750276700F9F6CA /* WordTagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTagger.swift; sourceTree = "<group>"; };
 		CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		CB8493CE2741597400A8FC7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+awakeFromInsert.swift"; sourceTree = "<group>"; };
+		CBA3535E27582CA70036C9EE /* DecksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksListView.swift; sourceTree = "<group>"; };
+		CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCapsuleView.swift; sourceTree = "<group>"; };
 		CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilter.swift; sourceTree = "<group>"; };
 		CBBD31F32753A30F00F275E9 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -146,6 +159,8 @@
 		CBC4CB6927553978009CCB32 /* MatchPairsGameStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPairsGameStep.swift; sourceTree = "<group>"; };
 		CBC4CB6C2755398F009CCB32 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		CBC4CB6F275539AB009CCB32 /* MatchPairsGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPairsGameScreen.swift; sourceTree = "<group>"; };
+		CBC4CB7227553E84009CCB32 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		CBC4CB7527558841009CCB32 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		CBFFDCE12753CB78001607FA /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		CBFFDCE32753CB89001607FA /* Card+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+UIImage.swift"; sourceTree = "<group>"; };
 		CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--macOS--Info.plist"; sourceTree = "<group>"; };
@@ -299,6 +314,9 @@
 				CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */,
 				CBFFDCE82753D65C001607FA /* FilledButton.swift */,
 				CBFFDD0127541110001607FA /* NavigationController.swift */,
+				CBC4CB7227553E84009CCB32 /* TabRouter.swift */,
+				CBC4CB7527558841009CCB32 /* WebImage.swift */,
+				CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -310,6 +328,7 @@
 				CB38254C271DEF260022E3DA /* CardDetailViewModel.swift */,
 				CB382550271DEF460022E3DA /* CardView.swift */,
 				CB382553271DEF560022E3DA /* CardsListView.swift */,
+				CBA3535E27582CA70036C9EE /* DecksListView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -322,6 +341,7 @@
 				CBFFDCF82753FFA4001607FA /* Image+nsImage.swift */,
 				CBFFDCFB27540478001607FA /* Card+awakeFromInsert.swift */,
 				CBFFDCFE2754049F001607FA /* CardVariant+awakeFromInsert.swift */,
+				CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -546,6 +566,7 @@
 			files = (
 				CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */,
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
+				CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */,
 				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
 				CB7169CA2750276700F9F6CA /* WordTagger.swift in Sources */,
@@ -556,9 +577,12 @@
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CBFFDCFF2754049F001607FA /* CardVariant+awakeFromInsert.swift in Sources */,
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
+				CBA3536227582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
+				CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */,
 				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
 				CBFFDCFC27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
+				CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
 				CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */,
 				CBFFDCF92753FFA4001607FA /* Image+nsImage.swift in Sources */,
 				CBBD31F42753A30F00F275E9 /* Preferences.swift in Sources */,
@@ -574,6 +598,7 @@
 				CB382554271DEF560022E3DA /* CardsListView.swift in Sources */,
 				CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
 				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
+				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
 				CBFFDCF62753FE2A001607FA /* GamesScreen.swift in Sources */,
@@ -585,8 +610,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA3536027582CA70036C9EE /* DecksListView.swift in Sources */,
 				CBFFDCF42753FCD8001607FA /* MatchPairsStartScreen.swift in Sources */,
 				CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
+				CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
 				CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */,
@@ -598,8 +625,10 @@
 				CBFFDCF72753FE2A001607FA /* GamesScreen.swift in Sources */,
 				CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
+				CBA3536327582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
 				CBBD31EF2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
 				CBFFDD002754049F001607FA /* CardVariant+awakeFromInsert.swift in Sources */,
+				CBC4CB7727558841009CCB32 /* WebImage.swift in Sources */,
 				CBFFDCEA2753D65C001607FA /* FilledButton.swift in Sources */,
 				CB38254E271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
@@ -618,6 +647,7 @@
 				CB382552271DEF460022E3DA /* CardView.swift in Sources */,
 				CBC4CB6B27553978009CCB32 /* MatchPairsGameStep.swift in Sources */,
 				CBBD31FA2753C79100F275E9 /* UIImage.swift in Sources */,
+				CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
 				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
 			);
@@ -775,14 +805,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PolyglotFlashcards--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polyglot Flashcards";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -807,14 +839,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PolyglotFlashcards--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polyglot Flashcards";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardsListView: View {
+    @EnvironmentObject var tabRouter: TabRouter
     @Environment(\.managedObjectContext) private var viewContext
     @Namespace var namespace
     
@@ -17,7 +18,13 @@ struct CardsListView: View {
     private var items: FetchedResults<Card>
     
     @State var selectedCard: Card?
-    @State var showDetailCard: Bool = false
+    @State var showDetailCard: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                tabRouter.isModal = showDetailCard
+            }
+        }
+    }
     @State var showLanguageFilter: Bool = false
     
     @Preference(\.languages) var languages
@@ -37,8 +44,35 @@ struct CardsListView: View {
 
     func toggleCard(destination: Card? = nil) {
         withAnimation(.easeInOut) {
-            showDetailCard = false
+            showDetailCard = destination != nil
             selectedCard = destination
+        }
+    }
+    
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 300))
+    ]
+    
+    var cardsGrid: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(items) { item in
+                    CardView(
+                        word: item,
+                        languages: languages,
+                        visibleLanguages: filteredLanguages,
+                        namespace: namespace,
+                        show: selectedCard != nil && selectedCard!.id == item.id
+                    )
+                        .opacity(selectedCard != nil && selectedCard!.id == item.id ? 0.0 : 1.0)
+                        .onTapGesture {
+                            toggleCard(destination: item)
+                        }
+                }
+            }
+            Spacer()
+                .padding(.bottom, 40)
         }
     }
     
@@ -58,6 +92,8 @@ struct CardsListView: View {
                         toggleCard(destination: item)
                     }
             }
+            Spacer()
+                .padding(.bottom, 40)
         }
     }
     
@@ -71,9 +107,9 @@ struct CardsListView: View {
                     storedFilteredLanguages = $0
                 }
             
-            Button {
+            FilledButton(title: "Set", color: .accentColor) {
                 showLanguageFilter = false
-            } label: { Text("Set") }
+            }
             
             Spacer()
         }
@@ -84,28 +120,35 @@ struct CardsListView: View {
             VStack {
                 HStack {
                     Text("Polyglot Flashcards")
-                        .font(.title)
                     
                     Spacer()
                     
                     Button(action: addCard) {
-                        Image(systemName: "plus")
+                        Image(systemName: "plus.circle.fill")
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     Button(action: { showLanguageFilter.toggle() }) {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
+                        Image(systemName: "line.3.horizontal.decrease.circle.fill")
                     }
-                    .sheet(isPresented: $showLanguageFilter) {
-                        languageFilter
-                            .padding()
-                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
+                .foregroundColor(.primary)
+                .font(.title)
                 .padding()
                 
-                cardsList
+                cardsGrid
+            }
+            .sheet(isPresented: $showLanguageFilter) {
+                languageFilter
+                    .padding()
             }
             
             if  selectedCard != nil || showDetailCard {
+                Color.black
+                    .opacity(0.7)
+                    .ignoresSafeArea()
+                
                 CardDetailView(
                     card: selectedCard,
                     onClose: { toggleCard() },
