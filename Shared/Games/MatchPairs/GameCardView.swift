@@ -11,11 +11,13 @@ struct GameCardView: View {
     var variant: CardVariant
     var selectedIDs: [ObjectIdentifier]
     var correctID: ObjectIdentifier
+    var isAnimated: Bool
     
     var body: some View {
         VStack {
             Text("\(variant.text ?? "N/A")")
                 .fontWeight(.heavy)
+                .animation(isAnimated ? nil : .default)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 60, alignment: .center)

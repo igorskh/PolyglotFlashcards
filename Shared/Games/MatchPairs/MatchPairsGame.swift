@@ -15,6 +15,12 @@ class MatchPairsGame: ObservableObject {
     
     @Published var numberOfAttempts = 0
     @Published var numberOfCorrect = 0
+    @Published var numberOfIncorrect = 0
+    
+    @Published var triggerCorrect: Bool = false
+    @Published var triggerIncorrect: Bool = false
+    
+    @Published var isAppeared = false
     
     var cards: [Card] = []
     
@@ -39,6 +45,8 @@ class MatchPairsGame: ObservableObject {
         
         numberOfAttempts = 0
         numberOfCorrect = 0
+        numberOfIncorrect = 0
+        
         nextCard()
         if cards.count > 1 {
             onSuccess()
@@ -46,15 +54,20 @@ class MatchPairsGame: ObservableObject {
     }
     
     func makeStep() -> MatchPairsGameStep? {
-        let currentCard = cards.randomElement()!
+        var currentCard: Card?
+        if let selectCard = cards.randomElement() {
+            currentCard = selectCard
+        } else {
+            return nil
+        }
         let otherCards = cards.filter { c in
-            c.id != currentCard.id
+            c.id != currentCard!.id
         }[0..<min(cards.count-1, numberOfCards-1)]
         
-        let allCards = [Card](([currentCard] + otherCards).shuffled())
+        let allCards = [Card](([currentCard!] + otherCards).shuffled())
         let selectedLanguage: Language = selectedLanguages.randomElement()!
         
-        let mainVariant = currentCard.variants?.first(where: {
+        let mainVariant = currentCard!.variants?.first(where: {
             ($0 as? CardVariant)?.language_code == selectedLanguage.rawValue
         }) as? CardVariant
         
@@ -90,13 +103,21 @@ class MatchPairsGame: ObservableObject {
     }
     
     func checkStep(variant: CardVariant, onSuccess: (Bool) -> Void) {
-        if selectedVariantIDs.contains(gameStep!.correctVariantID) || selectedVariantIDs.contains(variant.id) {
+        if selectedVariantIDs.contains(gameStep!.correctVariantID) {
+            return nextStep()
+        }
+        
+        if selectedVariantIDs.contains(variant.id) {
             return
         }
         
         numberOfAttempts += 1
         if variant.id == gameStep!.correctVariantID {
             numberOfCorrect += 1
+            triggerCorrect = true
+        } else {
+            numberOfIncorrect += 1
+            triggerIncorrect = true
         }
         
         selectedVariantIDs.append(variant.id)

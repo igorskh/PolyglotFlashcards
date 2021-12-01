@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MatchPairsStartScreen: View {
+    @EnvironmentObject var tabRouter: TabRouter
+    
     @Preference(\.languages) var languages
     @EnvironmentObject var navigationController: NavControllerViewModel
     @Environment(\.managedObjectContext) private var viewContext
@@ -33,6 +35,7 @@ struct MatchPairsStartScreen: View {
                 title: "Start",
                 color: game.selectedLanguages.count > 1 ? .green : .gray) {
                     game.start(viewContext: viewContext) {
+                        tabRouter.isModal = true
                         navigationController.push(
                             MatchPairsGameScreen()
                                 .environmentObject(game)

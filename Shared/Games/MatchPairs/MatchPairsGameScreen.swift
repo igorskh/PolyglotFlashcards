@@ -9,25 +9,28 @@ import SwiftUI
 
 struct MatchPairsGameScreen: View {
     @Namespace private var animation
+    @EnvironmentObject var tabRouter: TabRouter
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var navigationController: NavControllerViewModel
     @EnvironmentObject var game: MatchPairsGame
     
+    @State var scaleAmount = CGFloat(1)
+    
     var stepView: some View {
         Group {
             VStack(spacing: 20) {
-                GameCardView(
-                    variant: game.gameStep!.mainVariant,
-                    selectedIDs: game.selectedVariantIDs,
-                    correctID: game.gameStep!.correctVariantID
-                )
-                    .padding(.bottom)
+                Text(game.gameStep!.mainVariant.text ?? "N/A")
+                    .fontWeight(.heavy)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60, alignment: .center)
+                    .animation(game.isAppeared ? nil : .default)
                 
                 ForEach(game.gameStep!.variantChoices.indices) { i in
                     GameCardView(
                         variant: game.gameStep!.variantChoices[i],
                         selectedIDs: game.selectedVariantIDs,
-                        correctID: game.gameStep!.correctVariantID
+                        correctID: game.gameStep!.correctVariantID,
+                        isAnimated: game.isAppeared
                     )
                         .onTapGesture {
                             withAnimation {
@@ -36,18 +39,6 @@ struct MatchPairsGameScreen: View {
                         }
                 }
             }
-            
-            HStack {
-                FilledButton(
-                    title: "Next",
-                    color: game.selectedVariantIDs.contains(game.gameStep!.correctVariantID) ? Color.green.opacity(0.8) : Color.gray
-                ) {
-                    if game.selectedVariantIDs.contains(game.gameStep!.correctVariantID) {
-                        game.nextStep()
-                    }
-                }
-            }
-            .padding(.vertical)
             
             Spacer()
         }
@@ -62,19 +53,74 @@ struct MatchPairsGameScreen: View {
                 Spacer()
                 
                 Button {
+                    tabRouter.isModal = false
                     navigationController.pop(to: .root)
-                } label: { Text("Finish") }
+                } label: {
+                    Text("Finish")
+                }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding(.bottom)
             
-            Text("\(game.numberOfCorrect) of \(game.numberOfAttempts)")
-                .fontWeight(.heavy)
-                .font(.title)
-        
+            
+            HStack {
+                Group {
+                    BouncingIcon(trigger: $game.triggerCorrect, color: .green, systemName: "checkmark.circle.fill")
+                    
+                    Text("\(game.numberOfCorrect)")
+                        .fontWeight(.heavy)
+                        .font(.title2)
+                        .animation(game.isAppeared ? nil : .default)
+                        .frame(width: 50)
+                }
+                Spacer()
+                Group {
+                    Text("\(game.numberOfIncorrect)")
+                        .fontWeight(.heavy)
+                        .font(.title2)
+                        .animation(game.isAppeared ? nil : .default)
+                        .frame(width: 50)
+                
+                    BouncingIcon(trigger: $game.triggerIncorrect, color: .red, systemName: "xmark.circle.fill")
+                        .frame(width: 50)
+                }
+            }
+            .onAppear {
+                game.isAppeared = true
+            }
+            .onDisappear {
+                game.isAppeared = false
+            }
+            
             stepView
             
             Spacer()
         }
         .padding()
+    }
+}
+
+struct BouncingIcon: View {
+    @Binding var trigger: Bool
+    var color: Color
+    var systemName: String
+    
+    var body: some View {
+        Image(systemName:systemName)
+            .foregroundColor(color)
+            .scaleEffect(trigger ? 1.5 : 1)
+            .frame(width: 50)
+            .font(.title)
+            .animation(
+                .easeInOut(duration: 0.2),
+                value: trigger
+            )
+            .onChange(of: trigger) {
+                if $0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        trigger = false
+                    }
+                }
+            }
     }
 }
