@@ -1,21 +1,23 @@
 //
-//  CardsListView.swift
+//  CardsListScreen.swift
 //  PolyglotFlashcards
 //
 //  Created by Igor Kim on 18.10.21.
 //
 
 import SwiftUI
+import CoreData
 
-struct CardsListView: View {
+struct CardsListScreen: View {
     @EnvironmentObject var tabRouter: TabRouter
     @Environment(\.managedObjectContext) private var viewContext
     @Namespace var namespace
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: false)],
-        animation: .default)
-    private var items: FetchedResults<Card>
+    var routerNamespace: Namespace.ID
+    var cardsRequest: FetchRequest<Card>
+    var deck: Deck?
+    
+    private var items: FetchedResults<Card>{cardsRequest.wrappedValue}
     
     @State var selectedCard: Card?
     @State var showDetailCard: Bool = false {
@@ -32,7 +34,19 @@ struct CardsListView: View {
     @Preference(\.filteredLanguages) var storedFilteredLanguages
     @State var filteredLanguages: [Language] = []
     
-    init() {
+    init(deck: Deck? = nil, routerNamespace: Namespace.ID) {
+        self.deck = deck
+        let predicate: NSPredicate = deck == nil ?
+            NSPredicate(format: "decks.@count == 0") :
+            NSPredicate(format: "(ANY decks.title == %@)", deck!.title!)
+        
+        cardsRequest = FetchRequest(
+            entity: Card.entity(),
+            sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: false)],
+            predicate: predicate
+        )
+        
+        self.routerNamespace = routerNamespace
         _filteredLanguages = State(wrappedValue: storedFilteredLanguages)
     }
     
@@ -69,6 +83,7 @@ struct CardsListView: View {
                         .onTapGesture {
                             toggleCard(destination: item)
                         }
+                        .matchedGeometryEffect(id: item.id, in: routerNamespace)
                 }
             }
             Spacer()
@@ -119,7 +134,16 @@ struct CardsListView: View {
         ZStack {
             VStack {
                 HStack {
-                    Text("Polyglot Flashcards")
+                    Button {
+                        withAnimation {
+                            tabRouter.currentTab = .decks
+                        }
+                    } label: {
+                        Image(systemName: "arrowshape.turn.up.backward")
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    Text("\(deck?.title ?? "PolyCard")")
                     
                     Spacer()
                     
@@ -133,7 +157,6 @@ struct CardsListView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
-                .foregroundColor(.primary)
                 .font(.title)
                 .padding()
                 
@@ -150,11 +173,20 @@ struct CardsListView: View {
                     .ignoresSafeArea()
                 
                 CardDetailView(
+                    deck: deck,
                     card: selectedCard,
                     onClose: { toggleCard() },
                     namespace: namespace
                 )
             }
         }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+            if value.translation.width > 0 && value.startLocation.x < 20 {
+                withAnimation {
+                    tabRouter.currentTab = .decks
+                }
+            }
+        }))
     }
 }

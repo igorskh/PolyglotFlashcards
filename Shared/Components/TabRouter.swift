@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum Page {
+    case decks
     case cards
     case play
     case settings
@@ -36,5 +37,6 @@ struct TabBarIcon: View {
 
 class TabRouter: ObservableObject {
     @Published var isModal: Bool = false
-    @Published var currentTab: Page = .cards
+    @Published var currentTab: Page = .decks
+    @Published var selectedDeck: Deck? = nil
 }

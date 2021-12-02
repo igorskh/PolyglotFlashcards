@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Namespace var routerNamespace
     @EnvironmentObject var tabRouter: TabRouter
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Group {
-                if tabRouter.currentTab == .cards {
-                    CardsListView()
+                if tabRouter.currentTab == .decks {
+                    DecksGridScreen(routerNamespace: routerNamespace)
+                }
+                else if tabRouter.currentTab == .cards {
+                    CardsListScreen(deck: tabRouter.selectedDeck, routerNamespace: routerNamespace)
                 }
                 else if tabRouter.currentTab == .play {
                     GamesScreen()
@@ -30,11 +34,11 @@ struct ContentView: View {
                     TabBarIcon(
                         systemIconName: "cards-icon",
                         tabName: "Cards",
-                        isActive: tabRouter.currentTab == .cards
+                        isActive: [Page.decks, Page.cards].contains(tabRouter.currentTab)
                     )
                         .onTapGesture {
                             withAnimation {
-                                tabRouter.currentTab = .cards
+                                tabRouter.currentTab = .decks
                             }
                         }
                     TabBarIcon(

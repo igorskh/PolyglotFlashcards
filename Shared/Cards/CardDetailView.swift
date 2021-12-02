@@ -12,19 +12,26 @@ struct CardDetailView: View {
     @ObservedObject var viewModel: CardDetailViewModel
     var onClose: () -> Void = {}
     var namespace: Namespace.ID
+    var deck: Deck?
     
     @State private var offset = CGSize.zero
     @State private var zoomFactor: CGFloat = 1.0
     @State private var editEnabled: Bool = false
     @State private var showDecks: Bool = false
     	
-    init(card: Card? = nil, onClose: (() -> Void)? = nil, namespace: Namespace.ID) {
+    init(deck: Deck? = nil, card: Card? = nil, onClose: (() -> Void)? = nil, namespace: Namespace.ID) {
+        self.deck = deck
         viewModel = CardDetailViewModel(card: card)
+        
         
         if let onClose = onClose {
             self.onClose = onClose
         }
         self.namespace = namespace
+        if let currentDeck = deck,
+           card == nil {
+            viewModel.decks.append(currentDeck)
+        }
     }
     
     func closeCard() {

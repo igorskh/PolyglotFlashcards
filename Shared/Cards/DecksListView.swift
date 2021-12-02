@@ -42,6 +42,7 @@ struct DecksListView: View {
         
         do {
             try viewContext.save()
+            selectedDecks.append(deck)
         } catch {
             let nsError = error as NSError
             errorText = nsError.userInfo.description
