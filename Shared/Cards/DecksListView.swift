@@ -17,15 +17,18 @@ struct DecksListView: View {
     private var decks: FetchedResults<Deck>
     
     @State var newDeckTitle: String = ""
+    
     @State var errorText: String = ""
     @Binding var selectedDecks: [Deck]
+    
+    var canEdit: Bool
     
     func addDeck() {
         errorText = ""
         
         newDeckTitle = newDeckTitle.trimmingCharacters(in: [" "])
         if newDeckTitle == "" {
-            errorText = "Enter deck title"
+            errorText = NSLocalizedString("Enter deck title", comment: "Enter deck title")
             return
         }
         
@@ -33,7 +36,7 @@ struct DecksListView: View {
             d.title!.lowercased() == newDeckTitle.lowercased()
         }
         if exists {
-            errorText = "Deck with this name already exists"
+            errorText = NSLocalizedString("Deck with this name already exists", comment: "Deck with this name already exists")
             return
         }
         
@@ -53,12 +56,12 @@ struct DecksListView: View {
     func deleteDeck(deck: Deck) {
         errorText = ""
         if  selectedDecks.contains(deck) {
-            errorText = "This deck contains cards"
+            errorText = NSLocalizedString("This deck contains cards", comment: "This deck contains cards")
             return
         }
         if let cards = deck.cards,
            cards.count > 0 {
-            errorText = "This deck contains cards"
+            errorText = NSLocalizedString("This deck contains cards", comment: "This deck contains cards")
             return
         }
         
@@ -75,7 +78,7 @@ struct DecksListView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Your Decks")
+                Text(LocalizedStringKey("Your Decks"))
                 
                 Spacer()
                 
@@ -88,32 +91,36 @@ struct DecksListView: View {
                 .buttonStyle(PlainButtonStyle())
             }.font(.title)
             
-            HStack {
-                TextField("Deck Title", text: $newDeckTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            if canEdit {
+                HStack {
+                    TextField(NSLocalizedString("Deck Title", comment: "Deck Title"), text: $newDeckTitle)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button {
+                        addDeck()
+                    } label: { Text(LocalizedStringKey("Create")) }
+                }
                 
-                Button {
-                    addDeck()
-                } label: { Text("Create") }
-            }
-            
-            if errorText != "" {
-                Text(errorText)
-                    .foregroundColor(.red)
+                if errorText != "" {
+                    Text(errorText)
+                        .foregroundColor(.red)
+                }
             }
             
             ScrollView {
                 ForEach(decks) { d in
                     HStack {
-                        Text(d.title ?? "N/A")
+                        Text(d.title ?? NSLocalizedString("N/A", comment: "N/A"))
                         Spacer()
-                        Button {
-                            deleteDeck(deck: d)
-                        } label: {
-                            Image(systemName: "trash.circle.fill")
-                                .font(.title)
+                        if canEdit {
+                            Button {
+                                deleteDeck(deck: d)
+                            } label: {
+                                Image(systemName: "trash.circle.fill")
+                                    .font(.title)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
                     .padding()
                     .onTapGesture {

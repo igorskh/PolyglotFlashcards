@@ -25,13 +25,13 @@ struct DeckPreviewView: View {
     var body: some View {
         ZStack {
             if deck == nil {
-                CardImagesView(title: "Uncategorized")
+                CardImagesView(title: NSLocalizedString("Uncategorized", comment: "Uncategorized"))
                     .font(.largeTitle)
             }
             
             ForEach(cards.indices) { i in
                 CardImagesView(
-                    title: deck?.title ?? "Uncategorized",
+                    title: deck?.title ?? NSLocalizedString("Uncategorized", comment: "Uncategorized"),
                     card: cards[i]
                 )
                 .font(.largeTitle)

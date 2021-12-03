@@ -12,6 +12,7 @@ struct GamesScreen: View {
         NavControllerView {
             MatchPairsStartScreen()
         }
+        .frame(maxWidth: 500)
     }
 }
 

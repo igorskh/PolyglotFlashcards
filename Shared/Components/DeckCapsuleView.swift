@@ -9,20 +9,22 @@ import SwiftUI
 
 struct DeckCapsuleView: View {
     var title: String
-    var onDelete: () -> Void
+    var onDelete: (() -> Void)?
     
     var body: some View {
         HStack {
             Text(title)
                 .foregroundColor(.white)
             
-            Button {
-                onDelete()
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.red)
+            if let onDelete = onDelete {
+                Button {
+                    onDelete()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.red)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            .buttonStyle(PlainButtonStyle())
         }
         .padding(5)
         .background(

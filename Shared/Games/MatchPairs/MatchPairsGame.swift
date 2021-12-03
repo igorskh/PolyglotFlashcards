@@ -11,6 +11,7 @@ import CoreData
 class MatchPairsGame: ObservableObject {
     @Published var selectedLanguages: [Language] = []
     
+    @Published var selectedDecks: [Deck] = []
     @Published var selectedVariantIDs: [ObjectIdentifier] = []
     
     @Published var numberOfAttempts = 0
@@ -22,21 +23,35 @@ class MatchPairsGame: ObservableObject {
     
     @Published var isAppeared = false
     
+    @Published var error: String = ""
+    
     var cards: [Card] = []
     
     var gameStep: MatchPairsGameStep?
     var numberOfCards: Int = 4
     
     func start(limit: Int = 0, viewContext: NSManagedObjectContext, onSuccess: () -> Void) {
+        error = ""
         if selectedLanguages.count < 2 {
             return
         }
         let fetchRequest: NSFetchRequest<Card>
         fetchRequest = Card.fetchRequest()
         
-        let predicates: [NSPredicate] = selectedLanguages.map { lang -> NSPredicate in
+        var predicates: [NSPredicate] = selectedLanguages.map { lang -> NSPredicate in
             return NSPredicate(format: "languages CONTAINS %@", "|\(lang.code)|")
         }
+        
+        if !selectedDecks.isEmpty {
+            predicates.append(
+                NSCompoundPredicate(orPredicateWithSubpredicates: selectedDecks.map({ deck -> NSPredicate in
+                    return NSPredicate(format: "(ANY decks.title == %@)", deck.title!)
+                }))
+            )
+        }
+//        predicates.append(contentsOf:
+//
+//        )
         
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
@@ -50,6 +65,8 @@ class MatchPairsGame: ObservableObject {
         nextCard()
         if cards.count > 1 {
             onSuccess()
+        } else {
+            error = NSLocalizedString("Not enough cards to play", comment: "Not enough cards to play")
         }
     }
     

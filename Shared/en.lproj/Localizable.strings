@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  PolyglotFlashcards
+
+  Created by Igor Kim on 03.12.21.
+  
+*/
+
+"Cards" = "Cards";
+"Play" = "Play";
+"Settings" = "Settings";
+"No image selected" = "No image selected";
+
+"Edit Card" = "Edit Card";
+"New Card" = "New Card";
+
+"New Card" = "New Card";
+
+"Create" = "Create";
+"Save" = "Save";
+"Delete" = "Delete";
+
+"Decks" = "Decks";
+
+"Enter text in the fields below" = "Enter text in the fields below";
+
+"N/A" = "N/A";
+
+"Could not get translations" = "Could not get translations";
+
+"Set" = "Set";
+
+"Your Decks" = "Your Decks";
+"Deck Title" = "Deck Title";
+
+"This deck contains cards" = "This deck contains cards";
+
+"Enter deck title" = "Enter deck title";
+"Deck with this name already exists" = "Deck with this name already exists";
+
+
+"Uncategorized" = "Uncategorized";
+
+"Match Pairs Game" = "Match Pairs Game";
+"Choose at least 2 variants to play" = "Choose at least 2 variants to play";
+"Start" = "Start";
+"Finish" = "Finish";
+
+"Active Languages" = "Active Languages";
+
+"Any" = "Any";
+
+"Choos decks to play" = "Choos decks to play";
+"Not enough cards to play" = "Not enough cards to play";
+
+"Well done" = "Well done!";
+"Not bad" = "Not bad";
+"Better luck next time" = "Better luck next time";

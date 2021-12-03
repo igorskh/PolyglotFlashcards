@@ -16,23 +16,29 @@ struct MatchPairsStartScreen: View {
     @ObservedObject var game: MatchPairsGame = .init()
     
     var body: some View {
-        VStack {
+        ScrollView {
             HStack {
-                Text("Match Pairs Game")
+                Text(LocalizedStringKey("Match Pairs Game"))
                     .font(.title)
                 Spacer()
             }
             
-            Text("Choose at least 2 variants to play")
+            Text(LocalizedStringKey("Choos decks to play"))
                 .padding(.vertical)
-
+            
+            DecksPicker(selectedDecks: $game.selectedDecks, canEdit: false, showAny: true)
+            
+            Text(LocalizedStringKey("Choose at least 2 variants to play"))
+                .padding(.vertical)
+            
+            
             LanguageFilter(
                 languages: languages,
                 selected: $game.selectedLanguages
             )
             
             FilledButton(
-                title: "Start",
+                title: NSLocalizedString("Start", comment: "Start game"),
                 color: game.selectedLanguages.count > 1 ? .green : .gray) {
                     game.start(viewContext: viewContext) {
                         tabRouter.isModal = true
@@ -44,6 +50,10 @@ struct MatchPairsStartScreen: View {
             }
             .font(.title)
             .padding()
+            
+            if game.error != "" {
+                Text(game.error)
+            }
             
             Spacer()
         }

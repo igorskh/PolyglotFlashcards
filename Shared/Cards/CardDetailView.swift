@@ -18,7 +18,7 @@ struct CardDetailView: View {
     @State private var zoomFactor: CGFloat = 1.0
     @State private var editEnabled: Bool = false
     @State private var showDecks: Bool = false
-    	
+    
     init(deck: Deck? = nil, card: Card? = nil, onClose: (() -> Void)? = nil, namespace: Namespace.ID) {
         self.deck = deck
         viewModel = CardDetailViewModel(card: card)
@@ -50,7 +50,7 @@ struct CardDetailView: View {
                     .clipped()
                     .matchedGeometryEffect(id: "\(card.id.hashValue)-title", in: namespace)
             } else {
-                Text("No image selected")
+                Text(LocalizedStringKey("No image selected"))
             }
         }
     }
@@ -75,7 +75,10 @@ struct CardDetailView: View {
                 
                 VStack {
                     HStack {
-                        Text(viewModel.card != nil ? "Edit Card" : "New Card")
+                        Text(viewModel.card != nil
+                             ? LocalizedStringKey("Edit Card")
+                             : LocalizedStringKey("New Card")
+                        )
                             .font(.title)
                             .foregroundColor(.white)
                         Spacer()
@@ -156,7 +159,9 @@ struct CardDetailView: View {
     var buttons: some View {
         HStack {
             FilledButton(
-                title: viewModel.card == nil ? "Create" : "Save",
+                title: viewModel.card == nil
+                ? NSLocalizedString("Create", comment: "Create Card")
+                : NSLocalizedString("Save", comment: "Save Card"),
                 color: Color.accentColor
             ) {
                 viewModel.saveCard(context: viewContext) {
@@ -166,7 +171,7 @@ struct CardDetailView: View {
             
             if viewModel.card != nil {
                 FilledButton(
-                    title: "Delete",
+                    title: NSLocalizedString("Delete", comment: "Delete Card"),
                     color: Color.red
                 ) {
                     viewModel.deleteCard(context: viewContext) {
@@ -181,7 +186,7 @@ struct CardDetailView: View {
     var body: some View {
         VStack {
             header
-        
+            
             if viewModel.errorMessage != "" {
                 Text(viewModel.errorMessage)
                     .padding(.horizontal)
@@ -191,42 +196,16 @@ struct CardDetailView: View {
             if viewModel.nQueuedRequests > 0 {
                 ProgressView()
             } else if editEnabled {
-                Text("Enter text in fields below")
+                Text(LocalizedStringKey("Enter text in the fields below"))
             } else {
                 Text(" ")
             }
             
-            HStack {
-                Text("Decks")
-                
-                ScrollView([.horizontal]) {
-                    HStack {
-                        ForEach(viewModel.decks) { d in
-                            DeckCapsuleView(title: d.title ?? "N/A") {
-                                viewModel.decks.remove(at: viewModel.decks.firstIndex(of: d)!)
-                            }
-                        }
-                    }
-                }
-                .onTapGesture {}
-                
-                Spacer()
-                
-                Button {
-                    showDecks.toggle()
-                } label: {
-                    Image(systemName: "ellipsis.circle.fill")
-                        .font(.title)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .sheet(isPresented: $showDecks) {
-                    DecksListView(selectedDecks: $viewModel.decks)
-                }
-                
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
             
+            DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
+                .padding(.horizontal)
+                .padding(.bottom)
+                
             translationsList
                 .padding(.horizontal)
             
@@ -262,6 +241,8 @@ struct CardDetailView: View {
                 }
         )
         .onAppear {
+            offset = CGSize.zero
+            zoomFactor = 1.0
             editEnabled = viewModel.card == nil
         }
     }

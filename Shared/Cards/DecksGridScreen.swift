@@ -22,29 +22,37 @@ struct DecksGridScreen: View {
     ]
     
     var decksView: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 40) {
-                DeckPreviewView(deck: nil, routerNamespace: routerNamespace)
-                    .onTapGesture {
-                        withAnimation {
-                            tabRouter.selectedDeck = nil
-                            tabRouter.currentTab = .cards
-                        }
-                    }
-                
-                ForEach(decks) { item in
-                    DeckPreviewView(deck: item, routerNamespace: routerNamespace)
+        ScrollViewReader { scrollView in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 40) {
+                    DeckPreviewView(deck: nil, routerNamespace: routerNamespace)
                         .onTapGesture {
                             withAnimation {
-                                tabRouter.selectedDeck = item
+                                tabRouter.selectedDeck = nil
                                 tabRouter.currentTab = .cards
                             }
                         }
                     
+                    ForEach(decks) { item in
+                        DeckPreviewView(deck: item, routerNamespace: routerNamespace)
+                            .id(item.id)
+                            .onTapGesture {
+                                withAnimation {
+                                    tabRouter.selectedDeck = item
+                                    tabRouter.currentTab = .cards
+                                }
+                            }
+                        
+                    }
+                }
+                Spacer()
+                    .padding(.bottom, 40)
+            }
+            .onAppear {
+                if let id = tabRouter.selectedDeck?.id {
+                    scrollView.scrollTo(id, anchor: .center)
                 }
             }
-            Spacer()
-                .padding(.bottom, 40)
         }
     }
     

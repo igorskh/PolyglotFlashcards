@@ -18,7 +18,7 @@ struct SettingsScreen: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Active Languages")
+                Text(LocalizedStringKey("Active Languages"))
                     .font(.title)
                 
                 Spacer()

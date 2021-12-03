@@ -14,8 +14,6 @@ struct MatchPairsGameScreen: View {
     @EnvironmentObject var navigationController: NavControllerViewModel
     @EnvironmentObject var game: MatchPairsGame
     
-    @State var scaleAmount = CGFloat(1)
-    
     var stepView: some View {
         Group {
             VStack(spacing: 20) {
@@ -45,18 +43,20 @@ struct MatchPairsGameScreen: View {
     }
     
     var body: some View {
-        VStack {
+        ScrollView {
             HStack {
-                Text("Match Pairs Game")
+                Text(LocalizedStringKey("Match Pairs Game"))
                     .font(.title)
                 
                 Spacer()
                 
                 Button {
-                    tabRouter.isModal = false
-                    navigationController.pop(to: .root)
+                    navigationController.push(
+                        MatchPairsGameFinishedScreen()
+                            .environmentObject(game)
+                    )
                 } label: {
-                    Text("Finish")
+                    Text(LocalizedStringKey("Finish"))
                 }
                 .buttonStyle(PlainButtonStyle())
             }
@@ -97,30 +97,5 @@ struct MatchPairsGameScreen: View {
             Spacer()
         }
         .padding()
-    }
-}
-
-struct BouncingIcon: View {
-    @Binding var trigger: Bool
-    var color: Color
-    var systemName: String
-    
-    var body: some View {
-        Image(systemName:systemName)
-            .foregroundColor(color)
-            .scaleEffect(trigger ? 1.5 : 1)
-            .frame(width: 50)
-            .font(.title)
-            .animation(
-                .easeInOut(duration: 0.2),
-                value: trigger
-            )
-            .onChange(of: trigger) {
-                if $0 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        trigger = false
-                    }
-                }
-            }
     }
 }

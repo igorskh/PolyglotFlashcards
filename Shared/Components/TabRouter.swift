@@ -17,6 +17,7 @@ enum Page {
 struct TabBarIcon: View {
     let systemIconName, tabName: String
     let isActive: Bool
+    let showTitle: Bool
     
     var body: some View {
         VStack {
@@ -26,11 +27,13 @@ struct TabBarIcon: View {
                 .aspectRatio(contentMode: .fit)
                 .padding(5)
             
-            Text(tabName)
-                .font(.footnote)
-            Spacer()
+            if showTitle {
+                Text(tabName)
+                    .font(.footnote)
+                Spacer()
+            }
         }
-        .padding(.top, 5)
+        .frame(width: 40)
         .foregroundColor(isActive ? .accentColor : .primary)
     }
 }

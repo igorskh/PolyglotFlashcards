@@ -15,7 +15,7 @@ struct GameCardView: View {
     
     var body: some View {
         VStack {
-            Text("\(variant.text ?? "N/A")")
+            Text("\(variant.text ?? NSLocalizedString("N/A", comment: "N/A"))")
                 .fontWeight(.heavy)
                 .animation(isAnimated ? nil : .default)
         }

@@ -30,11 +30,12 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                HStack(spacing: 50) {
+                HStack(spacing: 40) {
                     TabBarIcon(
                         systemIconName: "cards-icon",
-                        tabName: "Cards",
-                        isActive: [Page.decks, Page.cards].contains(tabRouter.currentTab)
+                        tabName: NSLocalizedString("Cards", comment: "Cards"),
+                        isActive: [Page.decks, Page.cards].contains(tabRouter.currentTab),
+                        showTitle: false
                     )
                         .onTapGesture {
                             withAnimation {
@@ -43,8 +44,9 @@ struct ContentView: View {
                         }
                     TabBarIcon(
                         systemIconName: "play-icon",
-                        tabName: "Play",
-                        isActive: tabRouter.currentTab == .play
+                        tabName: NSLocalizedString("Play", comment: "Play"),
+                        isActive: tabRouter.currentTab == .play,
+                        showTitle: false
                     )
                         .onTapGesture {
                             withAnimation {
@@ -53,8 +55,9 @@ struct ContentView: View {
                         }
                     TabBarIcon(
                         systemIconName: "settings-icon",
-                        tabName: "Settings",
-                        isActive: tabRouter.currentTab == .settings
+                        tabName: NSLocalizedString("Settings", comment: "Settings"),
+                        isActive: tabRouter.currentTab == .settings,
+                        showTitle: false
                     )
                         .onTapGesture {
                             withAnimation {
@@ -62,8 +65,9 @@ struct ContentView: View {
                             }
                         }
                 }
-                .frame(height: 70)
+                .frame(height: 50)
                 .padding(.horizontal, 20)
+                .padding(.vertical, 5)
                 .background(
                     Color("TabBarColor")
                         .opacity(0.9)

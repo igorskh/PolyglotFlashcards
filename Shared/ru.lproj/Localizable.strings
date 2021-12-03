@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  PolyglotFlashcards
+
+  Created by Igor Kim on 03.12.21.
+  
+*/
+"Cards" = "Карты";
+"Play" = "Играть";
+"Settings" = "Настройки";
+"No image selected" = "Изображение не выбрано";
+
+"Edit Card" = "Редактировать";
+"New Card" = "Новая карточка";
+
+"New Card" = "Новая карточка";
+
+"Create" = "Создать";
+"Save" = "Сохранить";
+"Delete" = "Удалить";
+
+"Decks" = "Колоды";
+
+"Enter text in the fields below" = "Введите текст в поля ниже";
+
+"N/A" = "Н/Д";
+
+"Could not get translations" = "Не удалось получить переводы";
+
+"Set" = "Установить";
+
+"Your Decks" = "Ваши колоды";
+"Deck Title" = "Название колоды";
+
+"This deck contains cards" = "В этой колоде есть карты";
+
+"Enter deck title" = "Введите название колоды";
+"Deck with this name already exists" = "Колода с таким названием уже существует";
+
+
+"Uncategorized" = "Без категории";
+
+"Match Pairs Game" = "Match Pairs Game";
+"Choose at least 2 variants to play" = "Выберите 2 или более языка";
+"Start" = "Начать";
+"Finish" = "Завершить";
+
+"Active Languages" = "Активные языки";
+
+"Any" = "Любая";
+"Choos decks to play" = "Выберите колоды для игры";
+
+"Not enough cards to play" = "Недостаточно карт для игры";
+
+
+"Well done" = "Отлично!";
+"Not bad" = "Неплохо";
+"Better luck next time" = "Попробуйте еще раз";

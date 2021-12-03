@@ -51,7 +51,7 @@ class CardDetailViewModel: ObservableObject {
             case .success(let remoteTranslations):
                 DispatchQueue.main.async {
                     guard let translation = remoteTranslations?.first else {
-                        self.errorMessage = "Could not get translations"
+                        self.errorMessage = NSLocalizedString("Could not get translations", comment: "Could not get translations")
                         return
                     }
                     if let index = self.languages.firstIndex(of: translation.target) {

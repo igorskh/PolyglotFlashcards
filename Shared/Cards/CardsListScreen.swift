@@ -122,7 +122,7 @@ struct CardsListScreen: View {
                     storedFilteredLanguages = $0
                 }
             
-            FilledButton(title: "Set", color: .accentColor) {
+            FilledButton(title: NSLocalizedString("Set", comment: "Set filter languages"), color: .accentColor) {
                 showLanguageFilter = false
             }
             
