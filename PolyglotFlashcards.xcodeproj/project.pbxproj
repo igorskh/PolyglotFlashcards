@@ -64,9 +64,7 @@
 		CBA3536C27596D8E0036C9EE /* DeckPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3536A27596D8E0036C9EE /* DeckPreviewView.swift */; };
 		CBA35370275971A20036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA3536F275971A20036C9EE /* CloudKit.framework */; };
 		CBA35372275976230036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA35371275976230036C9EE /* CloudKit.framework */; };
-		CBAEBB23275C23A400D2DB2E /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */; };
 		CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */; };
-		CBAEBB27275CF37000D2DB2E /* CoreDataSyncMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */; };
 		CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */; };
@@ -191,9 +189,7 @@
 		CBA3536D2759719B0036C9EE /* PolyglotFlashcards (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PolyglotFlashcards (iOS).entitlements"; sourceTree = "<group>"; };
 		CBA3536F275971A20036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		CBA35371275976230036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentCloudKitContainer.EventType+description.swift"; sourceTree = "<group>"; };
-		CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncMonitor.swift; sourceTree = "<group>"; };
 		CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilter.swift; sourceTree = "<group>"; };
 		CBBD31F32753A30F00F275E9 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -423,7 +419,6 @@
 				CB382536271DEE290022E3DA /* TranslationService */,
 				CB7169C92750276700F9F6CA /* WordTagger.swift */,
 				CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */,
-				CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */,
 				CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */,
 			);
 			path = Services;
@@ -441,7 +436,6 @@
 		CBAEBB20275C22F800D2DB2E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -710,7 +704,6 @@
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CBC1A992275AD40A008C1A7C /* MatchPairsGameFinishedScreen.swift in Sources */,
 				CBF469DA2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */,
-				CBAEBB23275C23A400D2DB2E /* OnboardingScreen.swift in Sources */,
 				CBF469E027661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */,
 				CBFFDCFF2754049F001607FA /* CardVariant+awakeFromInsert.swift in Sources */,
 				CBC1A995275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
@@ -744,7 +737,6 @@
 				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
-				CBAEBB27275CF37000D2DB2E /* CoreDataSyncMonitor.swift in Sources */,
 				CBFFDCF62753FE2A001607FA /* GamesScreen.swift in Sources */,
 				CBC1A98F275ACEB2008C1A7C /* DecksPicker.swift in Sources */,
 				CBC4CB6727553955009CCB32 /* MatchPairsGame.swift in Sources */,
