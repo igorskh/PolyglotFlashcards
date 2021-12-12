@@ -41,7 +41,13 @@ class PixabayService: ImageService {
         
         let request = URLRequest(url: url.url!)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let urlSession = URLSession(
+            configuration: .default,
+            delegate: URLSessionPinningDelegate(forResource: "pixabay-com"),
+            delegateQueue: .main
+        )
+        
+        urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 return onResponse(.failure(error))
             }

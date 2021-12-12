@@ -48,7 +48,13 @@ class DeepLTranslator: TranslationService {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let urlSession = URLSession(
+            configuration: .default,
+            delegate: URLSessionPinningDelegate(forResource: "apideepl"),
+            delegateQueue: .main
+        )
+        
+        urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 return onResponse(.failure(error))
             }
