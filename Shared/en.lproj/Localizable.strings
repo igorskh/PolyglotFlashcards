@@ -56,3 +56,5 @@
 "Well done" = "Well done!";
 "Not bad" = "Not bad";
 "Better luck next time" = "Better luck next time";
+
+"Count of correct" = "%@ out of %@ are correct";

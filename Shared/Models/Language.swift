@@ -21,6 +21,30 @@ enum Language: String, Codable {
     case Japanese = "ja"
     case French = "fr"
     case Greek = "el"
+    case Ukrainian = "ua"
+    case Turkish = "tr"
+    case Armenian = "hy"
+    case Bulgarian = "bg"
+    case Croatian = "hr"
+    case Czech = "cs"
+    case Danish = "da"
+    case Finnish = "fi"
+    case Georgian = "ka"
+    case Hebrew = "iw"
+    case Hindi = "hi"
+    case Hungarian = "hu"
+    case Icelandic = "is"
+    case Indonesian = "in"
+    case Korean = "ko"
+    case Norwegian = "no"
+    case Polish = "pl"
+    case Portuguese = "pt"
+    case Romanian = "ro"
+    case Chinese = "zh"
+    case Slovak = "sk"
+    case Swedish = "sv"
+    case Thai = "th"
+    case Vietnamese = "vi"
     case Unknown = ""
     
     static var all: [Language] {
@@ -34,6 +58,30 @@ enum Language: String, Codable {
             .Japanese,
             .French,
             .Greek,
+            .Ukrainian,
+            .Turkish,
+            .Armenian,
+            .Bulgarian,
+            .Croatian,
+            .Czech,
+            .Danish,
+            .Finnish,
+            .Georgian,
+            .Hebrew,
+            .Hindi,
+            .Hungarian,
+            .Icelandic,
+            .Indonesian,
+            .Korean,
+            .Norwegian,
+            .Polish,
+            .Portuguese,
+            .Romanian,
+            .Chinese,
+            .Slovak,
+            .Swedish,
+            .Thai,
+            .Vietnamese,
         ]
     }
     
@@ -63,6 +111,54 @@ enum Language: String, Codable {
             return "🇫🇷"
         case .Greek:
             return "🇬🇷"
+        case .Ukrainian:
+            return "🇺🇦"
+        case .Turkish:
+            return "🇹🇷"
+        case .Armenian:
+            return "🇦🇲"
+        case .Bulgarian:
+            return "🇧🇬"
+        case .Croatian:
+            return "🇭🇷"
+        case .Czech:
+            return "🇨🇿"
+        case .Danish:
+            return "🇩🇰"
+        case .Finnish:
+            return "🇫🇮"
+        case .Georgian:
+            return "🇬🇪"
+        case .Hebrew:
+            return "🇮🇱"
+        case .Hindi:
+            return "🇮🇳"
+        case .Hungarian:
+            return "🇭🇺"
+        case .Icelandic:
+            return "🇮🇸"
+        case .Indonesian:
+            return "🇮🇩"
+        case .Korean:
+            return "🇰🇷"
+        case .Norwegian:
+            return "🇳🇴"
+        case .Polish:
+            return "🇵🇱"
+        case .Portuguese:
+            return "🇵🇹"
+        case .Romanian:
+            return "🇷🇴"
+        case .Chinese:
+            return "🇨🇳"
+        case .Slovak:
+            return "🇸🇰"
+        case .Swedish:
+            return "🇸🇪"
+        case .Thai:
+            return "🇹🇭"
+        case .Vietnamese:
+            return "🇻🇳"
         }
     }
     
@@ -88,6 +184,54 @@ enum Language: String, Codable {
             return "French"
         case .Greek:
             return "Greek"
+        case .Ukrainian:
+            return "Ukrainian"
+        case .Turkish:
+            return "Turkish"
+        case .Armenian:
+            return "Armenian"
+        case .Bulgarian:
+            return "Bulgarian"
+        case .Croatian:
+            return "Croatian"
+        case .Czech:
+            return "Czech"
+        case .Danish:
+            return "Danish"
+        case .Finnish:
+            return "Finnish"
+        case .Georgian:
+            return "Georgian"
+        case .Hebrew:
+            return "Hebrew"
+        case .Hindi:
+            return "Hindi"
+        case .Hungarian:
+            return "Hungarian"
+        case .Icelandic:
+            return "Icelandic"
+        case .Indonesian:
+            return "Indonesian"
+        case .Korean:
+            return "Korean"
+        case .Norwegian:
+            return "Norwegian"
+        case .Polish:
+            return "Polish"
+        case .Portuguese:
+            return "Portuguese"
+        case .Romanian:
+            return "Romanian"
+        case .Chinese:
+            return "Chinese"
+        case .Slovak:
+            return "Slovak"
+        case .Swedish:
+            return "Swedish"
+        case .Thai:
+            return "Thai"
+        case .Vietnamese:
+            return "Vietnamese"
         }
     }
 }

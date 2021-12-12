@@ -7,19 +7,22 @@
 
 import Foundation
 import CoreData
+#if !os(macOS)
+import UIKit
+#endif
 
 class CardDetailViewModel: ObservableObject {
     @Published var translations: [Translation] = []
     @Published var errorMessage: String = ""
-    @Published var images: [RemoteImage]?
     @Published var decks: [Deck]
 
-    @Published var selectedImageID = 0
     @Published var nQueuedRequests: Int = 0
     
+    @Published var query: String = ""
+    
     private var translator: TranslationService = DeepLTranslator.shared
-    private var imageSearch: ImageService = PixabayService.shared
     private let speechSynth: SpeechSynthesizer = .init()
+    private var selectedImageData: Data = .init()
 
     @Preference(\.languages) var languages
     
@@ -40,6 +43,10 @@ class CardDetailViewModel: ObservableObject {
         }
     }
     
+    func setImage(from data: Data) {
+        selectedImageData = data
+    }
+    
     func getTranslation(text: String, from source: Language, for target: Language) {
         var sourceLang: Language? = nil
         if source != .Unknown {
@@ -56,7 +63,7 @@ class CardDetailViewModel: ObservableObject {
                     }
                     if let index = self.languages.firstIndex(of: translation.target) {
                         if translation.target == .English && self.languages.contains(.English) {
-                            self.getImage(query: translation.translation)
+                            self.query = translation.translation
                         }
                         self.translations[index].translation = translation.translation
                     }
@@ -85,7 +92,7 @@ class CardDetailViewModel: ObservableObject {
         
         let index = languages.firstIndex(of: sourceLanguage)
         if sourceLanguage == .English || !languages.contains(.English) {
-            getImage(query: translations[index!].translation)
+            query = translations[index!].translation
         }
         
         translations.indices.forEach { idx in
@@ -96,24 +103,6 @@ class CardDetailViewModel: ObservableObject {
         
         targetLanguages.forEach {
             getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0)
-        }
-    }
-    
-    func getImage(query: String) {
-        imageSearch.Search(q: query) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let images):
-                    if let images = images, images.count > 0 {
-                        self.selectedImageID = 0
-                    } else {
-                        self.selectedImageID = -1
-                    }
-                    self.images = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
         }
     }
     
@@ -179,11 +168,12 @@ class CardDetailViewModel: ObservableObject {
     }
     
     func saveCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
-        if selectedImageID > -1,
-            let imageURL = images?[selectedImageID].url {
-            URLSession.shared.dataTask(with: imageURL) { data, _, _ in
+        if selectedImageData.count > 0 {
+            if let image = UIImage(data: selectedImageData)?.scalePreservingAspectRatio(targetSize: CGSize(width: 500, height: 500)),
+               let data = image.pngData() {
                 self.saveCard(withImage: data, context: context, onFinished: onFinished)
-            }.resume()
+            }
+            
         } else {
             self.saveCard(withImage: nil, context: context, onFinished: onFinished)
         }

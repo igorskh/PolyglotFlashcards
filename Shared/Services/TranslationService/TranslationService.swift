@@ -29,7 +29,7 @@ struct Translation: Identifiable {
             if attr.tag == NLTag.noun {
                 a2[.foregroundColor] = UIColor.black
             } else if attr.tag == NLTag.verb {
-                a2[.foregroundColor] = UIColor.red
+                a2[.foregroundColor] = UIColor.blue
             } else {
                 a2[.foregroundColor] = UIColor.gray
             }

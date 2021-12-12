@@ -16,13 +16,27 @@ struct MatchPairsGameScreen: View {
     
     var stepView: some View {
         Group {
-            VStack(spacing: 20) {
+            VStack {
+                
+                if let image = game.gameStep!.mainVariant.card?.image,
+                   let uiImage = UIImage(data: image) {
+                    Image(image: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(maxHeight: 150)
+                        .clipped()
+                        .animation(nil)
+                        .background(
+                            Color.red
+                        )
+                }
+                
                 Text(game.gameStep!.mainVariant.text ?? "N/A")
                     .fontWeight(.heavy)
                     .frame(maxWidth: .infinity)
                     .frame(height: 60, alignment: .center)
                     .animation(game.isAppeared ? nil : .default)
-                
+                VStack(spacing: 20) {
                 ForEach(game.gameStep!.variantChoices.indices) { i in
                     GameCardView(
                         variant: game.gameStep!.variantChoices[i],
@@ -36,6 +50,7 @@ struct MatchPairsGameScreen: View {
                             }
                         }
                 }
+            }
             }
             
             Spacer()
@@ -58,10 +73,8 @@ struct MatchPairsGameScreen: View {
                 } label: {
                     Text(LocalizedStringKey("Finish"))
                 }
-                .buttonStyle(PlainButtonStyle())
             }
             .padding(.bottom)
-            
             
             HStack {
                 Group {

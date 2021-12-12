@@ -23,6 +23,7 @@ struct SettingsScreen: View {
                 
                 Spacer()
             }
+
             ScrollView {
                 LanguageFilter(languages: Language.all, selected: $activeLanguages)
                     .onChange(of: activeLanguages) {
@@ -31,9 +32,9 @@ struct SettingsScreen: View {
                 
                 Spacer()
             }
-            .padding()
         }
         .padding()
+        .padding(.bottom, 40)
         
     }
 }

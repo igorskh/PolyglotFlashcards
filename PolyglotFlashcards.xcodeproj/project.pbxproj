@@ -64,6 +64,9 @@
 		CBA3536C27596D8E0036C9EE /* DeckPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3536A27596D8E0036C9EE /* DeckPreviewView.swift */; };
 		CBA35370275971A20036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA3536F275971A20036C9EE /* CloudKit.framework */; };
 		CBA35372275976230036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA35371275976230036C9EE /* CloudKit.framework */; };
+		CBAEBB23275C23A400D2DB2E /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */; };
+		CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */; };
+		CBAEBB27275CF37000D2DB2E /* CoreDataSyncMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */; };
 		CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */; };
@@ -96,6 +99,21 @@
 		CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7227553E84009CCB32 /* TabRouter.swift */; };
 		CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7527558841009CCB32 /* WebImage.swift */; };
 		CBC4CB7727558841009CCB32 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4CB7527558841009CCB32 /* WebImage.swift */; };
+		CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */; };
+		CBF469CD2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */; };
+		CBF469CF2765EDE000424EDF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CE2765EDE000424EDF /* ImagePicker.swift */; };
+		CBF469D22765F0DE00424EDF /* CardImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469D12765F0DE00424EDF /* CardImagePicker.swift */; };
+		CBF469D32765F0DE00424EDF /* CardImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469D12765F0DE00424EDF /* CardImagePicker.swift */; };
+		CBF469D52766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469D42766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift */; };
+		CBF469DA2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469D92766175B00424EDF /* CardImagePickerViewModel.swift */; };
+		CBF469DB2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469D92766175B00424EDF /* CardImagePickerViewModel.swift */; };
+		CBF469DD27661B9500424EDF /* apideepl.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469DC27661B9500424EDF /* apideepl.der */; };
+		CBF469DE27661B9500424EDF /* apideepl.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469DC27661B9500424EDF /* apideepl.der */; };
+		CBF469E027661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */; };
+		CBF469E127661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */; };
+		CBF469E327661E5C00424EDF /* pixabay-com.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469E227661E5C00424EDF /* pixabay-com.der */; };
+		CBF469E427661E5C00424EDF /* pixabay-com.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469E227661E5C00424EDF /* pixabay-com.der */; };
+		CBF469E6276620F000424EDF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469E5276620F000424EDF /* ImagePicker.swift */; };
 		CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE12753CB78001607FA /* AttributedText.swift */; };
 		CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
 		CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
@@ -173,6 +191,9 @@
 		CBA3536D2759719B0036C9EE /* PolyglotFlashcards (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PolyglotFlashcards (iOS).entitlements"; sourceTree = "<group>"; };
 		CBA3536F275971A20036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		CBA35371275976230036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentCloudKitContainer.EventType+description.swift"; sourceTree = "<group>"; };
+		CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncMonitor.swift; sourceTree = "<group>"; };
 		CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilter.swift; sourceTree = "<group>"; };
 		CBBD31F32753A30F00F275E9 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -189,6 +210,15 @@
 		CBC4CB6F275539AB009CCB32 /* MatchPairsGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPairsGameScreen.swift; sourceTree = "<group>"; };
 		CBC4CB7227553E84009CCB32 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		CBC4CB7527558841009CCB32 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
+		CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilterViewModel.swift; sourceTree = "<group>"; };
+		CBF469CE2765EDE000424EDF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CBF469D12765F0DE00424EDF /* CardImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImagePicker.swift; sourceTree = "<group>"; };
+		CBF469D42766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIIMage+scalePreservingAspectRatio.swift"; sourceTree = "<group>"; };
+		CBF469D92766175B00424EDF /* CardImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImagePickerViewModel.swift; sourceTree = "<group>"; };
+		CBF469DC27661B9500424EDF /* apideepl.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = apideepl.der; sourceTree = "<group>"; };
+		CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionPinningDelegate.swift; sourceTree = "<group>"; };
+		CBF469E227661E5C00424EDF /* pixabay-com.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pixabay-com.der"; sourceTree = "<group>"; };
+		CBF469E5276620F000424EDF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CBFFDCE12753CB78001607FA /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		CBFFDCE32753CB89001607FA /* Card+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+UIImage.swift"; sourceTree = "<group>"; };
 		CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--macOS--Info.plist"; sourceTree = "<group>"; };
@@ -254,13 +284,17 @@
 		CB3824EE271C8B080022E3DA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				CBF469E227661E5C00424EDF /* pixabay-com.der */,
+				CBF469DC27661B9500424EDF /* apideepl.der */,
 				CBC1A98B275AC51F008C1A7C /* Localizable.strings */,
 				CB154946274E73060060706F /* Config.default.xcconfig */,
 				CB154942274E70310060706F /* Config.xcconfig */,
+				CBAEBB20275C22F800D2DB2E /* Onboarding */,
 				CBFFDCEF2753FA7B001607FA /* Games */,
 				CBBD31E92752CF1800F275E9 /* Settings */,
 				CBBD31E52752CD5400F275E9 /* PropertyWrappers */,
 				CB7169C82750276000F9F6CA /* Services */,
+				CBAEBB21275C232400D2DB2E /* Decks */,
 				CB7169C52750266A00F9F6CA /* Extensions */,
 				CB38254F271DEF380022E3DA /* Cards */,
 				CB382544271DEEC50022E3DA /* Components */,
@@ -292,6 +326,7 @@
 				CB382501271C8B0B0022E3DA /* macOS.entitlements */,
 				CBBD31F92753C79100F275E9 /* UIImage.swift */,
 				CBBD31FF2753C8FF00F275E9 /* AttributedText.swift */,
+				CBF469E5276620F000424EDF /* ImagePicker.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -343,14 +378,13 @@
 		CB382544271DEEC50022E3DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CBF469D82766175100424EDF /* CardImagePicker */,
+				CBF469D72766173D00424EDF /* LanguageFilter */,
 				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
-				CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */,
 				CBFFDCE82753D65C001607FA /* FilledButton.swift */,
 				CBFFDD0127541110001607FA /* NavigationController.swift */,
 				CBC4CB7227553E84009CCB32 /* TabRouter.swift */,
 				CBC4CB7527558841009CCB32 /* WebImage.swift */,
-				CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */,
-				CBC1A98E275ACEB2008C1A7C /* DecksPicker.swift */,
 				CBC1A994275ADB78008C1A7C /* BouncingIcon.swift */,
 			);
 			path = Components;
@@ -363,10 +397,7 @@
 				CB38254C271DEF260022E3DA /* CardDetailViewModel.swift */,
 				CB382550271DEF460022E3DA /* CardView.swift */,
 				CB382553271DEF560022E3DA /* CardsListScreen.swift */,
-				CBA3535E27582CA70036C9EE /* DecksListView.swift */,
-				CBA3536427592A520036C9EE /* DecksGridScreen.swift */,
 				CBA3536727596D7C0036C9EE /* CardImagesView.swift */,
-				CBA3536A27596D8E0036C9EE /* DeckPreviewView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -380,6 +411,7 @@
 				CBFFDCFB27540478001607FA /* Card+awakeFromInsert.swift */,
 				CBFFDCFE2754049F001607FA /* CardVariant+awakeFromInsert.swift */,
 				CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */,
+				CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +423,8 @@
 				CB382536271DEE290022E3DA /* TranslationService */,
 				CB7169C92750276700F9F6CA /* WordTagger.swift */,
 				CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */,
+				CBAEBB26275CF37000D2DB2E /* CoreDataSyncMonitor.swift */,
+				CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -402,6 +436,26 @@
 				CBA3536F275971A20036C9EE /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBAEBB20275C22F800D2DB2E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CBAEBB22275C23A400D2DB2E /* OnboardingScreen.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		CBAEBB21275C232400D2DB2E /* Decks */ = {
+			isa = PBXGroup;
+			children = (
+				CBA3535E27582CA70036C9EE /* DecksListView.swift */,
+				CBA3536427592A520036C9EE /* DecksGridScreen.swift */,
+				CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */,
+				CBC1A98E275ACEB2008C1A7C /* DecksPicker.swift */,
+				CBA3536A27596D8E0036C9EE /* DeckPreviewView.swift */,
+			);
+			path = Decks;
 			sourceTree = "<group>";
 		};
 		CBBD31E52752CD5400F275E9 /* PropertyWrappers */ = {
@@ -420,6 +474,24 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		CBF469D72766173D00424EDF /* LanguageFilter */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */,
+				CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */,
+			);
+			path = LanguageFilter;
+			sourceTree = "<group>";
+		};
+		CBF469D82766175100424EDF /* CardImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				CBF469D12765F0DE00424EDF /* CardImagePicker.swift */,
+				CBF469D92766175B00424EDF /* CardImagePickerViewModel.swift */,
+			);
+			path = CardImagePicker;
+			sourceTree = "<group>";
+		};
 		CBFFDCEF2753FA7B001607FA /* Games */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +504,9 @@
 		CBFFDCF02753FA96001607FA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CBF469CE2765EDE000424EDF /* ImagePicker.swift */,
 				CBFFDCE12753CB78001607FA /* AttributedText.swift */,
+				CBF469D42766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -578,8 +652,10 @@
 			files = (
 				CB154947274E73060060706F /* Config.default.xcconfig in Resources */,
 				CBC1A988275AC51F008C1A7C /* Localizable.strings in Resources */,
+				CBF469E327661E5C00424EDF /* pixabay-com.der in Resources */,
 				CB154943274E70410060706F /* Config.xcconfig in Resources */,
 				CB382522271C8B0B0022E3DA /* Assets.xcassets in Resources */,
+				CBF469DD27661B9500424EDF /* apideepl.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,8 +665,10 @@
 			files = (
 				CB154948274E73060060706F /* Config.default.xcconfig in Resources */,
 				CBC1A989275AC51F008C1A7C /* Localizable.strings in Resources */,
+				CBF469E427661E5C00424EDF /* pixabay-com.der in Resources */,
 				CB154944274E70410060706F /* Config.xcconfig in Resources */,
 				CB382523271C8B0B0022E3DA /* Assets.xcassets in Resources */,
+				CBF469DE27661B9500424EDF /* apideepl.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +697,7 @@
 				CBA3536B27596D8E0036C9EE /* DeckPreviewView.swift in Sources */,
 				CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */,
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
+				CBF469D52766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift in Sources */,
 				CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */,
 				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
@@ -630,16 +709,22 @@
 				CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CBC1A992275AD40A008C1A7C /* MatchPairsGameFinishedScreen.swift in Sources */,
+				CBF469DA2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */,
+				CBAEBB23275C23A400D2DB2E /* OnboardingScreen.swift in Sources */,
+				CBF469E027661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */,
 				CBFFDCFF2754049F001607FA /* CardVariant+awakeFromInsert.swift in Sources */,
 				CBC1A995275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
 				CBA3536227582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
+				CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
+				CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */,
 				CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */,
 				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
 				CBFFDCFC27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
 				CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */,
+				CBF469CF2765EDE000424EDF /* ImagePicker.swift in Sources */,
 				CBFFDCF92753FFA4001607FA /* Image+nsImage.swift in Sources */,
 				CBBD31F42753A30F00F275E9 /* Preferences.swift in Sources */,
 				CB15494A274E73550060706F /* Configuration.swift in Sources */,
@@ -650,6 +735,7 @@
 				CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */,
 				CBFFDCF32753FCD8001607FA /* MatchPairsStartScreen.swift in Sources */,
 				CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */,
+				CBF469D22765F0DE00424EDF /* CardImagePicker.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListScreen.swift in Sources */,
 				CBA3536827596D7C0036C9EE /* CardImagesView.swift in Sources */,
@@ -658,6 +744,7 @@
 				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
+				CBAEBB27275CF37000D2DB2E /* CoreDataSyncMonitor.swift in Sources */,
 				CBFFDCF62753FE2A001607FA /* GamesScreen.swift in Sources */,
 				CBC1A98F275ACEB2008C1A7C /* DecksPicker.swift in Sources */,
 				CBC4CB6727553955009CCB32 /* MatchPairsGame.swift in Sources */,
@@ -671,6 +758,7 @@
 				CBA3536027582CA70036C9EE /* DecksListView.swift in Sources */,
 				CBFFDCF42753FCD8001607FA /* MatchPairsStartScreen.swift in Sources */,
 				CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
+				CBF469E6276620F000424EDF /* ImagePicker.swift in Sources */,
 				CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
@@ -679,6 +767,7 @@
 				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
 				CBFFDCFD27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
+				CBF469D32765F0DE00424EDF /* CardImagePicker.swift in Sources */,
 				CBC1A996275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
 				CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */,
 				CBFFDCF72753FE2A001607FA /* GamesScreen.swift in Sources */,
@@ -693,6 +782,7 @@
 				CBFFDCEA2753D65C001607FA /* FilledButton.swift in Sources */,
 				CB38254E271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
+				CBF469CD2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
 				CBBD32002753C8FF00F275E9 /* AttributedText.swift in Sources */,
 				CBA3536C27596D8E0036C9EE /* DeckPreviewView.swift in Sources */,
 				CB15494B274E73550060706F /* Configuration.swift in Sources */,
@@ -703,6 +793,7 @@
 				CBA3536927596D7C0036C9EE /* CardImagesView.swift in Sources */,
 				CBBD31FB2753C7EB00F275E9 /* SpeechSynthesizer.swift in Sources */,
 				CBFFDD0327541110001607FA /* NavigationController.swift in Sources */,
+				CBF469DB2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */,
 				CBFFDCFA2753FFA4001607FA /* Image+nsImage.swift in Sources */,
 				CB382555271DEF560022E3DA /* CardsListScreen.swift in Sources */,
 				CBC4CB71275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
@@ -714,6 +805,7 @@
 				CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
 				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
+				CBF469E127661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,7 +974,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -899,7 +991,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -917,7 +1009,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -934,7 +1026,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;

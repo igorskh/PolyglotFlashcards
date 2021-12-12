@@ -19,10 +19,14 @@ struct CardDetailView: View {
     @State private var editEnabled: Bool = false
     @State private var showDecks: Bool = false
     
-    init(deck: Deck? = nil, card: Card? = nil, onClose: (() -> Void)? = nil, namespace: Namespace.ID) {
+    init(
+        deck: Deck? = nil,
+        card: Card? = nil,
+        onClose: (() -> Void)? = nil,
+        namespace: Namespace.ID)
+    {
         self.deck = deck
         viewModel = CardDetailViewModel(card: card)
-        
         
         if let onClose = onClose {
             self.onClose = onClose
@@ -59,18 +63,17 @@ struct CardDetailView: View {
         VStack {
             ZStack {
                 VStack {
-                    if viewModel.images != nil && viewModel.nQueuedRequests == 0 {
-                        ImageCarouselView(
-                            selectedItemID: $viewModel.selectedImageID,
-                            images: viewModel.images ?? [],
-                            contentMode: .fill,
-                            height: 200
-                        )
-                    } else {
+                    if editEnabled {
+                        CardImagePicker(searchRequest: $viewModel.query, height: 200) { img in
+                            viewModel.setImage(from: img.pngData()!)
+                        }
+                        .padding(.horizontal)
+                    }
+                    else {
                         image
+                            .frame(height: 200)
                     }
                 }
-                .frame(height: 200)
                 .clipped()
                 
                 VStack {
@@ -108,8 +111,6 @@ struct CardDetailView: View {
                 }
                 
             }
-            .frame(height: 200)
-            .clipped()
         }
     }
     

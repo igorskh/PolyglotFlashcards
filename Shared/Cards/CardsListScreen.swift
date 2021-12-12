@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
-import CoreData
 
-struct CardsListScreen: View {
+struct CardsListScreen: View {    
     @EnvironmentObject var tabRouter: TabRouter
     @Environment(\.managedObjectContext) private var viewContext
     @Namespace var namespace
     
     var routerNamespace: Namespace.ID
-    var cardsRequest: FetchRequest<Card>
     var deck: Deck?
     
+    var cardsRequest: FetchRequest<Card>
     private var items: FetchedResults<Card>{cardsRequest.wrappedValue}
     
     @State var selectedCard: Card?
@@ -39,7 +38,6 @@ struct CardsListScreen: View {
         let predicate: NSPredicate = deck == nil ?
             NSPredicate(format: "decks.@count == 0") :
             NSPredicate(format: "(ANY decks.title == %@)", deck!.title!)
-        
         cardsRequest = FetchRequest(
             entity: Card.entity(),
             sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: false)],
@@ -55,7 +53,7 @@ struct CardsListScreen: View {
             showDetailCard = true
         }
     }
-
+    
     func toggleCard(destination: Card? = nil) {
         withAnimation(.easeInOut) {
             showDetailCard = destination != nil
@@ -171,6 +169,9 @@ struct CardsListScreen: View {
                 Color.black
                     .opacity(0.7)
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        toggleCard()
+                    }
                 
                 CardDetailView(
                     deck: deck,
@@ -178,6 +179,7 @@ struct CardsListScreen: View {
                     onClose: { toggleCard() },
                     namespace: namespace
                 )
+                    .frame(maxHeight: 800)
             }
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)

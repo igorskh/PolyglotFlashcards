@@ -56,3 +56,5 @@
 "Well done" = "Отлично!";
 "Not bad" = "Неплохо";
 "Better luck next time" = "Попробуйте еще раз";
+
+"Count of correct" = "%@ из %@ верных ответов";

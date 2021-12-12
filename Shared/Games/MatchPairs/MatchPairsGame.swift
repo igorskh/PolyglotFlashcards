@@ -49,9 +49,6 @@ class MatchPairsGame: ObservableObject {
                 }))
             )
         }
-//        predicates.append(contentsOf:
-//
-//        )
         
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         

@@ -28,9 +28,13 @@ struct MatchPairsGameFinishedScreen: View {
             
             Text(NSLocalizedString(text, comment: "Match pair game result \(text)"))
                 .font(.largeTitle)
-                .padding(.vertical, 40)
             
-            Text("\(game.numberOfCorrect) out of \(game.numberOfAttempts) are correct")
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 60))
+                .padding(.vertical, 40)
+                .foregroundColor(.green)
+            
+            Text(String(format: NSLocalizedString("Count of correct", comment: "Count of correct"), "\(game.numberOfCorrect)", "\(game.numberOfAttempts)"))
             
             Spacer()
         }

@@ -1,0 +1,110 @@
+//
+//  CardImagePicker.swift
+//  PolyglotFlashcards
+//
+//  Created by Igor Kim on 12.12.21.
+//
+
+import SwiftUI
+
+enum CardImageEditMode {
+    case imagePicker
+    case imageSearch
+}
+
+struct CardImagePicker: View {
+    @Namespace var namespace
+    
+    @ObservedObject var viewModel: CardImagePickerViewModel = .init()
+    
+    @State var imageEditMode: CardImageEditMode = .imageSearch
+    @State var uiImage: UIImage = UIImage()
+    @State var showPicker: Bool = false
+    
+    @Binding var searchRequest: String
+    
+    var height: CGFloat
+    var onImageChanged: (UIImage) -> Void
+    
+    
+    var body: some View {
+        VStack {
+            if imageEditMode == .imageSearch {
+                ImageCarouselView(
+                    selectedItemID: $viewModel.selectedImageID,
+                    images: viewModel.images ?? [],
+                    contentMode: .fit,
+                    height: height
+                )
+                    .onChange(of: viewModel.selectedImageID) {
+                        if let images = viewModel.images,
+                           $0 > -1,
+                           $0 < images.count  {
+                            URLSession.shared.dataTask(with: images[$0].url) { data, _, _ in
+                                if let data = data,
+                                   let uiImage = UIImage(data: data) {
+                                    onImageChanged(uiImage)
+                                }
+                            }.resume()
+                        }
+                    }
+                    .frame(height: height)
+            }
+            if imageEditMode == .imagePicker {
+                ZStack {
+                    Image(image: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .frame(height: height)
+                        .onTapGesture {
+                            showPicker.toggle()
+                        }
+                    if uiImage.size == .zero {
+                        Button {
+                            showPicker.toggle()
+                        } label: {
+                            Text("Select image")
+                        }
+                    }
+                    
+                }
+                .onChange(of: uiImage) {
+                    onImageChanged($0)
+                }
+                .sheet(isPresented: $showPicker) {
+                    ImagePicker(selectedImage: $uiImage)
+                }
+            }
+            
+            HStack {
+                if imageEditMode == .imageSearch {
+                    Button {
+                        withAnimation {
+                            imageEditMode = .imagePicker
+                        }
+                    } label: { Image(systemName: "photo.on.rectangle.angled") }
+                    
+                    TextField("Search query", text: $searchRequest)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button {
+                        viewModel.getImages(query: searchRequest)
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .matchedGeometryEffect(id: "searchImage", in: namespace)
+                } else {
+                    Button {
+                        withAnimation {
+                            imageEditMode = .imageSearch
+                        }
+                    } label: { Image(systemName:  "magnifyingglass") }
+                    .matchedGeometryEffect(id: "searchImage", in: namespace)
+                    
+                    Spacer()
+                }
+            }
+        }
+    }
+}

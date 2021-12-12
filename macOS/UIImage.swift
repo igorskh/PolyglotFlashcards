@@ -7,10 +7,8 @@
 
 import Cocoa
 
-// Step 1: Typealias UIImage to NSImage
 typealias UIImage = NSImage
 
-// Step 2: You might want to add these APIs that UIImage has but NSImage doesn't.
 extension NSImage {
     var cgImage: CGImage? {
         var proposedRect = CGRect(origin: .zero, size: size)
@@ -23,9 +21,32 @@ extension NSImage {
     convenience init?(uiImage name: String) {
         self.init(named: Name(name))
     }
+    
+    func pngData() -> Data? {
+        let imageRep = NSBitmapImageRep(data: self.tiffRepresentation!)
+        let pngData = imageRep?.representation(using: .png, properties: [:])
+        return pngData
+    }
+    
+    func scalePreservingAspectRatio(targetSize: CGSize) -> UIImage {
+        let widthRatio = targetSize.width / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        let scaleFactor = min(widthRatio, heightRatio)
+        
+        let scaledImageSize = CGSize(
+            width: size.width * scaleFactor,
+            height: size.height * scaleFactor
+        )
+        let newImage = NSImage(size: scaledImageSize)
+        newImage.lockFocus()
+        self.draw(in: NSMakeRect(0, 0, scaledImageSize.width, scaledImageSize.height), from: NSMakeRect(0, 0, self.size.width, self.size.height), operation: NSCompositingOperation.clear, fraction: CGFloat(1))
+        newImage.unlockFocus()
+        newImage.size = scaledImageSize
+        return NSImage(data: newImage.tiffRepresentation!)!
+    }
 }
 
-// Step 3: Profit - you can now make your model code that uses UIImage cross-platform!
 struct User {
     let name: String
     let profileImage: UIImage

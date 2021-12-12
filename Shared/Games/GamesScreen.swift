@@ -9,10 +9,13 @@ import SwiftUI
 
 struct GamesScreen: View {
     var body: some View {
-        NavControllerView {
-            MatchPairsStartScreen()
+        VStack {
+            NavControllerView {
+                MatchPairsStartScreen()
+            }
+            .frame(maxWidth: 600)
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: .infinity)
     }
 }
 

@@ -42,7 +42,6 @@ struct DecksGridScreen: View {
                                     tabRouter.currentTab = .cards
                                 }
                             }
-                        
                     }
                 }
                 Spacer()
@@ -58,7 +57,6 @@ struct DecksGridScreen: View {
     
     var body: some View {
         VStack {
-            
             HStack {
                 Text("PolyCard")
                     .matchedGeometryEffect(id: "router-title", in: routerNamespace)

@@ -5,7 +5,6 @@
 //  Created by Igor Kim on 28.11.21.
 //
 
-import Foundation
 import SwiftUI
 
 extension Card {
