@@ -18,32 +18,51 @@ extension NSImage {
                        hints: nil)
     }
 
+    func copy(size: NSSize) -> NSImage? {
+        let frame = NSMakeRect(0, 0, size.width, size.height)
+        
+        guard let rep = self.bestRepresentation(for: frame, context: nil, hints: nil) else {
+            return nil
+        }
+        
+        let img = NSImage(size: size)
+        
+        img.lockFocus()
+        defer { img.unlockFocus() }
+        
+        if rep.draw(in: frame) {
+            return img
+        }
+        
+        return nil
+    }
+    
     convenience init?(uiImage name: String) {
         self.init(named: Name(name))
     }
     
+    
     func pngData() -> Data? {
-        let imageRep = NSBitmapImageRep(data: self.tiffRepresentation!)
-        let pngData = imageRep?.representation(using: .png, properties: [:])
-        return pngData
+        guard let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        else { return nil }
+        let imageRep = NSBitmapImageRep(cgImage: cgImage)
+        imageRep.size = self.size
+        return imageRep.representation(using: .png, properties: [:])
     }
     
     func scalePreservingAspectRatio(targetSize: CGSize) -> UIImage {
-        let widthRatio = targetSize.width / size.width
-        let heightRatio = targetSize.height / size.height
+        let newSize: NSSize
         
-        let scaleFactor = min(widthRatio, heightRatio)
+        let widthRatio  = size.width / self.size.width
+        let heightRatio = size.height / self.size.height
         
-        let scaledImageSize = CGSize(
-            width: size.width * scaleFactor,
-            height: size.height * scaleFactor
-        )
-        let newImage = NSImage(size: scaledImageSize)
-        newImage.lockFocus()
-        self.draw(in: NSMakeRect(0, 0, scaledImageSize.width, scaledImageSize.height), from: NSMakeRect(0, 0, self.size.width, self.size.height), operation: NSCompositingOperation.clear, fraction: CGFloat(1))
-        newImage.unlockFocus()
-        newImage.size = scaledImageSize
-        return NSImage(data: newImage.tiffRepresentation!)!
+        if widthRatio > heightRatio {
+            newSize = NSSize(width: floor(self.size.width * widthRatio), height: floor(self.size.height * widthRatio))
+        } else {
+            newSize = NSSize(width: floor(self.size.width * heightRatio), height: floor(self.size.height * heightRatio))
+        }
+        
+        return self.copy(size: newSize)!
     }
 }
 

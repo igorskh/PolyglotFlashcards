@@ -73,7 +73,7 @@ struct CardImagePicker: View {
                     onImageChanged($0)
                 }
                 .sheet(isPresented: $showPicker) {
-                    ImagePicker(selectedImage: $uiImage)
+                    ImagePicker(isOpen: $showPicker, selectedImage: $uiImage)
                 }
             }
             
@@ -83,7 +83,13 @@ struct CardImagePicker: View {
                         withAnimation {
                             imageEditMode = .imagePicker
                         }
-                    } label: { Image(systemName: "photo.on.rectangle.angled") }
+                    } label: {
+                        Image(systemName: "photo.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.primary)
+                        
+                    }
+                    .buttonStyle(PlainButtonStyle())
                     
                     TextField("Search query", text: $searchRequest)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -91,15 +97,23 @@ struct CardImagePicker: View {
                     Button {
                         viewModel.getImages(query: searchRequest)
                     } label: {
-                        Image(systemName: "magnifyingglass")
+                        Image(systemName: "magnifyingglass.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.primary)
                     }
+                    .buttonStyle(PlainButtonStyle())
                     .matchedGeometryEffect(id: "searchImage", in: namespace)
                 } else {
                     Button {
                         withAnimation {
                             imageEditMode = .imageSearch
                         }
-                    } label: { Image(systemName:  "magnifyingglass") }
+                    } label: {
+                        Image(systemName:  "magnifyingglass.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.primary)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                     .matchedGeometryEffect(id: "searchImage", in: namespace)
                     
                     Spacer()
