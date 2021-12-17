@@ -21,13 +21,14 @@ class CardDetailViewModel: ObservableObject {
     @Published var query: String = ""
     
     private var translator: TranslationService = DeepLTranslator.shared
+    private var cardsService: CardsService = .shared
     private let speechSynth: SpeechSynthesizer = .init()
     private var selectedImageData: Data = .init()
+    private let lock = NSLock()
+    
+    let card: Card?
 
     @Preference(\.languages) var languages
-    
-    private let lock = NSLock()
-    let card: Card?
     
     init(card: Card? = nil) {
         self.card = card
@@ -106,77 +107,23 @@ class CardDetailViewModel: ObservableObject {
         }
     }
     
-    func saveCard(withImage imageData: Data?, context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
-        var newWord: Card?
-        if let card = card {
-            newWord = card
-        } else {
-            newWord = Card(context: context)
-        }
-        if let imageData = imageData {
-            newWord?.image = imageData
-        }
-        
-        newWord?.languages = self.translations.reduce("|", { partialResult, tr in
-            return partialResult + tr.target.code + "|"
-        })
-        newWord?.decks = Set<Deck>(decks) as NSSet
-        
-        self.translations.forEach { tr in
-            var newWordTranslation: CardVariant?
-            var isCreating: Bool = false
-            
-            newWordTranslation = newWord?.variants?.first(where: {
-                ($0 as? CardVariant)?.language_code == tr.target.rawValue
-            }) as? CardVariant
-            
-            if newWordTranslation == nil {
-                newWordTranslation = CardVariant(context: context)
-                isCreating = true
-            }
-            
-            newWordTranslation!.text = tr.translation
-            newWordTranslation!.language_code = tr.target.rawValue
-            if isCreating {
-                newWord?.addToVariants(newWordTranslation!)
-            }
-        }
-        
-        do {
-            try context.save()
-        } catch {
-            let nsError = error as NSError
-            print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
-        }
-        onFinished()
-        
-    }
-    
     func deleteCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
-        if let card = card {
-            context.delete(card)
-            
-            do {
-                try context.save()
-            } catch {
-                let nsError = error as NSError
-                print("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-            
-            onFinished()
-        }
+        cardsService.deleteCard(
+            context: context,
+            card: card,
+            onFinished: onFinished
+        )
     }
     
     func saveCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
-        if selectedImageData.count > 0 {
-            if let image = UIImage(data: selectedImageData)?.scalePreservingAspectRatio(targetSize: CGSize(width: 500, height: 500)),
-               let data = image.pngData() {
-                self.saveCard(withImage: data, context: context, onFinished: onFinished)
-            }
-            
-        } else {
-            self.saveCard(withImage: nil, context: context, onFinished: onFinished)
-        }
+        cardsService.saveCard(
+            context: context,
+            selectedImageData: selectedImageData,
+            card: card,
+            translations: translations,
+            decks: decks,
+            onFinished: onFinished
+        )
     }
     
     func speak(at translationID: Int) {

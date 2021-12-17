@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB154943274E70410060706F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154942274E70310060706F /* Config.xcconfig */; };
-		CB154944274E70410060706F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154942274E70310060706F /* Config.xcconfig */; };
-		CB154947274E73060060706F /* Config.default.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154946274E73060060706F /* Config.default.xcconfig */; };
-		CB154948274E73060060706F /* Config.default.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CB154946274E73060060706F /* Config.default.xcconfig */; };
 		CB15494A274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
 		CB15494B274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
 		CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
@@ -112,6 +108,10 @@
 		CBF469E327661E5C00424EDF /* pixabay-com.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469E227661E5C00424EDF /* pixabay-com.der */; };
 		CBF469E427661E5C00424EDF /* pixabay-com.der in Resources */ = {isa = PBXBuildFile; fileRef = CBF469E227661E5C00424EDF /* pixabay-com.der */; };
 		CBF469E6276620F000424EDF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469E5276620F000424EDF /* ImagePicker.swift */; };
+		CBF99B9D276A740C001A57B9 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF99B9C276A740C001A57B9 /* OnboardingScreen.swift */; };
+		CBF99B9E276A740C001A57B9 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF99B9C276A740C001A57B9 /* OnboardingScreen.swift */; };
+		CBF99BA0276D1126001A57B9 /* CardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF99B9F276D1126001A57B9 /* CardsService.swift */; };
+		CBF99BA1276D1126001A57B9 /* CardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF99B9F276D1126001A57B9 /* CardsService.swift */; };
 		CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE12753CB78001607FA /* AttributedText.swift */; };
 		CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
 		CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFDCE32753CB89001607FA /* Card+UIImage.swift */; };
@@ -215,6 +215,8 @@
 		CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionPinningDelegate.swift; sourceTree = "<group>"; };
 		CBF469E227661E5C00424EDF /* pixabay-com.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pixabay-com.der"; sourceTree = "<group>"; };
 		CBF469E5276620F000424EDF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CBF99B9C276A740C001A57B9 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		CBF99B9F276D1126001A57B9 /* CardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsService.swift; sourceTree = "<group>"; };
 		CBFFDCE12753CB78001607FA /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		CBFFDCE32753CB89001607FA /* Card+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+UIImage.swift"; sourceTree = "<group>"; };
 		CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--macOS--Info.plist"; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				CB7169C92750276700F9F6CA /* WordTagger.swift */,
 				CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */,
 				CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */,
+				CBF99B9F276D1126001A57B9 /* CardsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 		CBAEBB20275C22F800D2DB2E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				CBF99B9C276A740C001A57B9 /* OnboardingScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -599,7 +603,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					CB3824F8271C8B0B0022E3DA = {
 						CreatedOnToolsVersion = 13.0;
@@ -644,10 +648,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB154947274E73060060706F /* Config.default.xcconfig in Resources */,
 				CBC1A988275AC51F008C1A7C /* Localizable.strings in Resources */,
 				CBF469E327661E5C00424EDF /* pixabay-com.der in Resources */,
-				CB154943274E70410060706F /* Config.xcconfig in Resources */,
 				CB382522271C8B0B0022E3DA /* Assets.xcassets in Resources */,
 				CBF469DD27661B9500424EDF /* apideepl.der in Resources */,
 			);
@@ -657,10 +659,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB154948274E73060060706F /* Config.default.xcconfig in Resources */,
 				CBC1A989275AC51F008C1A7C /* Localizable.strings in Resources */,
 				CBF469E427661E5C00424EDF /* pixabay-com.der in Resources */,
-				CB154944274E70410060706F /* Config.xcconfig in Resources */,
 				CB382523271C8B0B0022E3DA /* Assets.xcassets in Resources */,
 				CBF469DE27661B9500424EDF /* apideepl.der in Resources */,
 			);
@@ -728,12 +728,14 @@
 				CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */,
 				CBFFDCF32753FCD8001607FA /* MatchPairsStartScreen.swift in Sources */,
 				CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */,
+				CBF99B9D276A740C001A57B9 /* OnboardingScreen.swift in Sources */,
 				CBF469D22765F0DE00424EDF /* CardImagePicker.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListScreen.swift in Sources */,
 				CBA3536827596D7C0036C9EE /* CardImagesView.swift in Sources */,
 				CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */,
 				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
+				CBF99BA0276D1126001A57B9 /* CardsService.swift in Sources */,
 				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
@@ -760,6 +762,7 @@
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
 				CBFFDCFD27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBF469D32765F0DE00424EDF /* CardImagePicker.swift in Sources */,
+				CBF99BA1276D1126001A57B9 /* CardsService.swift in Sources */,
 				CBC1A996275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
 				CB382521271C8B0B0022E3DA /* Persistence.swift in Sources */,
 				CBFFDCF72753FE2A001607FA /* GamesScreen.swift in Sources */,
@@ -795,6 +798,7 @@
 				CBC4CB6B27553978009CCB32 /* MatchPairsGameStep.swift in Sources */,
 				CBBD31FA2753C79100F275E9 /* UIImage.swift in Sources */,
 				CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
+				CBF99B9E276A740C001A57B9 /* OnboardingScreen.swift in Sources */,
 				CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CB38253D271DEE5E0022E3DA /* ImageService.swift in Sources */,
 				CBF469E127661E0A00424EDF /* URLSessionPinningDelegate.swift in Sources */,
@@ -851,6 +855,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -910,6 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

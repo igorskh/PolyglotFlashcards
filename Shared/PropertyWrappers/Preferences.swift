@@ -7,15 +7,6 @@
 
 import SwiftUI
 import Combine
-//
-//protocol PreferencesProtocol: AnyObject {
-//    static var standard: PreferencesProtocol { get }
-//    var userDefaults: UserDefaults { get }
-//
-//    var preferencesChangedSubject: PassthroughSubject<AnyKeyPath, Never> { get }
-//
-//    init(userDefaults: UserDefaults)
-//}
 
 // https://www.avanderlee.com/swift/appstorage-explained/
 final class Preferences {
@@ -29,8 +20,8 @@ final class Preferences {
         self.userDefaults = userDefaults
     }
     
-    @UserDefault("status")
-    var status: String = "1"
+    @UserDefault("firstLaunch")
+    var firstLaunch: Bool = true
     
     @UserDefault("languages")
     var languages: [Language] = defaultActiveLanguages

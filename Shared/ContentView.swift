@@ -6,35 +6,8 @@
 //
 
 import SwiftUI
-import CoreData
-import Combine
-
-
-class ViewModel: ObservableObject {
-    @Published var updateView: UUID = .init()
-    
-    fileprivate var disposables = Set<AnyCancellable>()
-    let didUpdate = NotificationCenter.default.publisher(
-        for: NSNotification.Name(
-        rawValue: "NSPersistentStoreRemoteChangeNotification")
-    )
-    
-    
-    init() {
-        
-        didUpdate.sink {  _ in
-            DispatchQueue.main.async {
-                self.updateView = UUID()
-            }
-        }
-        .store(in: &disposables)
-    }
-    
-}
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ViewModel = .init()
-    
     @Namespace var routerNamespace
     @EnvironmentObject var tabRouter: TabRouter
     
