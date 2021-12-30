@@ -10,3 +10,7 @@
 
 PIXABAY_TOKEN = token_here
 DEEPL_TOKEN = token_here
+
+PIXABAY_BASE_URL = pixabay.com/api
+DEEPL_BASE_URL = api-free.deepl.com/v2
+POLYGLOT_API_BASE_URL = localhost:1323

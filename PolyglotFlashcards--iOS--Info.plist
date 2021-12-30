@@ -2,14 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>DEEPL_BASE_URL</key>
+	<string>$(DEEPL_BASE_URL)</string>
 	<key>DEEPL_TOKEN</key>
 	<string>$(DEEPL_TOKEN)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>PIXABAY_BASE_URL</key>
+	<string>$(PIXABAY_BASE_URL)</string>
 	<key>PIXABAY_TOKEN</key>
 	<string>$(PIXABAY_TOKEN)</string>
+	<key>POLYGLOT_API_BASE_URL</key>
+	<string>$(POLYGLOT_API_BASE_URL)</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>remote-notification</string>
 	</array>
 </dict>

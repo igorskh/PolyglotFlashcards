@@ -34,7 +34,7 @@ struct DeepLTranslationRequest: Codable {
 
 class DeepLTranslator: TranslationService {
     static var apiKey = Configuration.value(for: "DEEPL_TOKEN") ?? ""
-    static var baseURL = "https://api-free.deepl.com/v2"
+    static var baseURL = "https://\(Configuration.value(for: "DEEPL_BASE_URL") ?? "")"
     
     static let shared = DeepLTranslator()
     

@@ -27,7 +27,7 @@ struct PixabayServiceResponse: Codable {
 
 class PixabayService: ImageService {
     static var apiKey: String = Configuration.value(for: "PIXABAY_TOKEN") ?? ""
-    static var baseURL = "https://pixabay.com/api"
+    static var baseURL = "https://\(Configuration.value(for: "PIXABAY_BASE_URL") ?? "")"
     
     static let shared = PixabayService()
     
