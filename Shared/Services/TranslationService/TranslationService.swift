@@ -42,6 +42,22 @@ struct Translation: Identifiable {
     }
 }
 
+enum TranslationServiceFormality: String, Codable {
+    case auto
+    case formal
+    case informal
+}
+
+struct TranslationOptions: Codable, Identifiable {
+    var id: UUID = .init()
+    var formality: TranslationServiceFormality = .auto
+    var locale: String
+    var engine: String = ""
+    
+    var isFormalityAvailable: Bool
+    var isLocaleAvailable: Bool
+}
+
 protocol TranslationService {
-    func Translate(text: String, source: Language?, target: Language, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)
+    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions?, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)
 }

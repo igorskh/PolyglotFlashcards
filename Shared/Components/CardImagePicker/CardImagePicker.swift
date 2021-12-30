@@ -64,7 +64,7 @@ struct CardImagePicker: View {
                         Button {
                             showPicker.toggle()
                         } label: {
-                            Text("Select image")
+                            Text(LocalizedStringKey("Select image"))
                         }
                     }
                     
@@ -91,7 +91,7 @@ struct CardImagePicker: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     
-                    TextField("Search query", text: $searchRequest)
+                    TextField(LocalizedStringKey("Search query"), text: $searchRequest)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button {

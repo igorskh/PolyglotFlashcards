@@ -12,6 +12,7 @@ import UIKit
 #endif
 
 class CardDetailViewModel: ObservableObject {
+    @Published var options: [TranslationOptions] = []
     @Published var translations: [Translation] = []
     @Published var errorMessage: String = ""
     @Published var decks: [Deck]
@@ -20,7 +21,7 @@ class CardDetailViewModel: ObservableObject {
     
     @Published var query: String = ""
     
-    private var translator: TranslationService = DeepLTranslator.shared
+    private var translator: TranslationService = PolyglotTranslator.shared
     private var cardsService: CardsService = .shared
     private let speechSynth: SpeechSynthesizer = .init()
     private var selectedImageData: Data = .init()
@@ -34,7 +35,15 @@ class CardDetailViewModel: ObservableObject {
         self.card = card
         self.decks = card?.decks?.sortedArray(using: []) as? [Deck] ?? []
         
-        translations =  languages.map { lang in
+        options = languages.map { lang in
+            return TranslationOptions(
+                formality: .auto,
+                locale: "",
+                isFormalityAvailable: [.German, .Russian, .Spanish, .Polish, .Portuguese, .French, .Italian].contains(lang),
+                isLocaleAvailable: [.English, .Portuguese].contains(lang)
+            )
+        }
+        translations = languages.map { lang in
             var translation = ""
             if let card = card {
                 let variant = (card.variants?.sortedArray(using: []) as? [CardVariant])?.first { $0.language_code ==  lang.code }
@@ -54,7 +63,9 @@ class CardDetailViewModel: ObservableObject {
             sourceLang = source
         }
         
-        translator.Translate(text: text, source: sourceLang, target: target) { result in
+        let targetIndex = self.languages.firstIndex(of: target)!
+        
+        translator.Translate(text: text, source: sourceLang, target: target, options: options[targetIndex]) { result in
             switch result {
             case .success(let remoteTranslations):
                 DispatchQueue.main.async {

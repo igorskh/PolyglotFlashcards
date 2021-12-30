@@ -38,7 +38,7 @@ class DeepLTranslator: TranslationService {
     
     static let shared = DeepLTranslator()
     
-    func Translate(text: String, source: Language?, target: Language, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)  {
+    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions? = nil, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)  {
         let url = URL(string: "\(DeepLTranslator.baseURL)/translate")!
         var request = URLRequest(url: url)
         request.addValue("DeepL-Auth-Key \(DeepLTranslator.apiKey)", forHTTPHeaderField: "Authorization")

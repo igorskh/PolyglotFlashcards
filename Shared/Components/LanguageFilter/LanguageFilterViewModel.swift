@@ -31,12 +31,13 @@ class LanguageFilterViewModel: ObservableObject {
         self.languages = languages
         searchResults = languages
         
-        cancellable = AnyCancellable($searchText
-                                        .removeDuplicates()
-                                        .debounce(for: 0.2, scheduler: DispatchQueue.main)
-                                        .sink { index in
-                                            self.filterLanguages(index)
-                                        }
-                                     )
+        cancellable = AnyCancellable(
+            $searchText
+                .removeDuplicates()
+                .debounce(for: 0.2, scheduler: DispatchQueue.main)
+                .sink { index in
+                    self.filterLanguages(index)
+                }
+        )
     }
 }

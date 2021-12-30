@@ -9,6 +9,28 @@ import Foundation
 
 var defaultActiveLanguages: [Language] = [.English, .Russian, .German]
 
+struct Locale: Codable {
+    var code: String
+    var name: String
+    
+    static func all(for language: Language) -> [Locale] {
+        switch language {
+        case .English:
+            return [
+                Locale(code: "gb", name: "British"),
+                Locale(code: "us", name: "American")
+            ]
+        case .Portuguese:
+            return [
+                Locale(code: "pt", name: "European"),
+                Locale(code: "br", name: "Brazilian")
+            ]
+        default:
+            return []
+        }
+    }
+}
+
 enum Language: String, Codable {
     typealias RawValue = String
     
@@ -21,7 +43,7 @@ enum Language: String, Codable {
     case Japanese = "ja"
     case French = "fr"
     case Greek = "el"
-    case Ukrainian = "ua"
+    case Ukrainian = "uk"
     case Turkish = "tr"
     case Armenian = "hy"
     case Bulgarian = "bg"

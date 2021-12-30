@@ -6,6 +6,8 @@
   
 */
 
+"Polyglot Cards" = "Polyglot Cards";
+
 "Cards" = "Cards";
 "Play" = "Play";
 "Settings" = "Settings";
@@ -58,3 +60,19 @@
 "Better luck next time" = "Better luck next time";
 
 "Count of correct" = "%@ out of %@ are correct";
+
+"Select image" = "Select image";
+
+"Search query" = "Search an image online";
+
+"Settings for language" = "Settings for %@";
+"Formality" = "Formality";
+"Locale" = "Variant";
+"Auto" = "Auto";
+"Formal" = "Formal";
+"Informal" = "Informal";
+
+"American" = "American";
+"British" = "British";
+
+"Search language" = "Search language";

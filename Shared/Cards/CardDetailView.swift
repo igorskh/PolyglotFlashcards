@@ -16,7 +16,10 @@ struct CardDetailView: View {
     
     @State private var offset = CGSize.zero
     @State private var zoomFactor: CGFloat = 1.0
-    @State private var editEnabled: Bool = false
+    @State private var editCardEnabled: Bool = false
+    
+    @State private var showTranslationOptionsID: Int = -1
+    @State private var showTranslationOptions: Bool = false
     @State private var showDecks: Bool = false
     
     init(
@@ -63,7 +66,7 @@ struct CardDetailView: View {
         VStack {
             ZStack {
                 VStack {
-                    if editEnabled {
+                    if editCardEnabled {
                         CardImagePicker(searchRequest: $viewModel.query, height: 200) { img in
                             viewModel.setImage(from: img.pngData()!)
                         }
@@ -86,11 +89,11 @@ struct CardDetailView: View {
                             .foregroundColor(.white)
                         Spacer()
                         
-                        Image(systemName: editEnabled ? "eye.circle.fill" : "pencil.circle.fill" )
+                        Image(systemName: editCardEnabled ? "eye.circle.fill" : "pencil.circle.fill" )
                             .opacity(0.7)
                             .font(.title)
                             .onTapGesture {
-                                editEnabled.toggle()
+                                editCardEnabled.toggle()
                             }
                         
                         Image(systemName: "xmark.circle.fill")
@@ -121,7 +124,7 @@ struct CardDetailView: View {
                     Text("\(viewModel.translations[i].target.flag)")
                     Spacer()
                     
-                    if editEnabled {
+                    if editCardEnabled {
                         TextField("", text: $viewModel.translations[i].translation)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     } else {
@@ -129,17 +132,26 @@ struct CardDetailView: View {
                             .padding(5)
                             .background(Color.white)
                             .onTapGesture {
-                                editEnabled.toggle()
+                                editCardEnabled.toggle()
                             }
                     }
                     
-                    if editEnabled {
+                    if editCardEnabled {
                         Button {
                             viewModel.getTranslation(from: viewModel.translations[i].target)
                         } label: {
                             Image(systemName: "globe")
                         }
                         .buttonStyle(PlainButtonStyle())
+                        
+                        if viewModel.options[i].isFormalityAvailable || viewModel.options[i].isLocaleAvailable {
+                            Button {
+                                showTranslationOptionsID = i
+                            } label: {
+                                Image(systemName: "ellipsis.circle.fill")
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
                     }
                     
                     Button {
@@ -196,7 +208,7 @@ struct CardDetailView: View {
             
             if viewModel.nQueuedRequests > 0 {
                 ProgressView()
-            } else if editEnabled {
+            } else if editCardEnabled {
                 Text(LocalizedStringKey("Enter text in the fields below"))
             } else {
                 Text(" ")
@@ -214,6 +226,15 @@ struct CardDetailView: View {
             
             buttons
                 .padding(.horizontal)
+        }
+        .onChange(of: showTranslationOptionsID) { value in
+            showTranslationOptions = value > -1
+        }
+        .sheet(isPresented: $showTranslationOptions, onDismiss: { showTranslationOptionsID = -1 }) {
+            TranslationOptionsEditView(
+                language: viewModel.languages[showTranslationOptionsID],
+                options: $viewModel.options[showTranslationOptionsID]
+            )
         }
         .frame(maxWidth: 600)
         .background(
@@ -244,7 +265,7 @@ struct CardDetailView: View {
         .onAppear {
             offset = CGSize.zero
             zoomFactor = 1.0
-            editEnabled = viewModel.card == nil
+            editCardEnabled = viewModel.card == nil
         }
     }
 }

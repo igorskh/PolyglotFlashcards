@@ -58,3 +58,19 @@
 "Better luck next time" = "Попробуйте еще раз";
 
 "Count of correct" = "%@ из %@ верных ответов";
+
+"Select image" = "Выбрать изображение";
+
+"Search query" = "Поиск изображения онлайн";
+
+"Settings for language" = "Настройки для %@";
+"Formality" = "Форма вежливости";
+"Locale" = "Вариант";
+"Auto" = "Авто";
+"Formal" = "Вежливая";
+"Informal" = "Неформальная";
+
+"American" = "Американская";
+"British" = "Британская";
+
+"Search language" = "Поиск языка";

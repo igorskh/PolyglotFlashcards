@@ -58,7 +58,7 @@ struct DecksGridScreen: View {
     var body: some View {
         VStack {
             HStack {
-                Text("PolyCard")
+                Text(LocalizedStringKey("Polyglot Cards"))
                     .matchedGeometryEffect(id: "router-title", in: routerNamespace)
                 
                 Spacer()

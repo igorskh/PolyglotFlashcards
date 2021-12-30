@@ -29,7 +29,7 @@ struct LanguageFilter: View {
     
     var body: some View {
         VStack {
-            TextField("Search langauge", text: $viewModel.searchText)
+            TextField(LocalizedStringKey("Search language"), text: $viewModel.searchText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             ForEach(viewModel.searchResults.sorted(by: { lang1, lang2 in

@@ -141,7 +141,7 @@ struct CardsListScreen: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     
-                    Text("\(deck?.title ?? "PolyCard")")
+                    Text("\(deck?.title ?? NSLocalizedString("Polyglot Cards", comment: "title"))")
                     
                     Spacer()
                     

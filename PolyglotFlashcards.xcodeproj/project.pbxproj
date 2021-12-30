@@ -13,6 +13,10 @@
 		CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
 		CB233DB52748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
+		CB367363277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */; };
+		CB367364277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */; };
+		CB367366277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */; };
+		CB367367277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */; };
 		CB38250B271C8B0B0022E3DA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */; };
 		CB38250D271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250C271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift */; };
 		CB382517271C8B0B0022E3DA /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382516271C8B0B0022E3DA /* Tests_macOS.swift */; };
@@ -155,6 +159,8 @@
 		CB154949274E73550060706F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
+		CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTranslator.swift; sourceTree = "<group>"; };
+		CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationOptionsEditView.swift; sourceTree = "<group>"; };
 		CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotFlashcardsApp.swift; sourceTree = "<group>"; };
 		CB3824F3271C8B090022E3DA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CB3824F4271C8B0B0022E3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -360,6 +366,7 @@
 			children = (
 				CB382537271DEE3A0022E3DA /* TranslationService.swift */,
 				CB38253E271DEE960022E3DA /* DeepLTranslator.swift */,
+				CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */,
 			);
 			path = TranslationService;
 			sourceTree = "<group>";
@@ -396,6 +403,7 @@
 				CB382550271DEF460022E3DA /* CardView.swift */,
 				CB382553271DEF560022E3DA /* CardsListScreen.swift */,
 				CBA3536727596D7C0036C9EE /* CardImagesView.swift */,
+				CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -709,6 +717,7 @@
 				CBC1A995275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
 				CBA3536227582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
+				CB367363277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */,
 				CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
 				CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */,
 				CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */,
@@ -717,6 +726,7 @@
 				CBFFDCFC27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
 				CB38253C271DEE5E0022E3DA /* ImageService.swift in Sources */,
+				CB367366277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */,
 				CBF469CF2765EDE000424EDF /* ImagePicker.swift in Sources */,
 				CBFFDCF92753FFA4001607FA /* Image+nsImage.swift in Sources */,
 				CBBD31F42753A30F00F275E9 /* Preferences.swift in Sources */,
@@ -760,6 +770,7 @@
 				CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
 				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
+				CB367364277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */,
 				CBFFDCFD27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBF469D32765F0DE00424EDF /* CardImagePicker.swift in Sources */,
 				CBF99BA1276D1126001A57B9 /* CardsService.swift in Sources */,
@@ -786,6 +797,7 @@
 				CBC1A990275ACEB2008C1A7C /* DecksPicker.swift in Sources */,
 				CBC4CB6827553955009CCB32 /* MatchPairsGame.swift in Sources */,
 				CBA3536927596D7C0036C9EE /* CardImagesView.swift in Sources */,
+				CB367367277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */,
 				CBBD31FB2753C7EB00F275E9 /* SpeechSynthesizer.swift in Sources */,
 				CBFFDD0327541110001607FA /* NavigationController.swift in Sources */,
 				CBF469DB2766175B00424EDF /* CardImagePickerViewModel.swift in Sources */,
@@ -972,7 +984,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -989,7 +1001,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1007,7 +1019,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1024,7 +1036,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
