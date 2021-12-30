@@ -12,7 +12,11 @@ class MatchPairsGame: ObservableObject {
     @Published var selectedLanguages: [Language] = []
     
     @Published var selectedDecks: [Deck] = []
-    @Published var selectedVariantIDs: [ObjectIdentifier] = []
+    @Published var selectedVariantIDs: [ObjectIdentifier] = [] {
+        didSet {
+            isCorrectSelected = selectedVariantIDs.contains(gameStep!.correctVariantID)
+        }
+    }
     
     @Published var numberOfAttempts = 0
     @Published var numberOfCorrect = 0
@@ -25,10 +29,18 @@ class MatchPairsGame: ObservableObject {
     
     @Published var error: String = ""
     
+    @Published var isCorrectSelected = false
+    
     var cards: [Card] = []
     
     var gameStep: MatchPairsGameStep?
     var numberOfCards: Int = 4
+
+    private let speechSynth: SpeechSynthesizer = .init()
+    
+#if !os(macOS)
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
+#endif
     
     func start(limit: Int = 0, viewContext: NSManagedObjectContext, onSuccess: () -> Void) {
         error = ""
@@ -113,7 +125,16 @@ class MatchPairsGame: ObservableObject {
     func nextCard() {
         gameStep = makeStep()
         
+        speechSynth.speak(
+            string: gameStep!.mainVariant.text!,
+            language: gameStep!.mainVariant.language_code!
+        )
+        
         selectedVariantIDs = []
+    }
+    
+    func speak(variant: CardVariant) {
+        speechSynth.speak(string: variant.text!, language: variant.language_code!)
     }
     
     func checkStep(variant: CardVariant, onSuccess: (Bool) -> Void) {
@@ -129,11 +150,20 @@ class MatchPairsGame: ObservableObject {
         if variant.id == gameStep!.correctVariantID {
             numberOfCorrect += 1
             triggerCorrect = true
+            
+#if !os(macOS)
+            feedbackGenerator.notificationOccurred(.success)
+#endif
         } else {
             numberOfIncorrect += 1
             triggerIncorrect = true
+            
+#if !os(macOS)
+            feedbackGenerator.notificationOccurred(.error)
+#endif
         }
         
+        speechSynth.speak(string: variant.text!, language: variant.language_code!)
         selectedVariantIDs.append(variant.id)
         onSuccess(variant.id == gameStep!.correctVariantID)
     }

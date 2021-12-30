@@ -17,7 +17,6 @@ struct MatchPairsGameScreen: View {
     var stepView: some View {
         Group {
             VStack {
-                
                 if let image = game.gameStep!.mainVariant.card?.image,
                    let uiImage = UIImage(data: image) {
                     Image(image: uiImage)
@@ -31,26 +30,35 @@ struct MatchPairsGameScreen: View {
                         )
                 }
                 
-                Text(game.gameStep!.mainVariant.text ?? "N/A")
-                    .fontWeight(.heavy)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60, alignment: .center)
-                    .animation(game.isAppeared ? nil : .default)
-                VStack(spacing: 20) {
-                ForEach(game.gameStep!.variantChoices.indices) { i in
-                    GameCardView(
-                        variant: game.gameStep!.variantChoices[i],
-                        selectedIDs: game.selectedVariantIDs,
-                        correctID: game.gameStep!.correctVariantID,
-                        isAnimated: game.isAppeared
-                    )
-                        .onTapGesture {
-                            withAnimation {
-                                game.checkStep(variant: game.gameStep!.variantChoices[i]) { _ in }
-                            }
-                        }
+                HStack {
+                    Text(game.gameStep!.mainVariant.text ?? "N/A")
+                        .fontWeight(.heavy)
+                        .frame(height: 60, alignment: .center)
+                        .animation(game.isAppeared ? nil : .default)
+                    
+                    Button {
+                        game.speak(variant: game.gameStep!.mainVariant)
+                    } label: {
+                        Image(systemName: "speaker.wave.3")
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-            }
+                
+                VStack(spacing: 20) {
+                    ForEach(game.gameStep!.variantChoices.indices) { i in
+                        GameCardView(
+                            variant: game.gameStep!.variantChoices[i],
+                            selectedIDs: game.selectedVariantIDs,
+                            correctID: game.gameStep!.correctVariantID,
+                            isAnimated: game.isAppeared
+                        )
+                            .onTapGesture {
+                                withAnimation {
+                                    game.checkStep(variant: game.gameStep!.variantChoices[i]) { _ in }
+                                }
+                            }
+                    }
+                }
             }
             
             Spacer()
@@ -106,6 +114,11 @@ struct MatchPairsGameScreen: View {
             }
             
             stepView
+            
+            FilledButton(title: NSLocalizedString("Continue", comment: "Continue"), color: .green) {
+                game.nextStep()
+            }
+            .disabled(!game.isCorrectSelected)
             
             Spacer()
         }
