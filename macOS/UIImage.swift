@@ -65,8 +65,3 @@ extension NSImage {
         return self.copy(size: newSize)!
     }
 }
-
-struct User {
-    let name: String
-    let profileImage: UIImage
-}
