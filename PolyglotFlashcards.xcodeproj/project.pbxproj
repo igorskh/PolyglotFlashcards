@@ -17,6 +17,12 @@
 		CB367364277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */; };
 		CB367366277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */; };
 		CB367367277CF5E4004BB8E9 /* TranslationOptionsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */; };
+		CB367369277DB17E004BB8E9 /* polyglot-api.der in Resources */ = {isa = PBXBuildFile; fileRef = CB367368277DB17E004BB8E9 /* polyglot-api.der */; };
+		CB36736A277DB17E004BB8E9 /* polyglot-api.der in Resources */ = {isa = PBXBuildFile; fileRef = CB367368277DB17E004BB8E9 /* polyglot-api.der */; };
+		CB36736D277DBD8A004BB8E9 /* TextToSpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36736C277DBD8A004BB8E9 /* TextToSpeechService.swift */; };
+		CB36736E277DBD8A004BB8E9 /* TextToSpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36736C277DBD8A004BB8E9 /* TextToSpeechService.swift */; };
+		CB367370277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36736F277DBDD4004BB8E9 /* PolyglotTTSService.swift */; };
+		CB367371277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36736F277DBDD4004BB8E9 /* PolyglotTTSService.swift */; };
 		CB38250B271C8B0B0022E3DA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250A271C8B0B0022E3DA /* Tests_iOS.swift */; };
 		CB38250D271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38250C271C8B0B0022E3DA /* Tests_iOSLaunchTests.swift */; };
 		CB382517271C8B0B0022E3DA /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382516271C8B0B0022E3DA /* Tests_macOS.swift */; };
@@ -161,6 +167,9 @@
 		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
 		CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTranslator.swift; sourceTree = "<group>"; };
 		CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationOptionsEditView.swift; sourceTree = "<group>"; };
+		CB367368277DB17E004BB8E9 /* polyglot-api.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = "polyglot-api.der"; sourceTree = "<group>"; };
+		CB36736C277DBD8A004BB8E9 /* TextToSpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechService.swift; sourceTree = "<group>"; };
+		CB36736F277DBDD4004BB8E9 /* PolyglotTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTTSService.swift; sourceTree = "<group>"; };
 		CB3824F1271C8B090022E3DA /* PolyglotFlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotFlashcardsApp.swift; sourceTree = "<group>"; };
 		CB3824F3271C8B090022E3DA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CB3824F4271C8B0B0022E3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,15 +278,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB36736B277DBD78004BB8E9 /* TextToSpeechService */ = {
+			isa = PBXGroup;
+			children = (
+				CB36736C277DBD8A004BB8E9 /* TextToSpeechService.swift */,
+				CB36736F277DBDD4004BB8E9 /* PolyglotTTSService.swift */,
+			);
+			path = TextToSpeechService;
+			sourceTree = "<group>";
+		};
 		CB3824E9271C8B080022E3DA = {
 			isa = PBXGroup;
 			children = (
 				CBA3536D2759719B0036C9EE /* PolyglotFlashcards (iOS).entitlements */,
 				CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */,
 				CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */,
+				CB382500271C8B0B0022E3DA /* macOS */,
 				CBFFDCF02753FA96001607FA /* iOS */,
 				CB3824EE271C8B080022E3DA /* Shared */,
-				CB382500271C8B0B0022E3DA /* macOS */,
 				CB382509271C8B0B0022E3DA /* Tests iOS */,
 				CB382515271C8B0B0022E3DA /* Tests macOS */,
 				CB3824FA271C8B0B0022E3DA /* Products */,
@@ -289,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				CBF469E227661E5C00424EDF /* pixabay-com.der */,
+				CB367368277DB17E004BB8E9 /* polyglot-api.der */,
 				CBF469DC27661B9500424EDF /* apideepl.der */,
 				CBC1A98B275AC51F008C1A7C /* Localizable.strings */,
 				CB154946274E73060060706F /* Config.default.xcconfig */,
@@ -425,6 +444,7 @@
 		CB7169C82750276000F9F6CA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CB36736B277DBD78004BB8E9 /* TextToSpeechService */,
 				CB38253A271DEE510022E3DA /* ImageService */,
 				CB382536271DEE290022E3DA /* TranslationService */,
 				CB7169C92750276700F9F6CA /* WordTagger.swift */,
@@ -657,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC1A988275AC51F008C1A7C /* Localizable.strings in Resources */,
+				CB367369277DB17E004BB8E9 /* polyglot-api.der in Resources */,
 				CBF469E327661E5C00424EDF /* pixabay-com.der in Resources */,
 				CB382522271C8B0B0022E3DA /* Assets.xcassets in Resources */,
 				CBF469DD27661B9500424EDF /* apideepl.der in Resources */,
@@ -668,6 +689,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC1A989275AC51F008C1A7C /* Localizable.strings in Resources */,
+				CB36736A277DB17E004BB8E9 /* polyglot-api.der in Resources */,
 				CBF469E427661E5C00424EDF /* pixabay-com.der in Resources */,
 				CB382523271C8B0B0022E3DA /* Assets.xcassets in Resources */,
 				CBF469DE27661B9500424EDF /* apideepl.der in Resources */,
@@ -705,6 +727,7 @@
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
 				CB7169CA2750276700F9F6CA /* WordTagger.swift in Sources */,
 				CB382534271DEE030022E3DA /* Language.swift in Sources */,
+				CB36736D277DBD8A004BB8E9 /* TextToSpeechService.swift in Sources */,
 				CB382520271C8B0B0022E3DA /* Persistence.swift in Sources */,
 				CBFFDD0227541110001607FA /* NavigationController.swift in Sources */,
 				CBA3536527592A520036C9EE /* DecksGridScreen.swift in Sources */,
@@ -718,6 +741,7 @@
 				CB382551271DEF460022E3DA /* CardView.swift in Sources */,
 				CBA3536227582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
 				CB367363277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */,
+				CB367370277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */,
 				CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
 				CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */,
 				CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */,
@@ -764,6 +788,7 @@
 				CB38251D271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CBF469E6276620F000424EDF /* ImagePicker.swift in Sources */,
 				CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */,
+				CB367371277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
 				CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */,
@@ -772,6 +797,7 @@
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
 				CB367364277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */,
 				CBFFDCFD27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
+				CB36736E277DBD8A004BB8E9 /* TextToSpeechService.swift in Sources */,
 				CBF469D32765F0DE00424EDF /* CardImagePicker.swift in Sources */,
 				CBF99BA1276D1126001A57B9 /* CardsService.swift in Sources */,
 				CBC1A996275ADB78008C1A7C /* BouncingIcon.swift in Sources */,
@@ -984,7 +1010,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1001,7 +1027,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1019,7 +1045,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1036,7 +1062,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1063,6 +1089,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PolyglotFlashcards--macOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1094,6 +1121,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PolyglotFlashcards--macOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
