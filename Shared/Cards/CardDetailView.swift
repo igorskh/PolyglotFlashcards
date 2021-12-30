@@ -64,7 +64,7 @@ struct CardDetailView: View {
     
     var header: some View {
         VStack {
-            ZStack {
+            ZStack(alignment: .topLeading) {
                 VStack {
                     if editCardEnabled {
                         CardImagePicker(searchRequest: $viewModel.query, height: 200) { img in

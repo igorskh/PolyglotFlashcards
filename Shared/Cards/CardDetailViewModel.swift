@@ -138,6 +138,9 @@ class CardDetailViewModel: ObservableObject {
     }
     
     func speak(at translationID: Int) {
-        speechSynth.speak(string: translations[translationID].translation, language: translations[translationID].target.code)
+        let translation = translations[translationID].translation
+        let language = translations[translationID].target
+        
+        speechSynth.speak(string: translation, language: language.code)
     }
 }
