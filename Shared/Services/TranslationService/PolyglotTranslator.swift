@@ -23,7 +23,7 @@ struct PolyglotTranslationResponse: Codable {
 
 
 class PolyglotTranslator: TranslationService {
-    static var baseURL = "http://localhost:1323"
+    static var baseURL = "https://\(Configuration.value(for: "POLYGLOT_API_BASE_URL") ?? "")"
     
     static let shared = PolyglotTranslator()
     
@@ -65,7 +65,7 @@ class PolyglotTranslator: TranslationService {
         
         let urlSession = URLSession(
             configuration: .default,
-            delegate: .none,
+            delegate: URLSessionPinningDelegate(forResource: "polyglot-api"),
             delegateQueue: .main
         )
         
