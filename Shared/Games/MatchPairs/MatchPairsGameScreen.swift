@@ -73,15 +73,14 @@ struct MatchPairsGameScreen: View {
                 
                 Spacer()
                 
-                Button {
+                FilledButton(title: NSLocalizedString("Finish", comment: "Finish"), color: Color.red)  {
                     navigationController.push(
                         MatchPairsGameFinishedScreen()
                             .environmentObject(game)
                     )
-                } label: {
-                    Text(LocalizedStringKey("Finish"))
                 }
             }
+            .zIndex(1)
             .padding(.bottom)
             
             HStack {
