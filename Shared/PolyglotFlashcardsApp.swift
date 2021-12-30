@@ -12,7 +12,6 @@ struct PolyglotFlashcardsApp: App {
     @Preference(\.firstLaunch) var firstLaunch
     @ObservedObject var tabRouter: TabRouter = .init()
     let persistenceController = PersistenceController.shared
-    
 
     var body: some Scene {
         WindowGroup {
