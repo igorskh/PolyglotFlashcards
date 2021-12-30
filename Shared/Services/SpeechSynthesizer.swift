@@ -5,18 +5,47 @@
 //  Created by Igor Kim on 25.11.21.
 //
 
+import AVFAudio
 import AVFoundation
 
 class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
-    let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer = AVSpeechSynthesizer()
+    private var audioPlayer: AVAudioPlayer? = nil
+    private let ttsService: TextToSpeechService = PolyglotTTSService.shared
     
-    func speak(string: String, language: String) {
+    func speakAVSpeech(string: String, language: String) -> Bool {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
+        
+        guard let actualLanguage = utterance.voice?.language else {
+            return false
+        }
+        if actualLanguage.split(separator: "-")[0].lowercased() != language.split(separator: "-")[0].lowercased() {
+            return false
+        }
         
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
         synthesizer.speak(utterance)
+        
+        return true
+    }
+    
+    func speak(string: String, language: String) {
+        if speakAVSpeech(string: string, language: language) {
+            return
+        }
+    
+        ttsService.Generate(text: string, language: language) { result in
+            switch result {
+            case .success(let data):
+                self.audioPlayer = try? AVAudioPlayer(data: data!, fileTypeHint: AVFileType.mp3.rawValue)
+                self.audioPlayer?.prepareToPlay()
+                self.audioPlayer?.play()
+            case .failure(let err):
+                print(err)
+            }
+        }
     }
 }
