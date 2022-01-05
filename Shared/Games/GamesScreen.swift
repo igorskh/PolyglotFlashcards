@@ -11,11 +11,41 @@ struct GamesScreen: View {
     var body: some View {
         VStack {
             NavControllerView {
-                MatchPairsStartScreen()
+                GamesListView()
             }
             .frame(maxWidth: 600)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct GamesListView: View {
+    @EnvironmentObject var navigationController: NavControllerViewModel
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(LocalizedStringKey("Choose game type"))
+                
+                Spacer()
+            }
+            .font(.title)
+            .padding()
+            
+            FilledButton(title: "Swipe Game", color: .blue) {
+                navigationController.push(
+                    SwipeGameStartScreen()
+                )
+            }
+            
+            FilledButton(title: "Quiz Game", color: .blue) {
+                navigationController.push(
+                    MatchPairsStartScreen()
+                )
+                
+            }
+            Spacer()
+        }
     }
 }
 
