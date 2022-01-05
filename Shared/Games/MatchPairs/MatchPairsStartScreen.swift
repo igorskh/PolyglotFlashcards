@@ -18,10 +18,19 @@ struct MatchPairsStartScreen: View {
     var body: some View {
         ScrollView {
             HStack {
+                Button {
+                    withAnimation {
+                        navigationController.pop()
+                    }
+                } label: {
+                    Image(systemName: "chevron.backward")
+                }
+                .buttonStyle(PlainButtonStyle())
+                
                 Text(LocalizedStringKey("Match Pairs Game"))
-                    .font(.title)
                 Spacer()
             }
+            .font(.title)
             
             Text(LocalizedStringKey("Choos decks to play"))
                 .padding(.vertical)

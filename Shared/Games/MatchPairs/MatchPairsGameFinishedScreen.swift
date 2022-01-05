@@ -12,6 +12,11 @@ struct MatchPairsGameFinishedScreen: View {
     @EnvironmentObject var game: MatchPairsGame
     @EnvironmentObject var navigationController: NavControllerViewModel
     
+    func goToRoot() {
+        tabRouter.isModal = false
+        navigationController.pop(to: .root)
+    }
+    
     var text: String {
         let ratio = Double(game.numberOfCorrect)/Double(game.numberOfAttempts)
         if ratio > 0.9 {
@@ -35,12 +40,16 @@ struct MatchPairsGameFinishedScreen: View {
                 .foregroundColor(.green)
             
             Text(String(format: NSLocalizedString("Count of correct", comment: "Count of correct"), "\(game.numberOfCorrect)", "\(game.numberOfAttempts)"))
+                .padding(.vertical, 40)
+            
+            FilledButton(title: NSLocalizedString("Continue", comment: "Continue"), color: .green, action: {
+                goToRoot()
+            })
             
             Spacer()
         }
         .onTapGesture {
-            tabRouter.isModal = false
-            navigationController.pop(to: .root)
+            goToRoot()
         }
     }
 }

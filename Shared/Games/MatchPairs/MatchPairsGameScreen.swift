@@ -52,6 +52,7 @@ struct MatchPairsGameScreen: View {
                             correctID: game.gameStep!.correctVariantID,
                             isAnimated: game.isAppeared
                         )
+                            .foregroundColor(.white)
                             .onTapGesture {
                                 withAnimation {
                                     game.checkStep(variant: game.gameStep!.variantChoices[i]) { _ in }
