@@ -89,45 +89,6 @@ struct CardsListScreen: View {
         }
     }
     
-    var cardsList: some View {
-        ScrollView {
-            ForEach(items) { item in
-                CardView(
-                    word: item,
-                    languages: languages,
-                    visibleLanguages: filteredLanguages,
-                    namespace: namespace,
-                    show: selectedCard != nil && selectedCard!.id == item.id
-                )
-                    .padding()
-                    .opacity(selectedCard != nil && selectedCard!.id == item.id ? 0.0 : 1.0)
-                    .onTapGesture {
-                        toggleCard(destination: item)
-                    }
-            }
-            Spacer()
-                .padding(.bottom, 40)
-        }
-    }
-    
-    var languageFilter: some View {
-        VStack {
-            Text("Filter Languages")
-                .font(.title)
-            
-            LanguageFilter(languages: languages, selected: $filteredLanguages)
-                .onChange(of: filteredLanguages) {
-                    storedFilteredLanguages = $0
-                }
-            
-            FilledButton(title: NSLocalizedString("Set", comment: "Set filter languages"), color: .accentColor) {
-                showLanguageFilter = false
-            }
-            
-            Spacer()
-        }
-    }
-    
     var body: some View {
         ZStack {
             VStack {
@@ -137,7 +98,7 @@ struct CardsListScreen: View {
                             tabRouter.currentTab = .decks
                         }
                     } label: {
-                        Image(systemName: "arrowshape.turn.up.backward")
+                        Image(systemName: "chevron.backward")
                     }
                     .buttonStyle(PlainButtonStyle())
                     
@@ -161,7 +122,7 @@ struct CardsListScreen: View {
                 cardsGrid
             }
             .sheet(isPresented: $showLanguageFilter) {
-                languageFilter
+                CardListLanguageFilterView(languages: languages, filteredLanguages: $filteredLanguages)
                     .padding()
             }
             
