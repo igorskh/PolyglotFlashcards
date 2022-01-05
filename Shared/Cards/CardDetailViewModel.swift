@@ -137,10 +137,10 @@ class CardDetailViewModel: ObservableObject {
         )
     }
     
-    func speak(at translationID: Int) {
+    func speak(at translationID: Int, engine: SpeechEngine = .auto) {
         let translation = translations[translationID].translation
         let language = translations[translationID].target
         
-        speechSynth.speak(string: translation, language: language.code)
+        speechSynth.speak(string: translation, language: language.code, engine: engine)
     }
 }

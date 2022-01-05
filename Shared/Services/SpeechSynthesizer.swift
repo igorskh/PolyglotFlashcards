@@ -8,19 +8,25 @@
 import AVFAudio
 import AVFoundation
 
+enum SpeechEngine: String, Codable {
+    case auto
+    case voiceOver
+    case googleTTS
+}
+
 class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
     private let synthesizer = AVSpeechSynthesizer()
     private var audioPlayer: AVAudioPlayer? = nil
     private let ttsService: TextToSpeechService = PolyglotTTSService.shared
     
-    func speakAVSpeech(string: String, language: String) -> Bool {
+    func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false) -> Bool {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         
         guard let actualLanguage = utterance.voice?.language else {
             return false
         }
-        if actualLanguage.split(separator: "-")[0].lowercased() != language.split(separator: "-")[0].lowercased() {
+        if !ignoreCheck && actualLanguage.split(separator: "-")[0].lowercased() != language.split(separator: "-")[0].lowercased() {
             return false
         }
         
@@ -32,11 +38,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
         return true
     }
     
-    func speak(string: String, language: String) {
-        if speakAVSpeech(string: string, language: language) {
-            return
-        }
-    
+    func speakTTSService(string: String, language: String) {
         ttsService.Generate(text: string, language: language) { result in
             switch result {
             case .success(let data):
@@ -46,6 +48,18 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
             case .failure(let err):
                 print(err)
             }
+        }
+    }
+    
+    func speak(string: String, language: String, engine: SpeechEngine = .auto) {
+        if engine == .voiceOver || engine == .auto {
+            if speakVoiceOver(string: string, language: language, ignoreCheck: engine == .voiceOver) {
+                return
+            }
+        }
+        
+        if engine == .googleTTS || engine == .auto {
+            speakTTSService(string: string, language: language)
         }
     }
 }

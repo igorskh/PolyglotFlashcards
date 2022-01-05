@@ -160,6 +160,22 @@ struct CardDetailView: View {
                         Image(systemName: "speaker.wave.3")
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .contextMenu {
+                        Group {
+                            Button("Auto", action: {
+                                viewModel.speak(at: i)
+                                
+                            })
+                            Button("VoiceOver", action: {
+                                viewModel.speak(at: i, engine: .voiceOver)
+                                
+                            })
+                            Button("Google TTS", action: {
+                                viewModel.speak(at: i, engine: .googleTTS)
+                                
+                            })
+                        }
+                    }
                 }
                 .matchedGeometryEffect(id: "\(viewModel.card?.id.hashValue ?? -1)-\(viewModel.translations[i].target.code)", in: namespace)
                 .padding(.vertical, 5)
