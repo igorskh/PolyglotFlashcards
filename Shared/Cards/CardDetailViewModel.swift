@@ -69,14 +69,14 @@ class CardDetailViewModel: ObservableObject {
 #endif
     }
     
-   #if !os(macOS)
+#if !os(macOS)
     @objc func adjustForKeyboard(notification: Notification) {
         withAnimation {
             if notification.name == UIResponder.keyboardWillHideNotification {
                 isHeaderHidden = false
             } else if isTranslationFieldFocused {
                 if let userInfo = notification.userInfo,
-                    let keyboardEndRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+                   let keyboardEndRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
                    keyboardEndRect.height > 100 {
                     isHeaderHidden = true
                 }
