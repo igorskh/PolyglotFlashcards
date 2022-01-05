@@ -149,21 +149,25 @@
       "size" : "128x128"
     },
     {
+      "filename" : "iTunesArtwork_05-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
+      "filename" : "iTunesArtwork_05.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
+      "filename" : "iTunesArtwork-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
+      "filename" : "iTunesArtwork.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
