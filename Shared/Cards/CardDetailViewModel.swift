@@ -55,18 +55,22 @@ class CardDetailViewModel: ObservableObject {
             }
             return Translation(original: "", translation: translation, source: .Unknown, target: lang)
         }
-        
+ 
+#if !os(macOS)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+#endif
     }
     
     deinit {
+#if !os(macOS)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UITextView.keyboardWillShowNotification, object: nil)
+#endif
     }
     
+   #if !os(macOS)
     @objc func adjustForKeyboard(notification: Notification) {
-
         withAnimation {
             if notification.name == UIResponder.keyboardWillHideNotification {
                 isHeaderHidden = false
@@ -79,6 +83,7 @@ class CardDetailViewModel: ObservableObject {
             }
         }
     }
+#endif
     
     func setImage(from data: Data) {
         selectedImageData = data
