@@ -39,6 +39,11 @@ struct LanguageFilter: View {
                     Text(lang.flag)
                     Text(lang.name)
                     Spacer()
+                    if selected.contains(lang) {
+                        Text("\(selected.firstIndex(of: lang)! + 1)")
+                            .fontWeight(.bold)
+                            .padding(.horizontal)
+                    }
                 }
                 .padding(5.0)
                 .background(
