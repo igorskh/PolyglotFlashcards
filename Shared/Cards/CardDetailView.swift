@@ -125,7 +125,10 @@ struct CardDetailView: View {
                     Spacer()
                     
                     if editCardEnabled {
-                        TextField("", text: $viewModel.translations[i].translation)
+                        TextField("", text: $viewModel.translations[i].translation,
+                                  onEditingChanged: { editingChanged in
+                            viewModel.isTranslationFieldFocused = editingChanged
+                        })
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     } else {
                         AttributedText(viewModel.translations[i].attributedString)
@@ -188,6 +191,13 @@ struct CardDetailView: View {
     var buttons: some View {
         HStack {
             FilledButton(
+                title: NSLocalizedString("Translate", comment: "Translate Card"),
+                color: Color.accentColor
+            ) {
+                viewModel.translateAll()
+            }
+            
+            FilledButton(
                 title: viewModel.card == nil
                 ? NSLocalizedString("Create", comment: "Create Card")
                 : NSLocalizedString("Save", comment: "Save Card"),
@@ -214,7 +224,9 @@ struct CardDetailView: View {
     
     var body: some View {
         VStack {
-            header
+            if !viewModel.isHeaderHidden {
+                header
+            }
             
             if viewModel.errorMessage != "" {
                 Text(viewModel.errorMessage)
@@ -230,18 +242,21 @@ struct CardDetailView: View {
                 Text(" ")
             }
             
-            
-            DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
-                .padding(.horizontal)
-                .padding(.bottom)
+            if !viewModel.isHeaderHidden {
+                DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
+                    .padding(.horizontal)
+                    .padding(.bottom)
+            }
                 
             translationsList
                 .padding(.horizontal)
             
             Spacer()
             
-            buttons
-                .padding(.horizontal)
+            if !viewModel.isHeaderHidden {
+                buttons
+                    .padding(.horizontal)
+            }
         }
         .onChange(of: showTranslationOptionsID) { value in
             showTranslationOptions = value > -1

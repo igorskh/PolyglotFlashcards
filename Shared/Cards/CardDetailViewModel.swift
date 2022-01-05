@@ -5,6 +5,7 @@
 //  Created by Igor Kim on 18.10.21.
 //
 
+import SwiftUI
 import Foundation
 import CoreData
 #if !os(macOS)
@@ -20,6 +21,9 @@ class CardDetailViewModel: ObservableObject {
     @Published var nQueuedRequests: Int = 0
     
     @Published var query: String = ""
+    
+    @Published var isTranslationFieldFocused: Bool = false
+    @Published var isHeaderHidden: Bool = false
     
     private var translator: TranslationService = PolyglotTranslator.shared
     private var cardsService: CardsService = .shared
@@ -50,6 +54,29 @@ class CardDetailViewModel: ObservableObject {
                 translation = variant?.text ?? ""
             }
             return Translation(original: "", translation: translation, source: .Unknown, target: lang)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UITextView.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+
+        withAnimation {
+            if notification.name == UIResponder.keyboardWillHideNotification {
+                isHeaderHidden = false
+            } else if isTranslationFieldFocused {
+                if let userInfo = notification.userInfo,
+                    let keyboardEndRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+                   keyboardEndRect.height > 100 {
+                    isHeaderHidden = true
+                }
+            }
         }
     }
     
@@ -115,6 +142,14 @@ class CardDetailViewModel: ObservableObject {
         
         targetLanguages.forEach {
             getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0)
+        }
+    }
+    
+    func translateAll() {
+        if let sourceLanguage = translations.first(where: { tr in
+            !tr.translation.isEmpty
+        })?.target {
+            getTranslation(from: sourceLanguage)
         }
     }
     
