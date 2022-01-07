@@ -51,6 +51,11 @@
 		CB382552271DEF460022E3DA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382550271DEF460022E3DA /* CardView.swift */; };
 		CB382554271DEF560022E3DA /* CardsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382553271DEF560022E3DA /* CardsListScreen.swift */; };
 		CB382555271DEF560022E3DA /* CardsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382553271DEF560022E3DA /* CardsListScreen.swift */; };
+		CB4586EB27879FB900BB682A /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB382533271DEE020022E3DA /* Language.swift */; };
+		CB45C6C527879514003DCEBE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
+		CB4C84F42787768F00FB578D /* URL+storeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C84F32787768F00FB578D /* URL+storeURL.swift */; };
+		CB4C84F52787768F00FB578D /* URL+storeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C84F32787768F00FB578D /* URL+storeURL.swift */; };
+		CB4C84F62787768F00FB578D /* URL+storeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4C84F32787768F00FB578D /* URL+storeURL.swift */; };
 		CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */; };
 		CB7169CA2750276700F9F6CA /* WordTagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169C92750276700F9F6CA /* WordTagger.swift */; };
 		CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */; };
@@ -70,6 +75,13 @@
 		CB8D5F38277F1D870032AF3D /* SwipeGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F36277F1D870032AF3D /* SwipeGameScreen.swift */; };
 		CB8D5F3A277F53D70032AF3D /* SwipeGameStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F39277F53D70032AF3D /* SwipeGameStep.swift */; };
 		CB8D5F3B277F53D70032AF3D /* SwipeGameStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F39277F53D70032AF3D /* SwipeGameStep.swift */; };
+		CB9D1B852786253A00858C2A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9D1B842786253A00858C2A /* WidgetKit.framework */; platformFilter = maccatalyst; };
+		CB9D1B872786253A00858C2A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9D1B862786253A00858C2A /* SwiftUI.framework */; platformFilter = maccatalyst; };
+		CB9D1B8A2786253A00858C2A /* cardsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9D1B892786253A00858C2A /* cardsWidget.swift */; };
+		CB9D1B8D2786253C00858C2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB9D1B8C2786253C00858C2A /* Assets.xcassets */; };
+		CB9D1B8F2786253C00858C2A /* cardsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CB9D1B8B2786253A00858C2A /* cardsWidget.intentdefinition */; };
+		CB9D1B902786253C00858C2A /* cardsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CB9D1B8B2786253A00858C2A /* cardsWidget.intentdefinition */; };
+		CB9D1B932786253C00858C2A /* cardsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CB9D1B832786253A00858C2A /* cardsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */; };
 		CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */; };
 		CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3535E27582CA70036C9EE /* DecksListView.swift */; };
@@ -170,7 +182,28 @@
 			remoteGlobalIDString = CB3824FE271C8B0B0022E3DA;
 			remoteInfo = "PolyglotFlashcards (macOS)";
 		};
+		CB9D1B912786253C00858C2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB3824EA271C8B080022E3DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB9D1B822786253A00858C2A;
+			remoteInfo = cardsWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CB9D1B942786253C00858C2A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CB9D1B932786253C00858C2A /* cardsWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CB154942274E70310060706F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Shared/Config.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -205,6 +238,7 @@
 		CB38254C271DEF260022E3DA /* CardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewModel.swift; sourceTree = "<group>"; };
 		CB382550271DEF460022E3DA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CB382553271DEF560022E3DA /* CardsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListScreen.swift; sourceTree = "<group>"; };
+		CB4C84F32787768F00FB578D /* URL+storeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+storeURL.swift"; sourceTree = "<group>"; };
 		CB7169C62750267F00F9F6CA /* Language+NaturalLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+NaturalLanguage.swift"; sourceTree = "<group>"; };
 		CB7169C92750276700F9F6CA /* WordTagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTagger.swift; sourceTree = "<group>"; };
 		CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
@@ -216,6 +250,14 @@
 		CB8D5F33277F1CEA0032AF3D /* SwipeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameCardView.swift; sourceTree = "<group>"; };
 		CB8D5F36277F1D870032AF3D /* SwipeGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameScreen.swift; sourceTree = "<group>"; };
 		CB8D5F39277F53D70032AF3D /* SwipeGameStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameStep.swift; sourceTree = "<group>"; };
+		CB9D1B832786253A00858C2A /* cardsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = cardsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9D1B842786253A00858C2A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		CB9D1B862786253A00858C2A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		CB9D1B892786253A00858C2A /* cardsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardsWidget.swift; sourceTree = "<group>"; };
+		CB9D1B8B2786253A00858C2A /* cardsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = cardsWidget.intentdefinition; sourceTree = "<group>"; };
+		CB9D1B8C2786253C00858C2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB9D1B8E2786253C00858C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB9D1B982787703C00858C2A /* cardsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cardsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+awakeFromInsert.swift"; sourceTree = "<group>"; };
 		CBA3535E27582CA70036C9EE /* DecksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksListView.swift; sourceTree = "<group>"; };
 		CBA3536127582CBD0036C9EE /* DeckCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCapsuleView.swift; sourceTree = "<group>"; };
@@ -296,6 +338,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB9D1B802786253A00858C2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9D1B872786253A00858C2A /* SwiftUI.framework in Frameworks */,
+				CB9D1B852786253A00858C2A /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -311,6 +362,7 @@
 		CB3824E9271C8B080022E3DA = {
 			isa = PBXGroup;
 			children = (
+				CB9D1B982787703C00858C2A /* cardsWidgetExtension.entitlements */,
 				CBA3536D2759719B0036C9EE /* PolyglotFlashcards (iOS).entitlements */,
 				CBFFDCE72753CF16001607FA /* PolyglotFlashcards--macOS--Info.plist */,
 				CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */,
@@ -319,6 +371,7 @@
 				CB3824EE271C8B080022E3DA /* Shared */,
 				CB382509271C8B0B0022E3DA /* Tests iOS */,
 				CB382515271C8B0B0022E3DA /* Tests macOS */,
+				CB9D1B882786253A00858C2A /* cardsWidget */,
 				CB3824FA271C8B0B0022E3DA /* Products */,
 				CBA3536E275971A20036C9EE /* Frameworks */,
 			);
@@ -360,6 +413,7 @@
 				CB3824FF271C8B0B0022E3DA /* PolyglotFlashcards.app */,
 				CB382506271C8B0B0022E3DA /* Tests iOS.xctest */,
 				CB382512271C8B0B0022E3DA /* Tests macOS.xctest */,
+				CB9D1B832786253A00858C2A /* cardsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -460,6 +514,7 @@
 				CBFFDCFE2754049F001607FA /* CardVariant+awakeFromInsert.swift */,
 				CBA3535B275816700036C9EE /* Deck+awakeFromInsert.swift */,
 				CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */,
+				CB4C84F32787768F00FB578D /* URL+storeURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -490,11 +545,24 @@
 			path = SwipeGame;
 			sourceTree = "<group>";
 		};
+		CB9D1B882786253A00858C2A /* cardsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				CB9D1B892786253A00858C2A /* cardsWidget.swift */,
+				CB9D1B8B2786253A00858C2A /* cardsWidget.intentdefinition */,
+				CB9D1B8C2786253C00858C2A /* Assets.xcassets */,
+				CB9D1B8E2786253C00858C2A /* Info.plist */,
+			);
+			path = cardsWidget;
+			sourceTree = "<group>";
+		};
 		CBA3536E275971A20036C9EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				CBA35371275976230036C9EE /* CloudKit.framework */,
 				CBA3536F275971A20036C9EE /* CloudKit.framework */,
+				CB9D1B842786253A00858C2A /* WidgetKit.framework */,
+				CB9D1B862786253A00858C2A /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -596,10 +664,12 @@
 				CB3824F5271C8B0B0022E3DA /* Sources */,
 				CB3824F6271C8B0B0022E3DA /* Frameworks */,
 				CB3824F7271C8B0B0022E3DA /* Resources */,
+				CB9D1B942786253C00858C2A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CB9D1B922786253C00858C2A /* PBXTargetDependency */,
 			);
 			name = "PolyglotFlashcards (iOS)";
 			productName = "PolyglotFlashcards (iOS)";
@@ -659,6 +729,23 @@
 			productReference = CB382512271C8B0B0022E3DA /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CB9D1B822786253A00858C2A /* cardsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB9D1B972786253C00858C2A /* Build configuration list for PBXNativeTarget "cardsWidgetExtension" */;
+			buildPhases = (
+				CB9D1B7F2786253A00858C2A /* Sources */,
+				CB9D1B802786253A00858C2A /* Frameworks */,
+				CB9D1B812786253A00858C2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cardsWidgetExtension;
+			productName = cardsWidgetExtension;
+			productReference = CB9D1B832786253A00858C2A /* cardsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -666,7 +753,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					CB3824F8271C8B0B0022E3DA = {
@@ -682,6 +769,9 @@
 					CB382511271C8B0B0022E3DA = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = CB3824FE271C8B0B0022E3DA;
+					};
+					CB9D1B822786253A00858C2A = {
+						CreatedOnToolsVersion = 13.2;
 					};
 				};
 			};
@@ -703,6 +793,7 @@
 				CB3824FE271C8B0B0022E3DA /* PolyglotFlashcards (macOS) */,
 				CB382505271C8B0B0022E3DA /* Tests iOS */,
 				CB382511271C8B0B0022E3DA /* Tests macOS */,
+				CB9D1B822786253A00858C2A /* cardsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -747,6 +838,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB9D1B812786253A00858C2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9D1B8D2786253C00858C2A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -770,6 +869,7 @@
 				CBA3536527592A520036C9EE /* DecksGridScreen.swift in Sources */,
 				CB38254A271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB8D5F2E277F1BE60032AF3D /* SwipeGame.swift in Sources */,
+				CB4C84F42787768F00FB578D /* URL+storeURL.swift in Sources */,
 				CB38253F271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CBC1A992275AD40A008C1A7C /* MatchPairsGameFinishedScreen.swift in Sources */,
 				CB8D5F37277F1D870032AF3D /* SwipeGameScreen.swift in Sources */,
@@ -814,6 +914,7 @@
 				CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */,
 				CBF99BA0276D1126001A57B9 /* CardsService.swift in Sources */,
 				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
+				CB9D1B902786253C00858C2A /* cardsWidget.intentdefinition in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
 				CBFFDCF62753FE2A001607FA /* GamesScreen.swift in Sources */,
@@ -869,6 +970,7 @@
 				CB15494B274E73550060706F /* Configuration.swift in Sources */,
 				CBC4CB6E2755398F009CCB32 /* GameCardView.swift in Sources */,
 				CB382543271DEEB30022E3DA /* PixabayService.swift in Sources */,
+				CB4C84F52787768F00FB578D /* URL+storeURL.swift in Sources */,
 				CBC1A990275ACEB2008C1A7C /* DecksPicker.swift in Sources */,
 				CBC4CB6827553955009CCB32 /* MatchPairsGame.swift in Sources */,
 				CBA3536927596D7C0036C9EE /* CardImagesView.swift in Sources */,
@@ -911,6 +1013,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB9D1B7F2786253A00858C2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB45C6C527879514003DCEBE /* PolyglotFlashcards.xcdatamodeld in Sources */,
+				CB4586EB27879FB900BB682A /* Language.swift in Sources */,
+				CB4C84F62787768F00FB578D /* URL+storeURL.swift in Sources */,
+				CB9D1B8F2786253C00858C2A /* cardsWidget.intentdefinition in Sources */,
+				CB9D1B8A2786253A00858C2A /* cardsWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -923,6 +1037,11 @@
 			isa = PBXTargetDependency;
 			target = CB3824FE271C8B0B0022E3DA /* PolyglotFlashcards (macOS) */;
 			targetProxy = CB382513271C8B0B0022E3DA /* PBXContainerItemProxy */;
+		};
+		CB9D1B922786253C00858C2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB9D1B822786253A00858C2A /* cardsWidgetExtension */;
+			targetProxy = CB9D1B912786253C00858C2A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1056,6 +1175,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
@@ -1091,6 +1211,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB154942274E70310060706F /* Config.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
@@ -1133,7 +1254,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1146,7 +1267,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = macosx;
@@ -1165,7 +1286,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1178,7 +1299,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = macosx;
@@ -1288,6 +1409,67 @@
 			};
 			name = Release;
 		};
+		CB9D1B952786253C00858C2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 32;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cardsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = cardsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.5;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB9D1B962786253C00858C2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 32;
+				DEVELOPMENT_TEAM = P3VKCDARX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cardsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = cardsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.5;
+				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1332,6 +1514,15 @@
 			buildConfigurations = (
 				CB382530271C8B0B0022E3DA /* Debug */,
 				CB382531271C8B0B0022E3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB9D1B972786253C00858C2A /* Build configuration list for PBXNativeTarget "cardsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB9D1B952786253C00858C2A /* Debug */,
+				CB9D1B962786253C00858C2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
