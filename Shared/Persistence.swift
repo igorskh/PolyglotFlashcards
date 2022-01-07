@@ -18,6 +18,12 @@ struct PersistenceController {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         
+        let storeURL = URL.storeURL(for: "group.one.beagile.polyglotflashcards", databaseName: "data")
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        storeDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.icloud.one.beagile.polyglotflashcards")
+        
+        container.persistentStoreDescriptions = [storeDescription]
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
