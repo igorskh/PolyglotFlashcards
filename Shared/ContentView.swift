@@ -29,7 +29,7 @@ struct ContentView: View {
                     GamesScreen()
                 }
                 else if tabRouter.currentTab == .settings {
-                    SettingsScreen()
+                    NewSettingsScreen()
                 }
             }
             
@@ -74,9 +74,8 @@ struct ContentView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
                 .background(
-                    Color("TabBarColor")
-                        .opacity(0.9)
-                        .blur(radius: 2)
+                    VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+                        .edgesIgnoringSafeArea(.all)
                 )
                 .cornerRadius(30)
             }
