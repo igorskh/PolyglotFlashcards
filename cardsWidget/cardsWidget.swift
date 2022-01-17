@@ -10,40 +10,6 @@ import SwiftUI
 import Intents
 import CoreData
 
-struct PersistenceController {
-    static let shared = PersistenceController()
-    
-    let container: NSPersistentContainer
-
-    init() {
-        container = NSPersistentContainer(name: "PolyglotFlashcards")
-
-        let storeURL = URL.storeURL(for: "group.one.beagile.polyglotflashcards", databaseName: "data")
-        
-        let storeDescription = NSPersistentStoreDescription(url: storeURL)
-        storeDescription.isReadOnly = true
-
-        container.persistentStoreDescriptions = [storeDescription]
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                Typical reasons for an error here include:
-                * The parent directory does not exist, cannot be created, or disallows writing.
-                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                * The device is out of space.
-                * The store could not be migrated to the current model version.
-                Check the error message to determine what the actual problem was.
-                */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-    }
-}
-
 struct Provider: IntentTimelineProvider {
     var persistance: PersistenceController = .shared
     
@@ -70,21 +36,22 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [CardEntry] = []
         
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        let viewContext = persistance.container.viewContext
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
+        for hourOffset in 0 ..< 1 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             
             let fetchRequest: NSFetchRequest<Card>
             fetchRequest = Card.fetchRequest()
-            fetchRequest.fetchLimit = 1
             
             var count = 0
             var card: Card?
             do {
-                card = try persistance.container.viewContext.fetch(fetchRequest).first
+                count = try viewContext.count(for: fetchRequest)
                 
-                count = try persistance.container.viewContext.count(for: fetchRequest)
+                fetchRequest.fetchLimit = 1
+                fetchRequest.fetchOffset = Int.random(in: 0..<count)
+                card = try viewContext.fetch(fetchRequest).first
             } catch {
                 print(error.localizedDescription)
             }
@@ -105,37 +72,130 @@ struct CardEntry: TimelineEntry {
     let count: Int
 }
 
-struct cardsWidgetEntryView : View {
-    var entry: Provider.Entry
+let maxRowCount = 4
 
+struct CardView: View {
+    @Environment(\.widgetFamily) var family
+    
+    @Preference(\.filteredLanguages) var storedFilteredLanguages
+    
+    var card: Card
+    
+    func buildDeepLink() -> String {
+        return card.objectID.uriRepresentation().absoluteString
+    }
+
+    
+    func buildVariants() -> [CardVariant] {
+        guard  let variants = card.variants?.sortedArray(using: []) as? [CardVariant] else {
+            return []
+        }
+        
+        var results: [CardVariant] = []
+        
+        for v in variants {
+            if let language = Language(rawValue: v.language_code ?? ""),
+               storedFilteredLanguages.contains(language) {
+                results.append(v)
+                if results.count == maxRowCount {
+                    break
+                }
+            }
+        }
+        return results
+    }
+    
     var body: some View {
-        if let card = entry.card,
-           let imageData = card.image,
+        if let imageData = card.image,
            let uiImage = UIImage(data: imageData) {
             ZStack {
-                Image(uiImage: uiImage)
-                    .resizable()
-                
-                Color.black.opacity(0.4)
+                Color.black.opacity(0.5)
                 
                 VStack {
-                    if let variants = card.variants?.sortedArray(using: []) as? [CardVariant] {
-                        ForEach(variants) { v in
+                    ForEach(buildVariants()) { v in
+                        if let language = Language(rawValue: v.language_code ?? ""),
+                           storedFilteredLanguages.contains(language) {
                             HStack {
-                                Text("\((Language(rawValue: v.language_code ?? "") ?? .Unknown).flag)")
+                                Text("\(language.flag)")
                                 Text("\(v.text ?? "")")
-                                    .font(.title2)
                                     .foregroundColor(.white)
                                 
                                 Spacer()
                             }
+                            
                         }
+                    }
+                }
+                .widgetURL (URL(string: "widget://card/\(buildDeepLink())")!)
+                .padding(10)
+                    
+                if family != .systemSmall {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Link(destination: URL(string: "widget://newCard")!) {
+                                
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.custom("", size: 48))
+                                    .foregroundColor(.white)
+                                    .opacity(0.6)
+                            }
+                        }
+                    }
+                    .padding(5)
+                }
+            }
+            .background(
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+            
+            )
+        } else {
+            Text("Card not found")
+        }
+    }
+}
+
+struct cardsWidgetEntryView : View {
+    @Preference(\.filteredLanguages) var storedFilteredLanguages
+    
+    var entry: Provider.Entry
+    
+    var body: some View {
+        if let card = entry.card {
+            CardView(card: card)
+        } else {
+            ZStack {
+                Color.black.opacity(0.5)
+                VStack(spacing: 10) {
+                    HStack {
+                        Text("🇺🇸")
+                        Text("Cat")
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text("🇷🇺")
+                        Text("Кошка")
+                            .foregroundColor(.white)
+                        
+                        Spacer()
                     }
                 }
                 .padding(10)
             }
-        } else {
-            Text("\(entry.count)")
+            .background(
+                Image(uiImage: UIImage(named: "sample_cat")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+            )
+            
         }
     }
 }
@@ -148,8 +208,9 @@ struct cardsWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             cardsWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .supportedFamilies([.systemSmall, .systemMedium])
+        .configurationDisplayName("Random Polyglot Card")
+        .description("This widget shows a random Polyglot Card")
     }
 }
 
