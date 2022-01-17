@@ -9,6 +9,8 @@ import Foundation
 
 var defaultActiveLanguages: [Language] = [.English, .Russian, .German]
 
+var defaultServicePreferences: ServicePreferences = .init(preferGoogleTranslationEngine: false, preferGoogleTTSEngine: false)
+
 struct Locale: Codable {
     var code: String
     var name: String
@@ -45,6 +47,8 @@ enum Language: String, Codable {
     case Greek = "el"
     case Ukrainian = "uk"
     case Turkish = "tr"
+    case Estonian = "et"
+    case Latvian = "lv"
     case Armenian = "hy"
     case Bulgarian = "bg"
     case Croatian = "hr"
@@ -82,6 +86,8 @@ enum Language: String, Codable {
             .Greek,
             .Ukrainian,
             .Turkish,
+            .Estonian,
+            .Latvian,
             .Armenian,
             .Bulgarian,
             .Croatian,
@@ -181,6 +187,10 @@ enum Language: String, Codable {
             return "🇹🇭"
         case .Vietnamese:
             return "🇻🇳"
+        case .Estonian:
+            return "🇪🇪"
+        case .Latvian:
+            return "🇱🇻"
         }
     }
     
@@ -254,6 +264,10 @@ enum Language: String, Codable {
             return "Thai"
         case .Vietnamese:
             return "Vietnamese"
+        case .Estonian:
+            return "Estonian"
+        case .Latvian:
+            return "Latvian"
         }
     }
 }
