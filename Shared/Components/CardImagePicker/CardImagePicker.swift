@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 enum CardImageEditMode {
     case imagePicker
@@ -17,11 +18,11 @@ struct CardImagePicker: View {
     
     @ObservedObject var viewModel: CardImagePickerViewModel = .init()
     
-    @State var imageEditMode: CardImageEditMode = .imageSearch
+    @State var imageEditMode: CardImageEditMode = .imagePicker
     @State var uiImage: UIImage = UIImage()
     @State var showPicker: Bool = false
-    
-    @Binding var searchRequest: String
+    @State private var dragOver = false
+    @State var searchRequest: String = ""
     
     var height: CGFloat
     var onImageChanged: (UIImage) -> Void
@@ -116,9 +117,22 @@ struct CardImagePicker: View {
                     .buttonStyle(PlainButtonStyle())
                     .matchedGeometryEffect(id: "searchImage", in: namespace)
                     
+                    Text(LocalizedStringKey("Search query"))
+                    
                     Spacer()
                 }
             }
+        }
+        .onDrop(of: [UTType.image], isTargeted: $dragOver) { providers -> Bool in
+            providers.first?.loadDataRepresentation(forTypeIdentifier: "public.image", completionHandler: { (data, error) in
+                if let data = data,
+                   let image = UIImage(data: data) {
+                    imageEditMode = .imagePicker
+                    uiImage = image
+                    onImageChanged(image)
+                }
+            })
+            return true
         }
     }
 }
