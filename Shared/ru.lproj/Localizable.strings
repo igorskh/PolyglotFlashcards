@@ -46,6 +46,7 @@
 "Finish" = "Завершить";
 
 "Active Languages" = "Активные языки";
+"Add active language" = "Добавить язык";
 
 "Any" = "Любая";
 "Choos decks to play" = "Выберите колоды для игры";
@@ -79,6 +80,9 @@
 
 
 "Choose 2 variants to play" = "Выберите 2 языка";
+"Choose cards front and back side languages" = "Выберите языки для лицевой и обратной сторон карточек";
+"Front" = "Лицевая";
+"Back" = "Обратная";
 
 "Choose game type" = "Выберите игру";
 "Swipe card" = "Смахните карточку";
@@ -86,3 +90,17 @@
 "Learn it" = "Выучить";
 
 "Translate" = "Перевести";
+
+"Translation and speech synthesizer" = "Перевод и синтезатор речи";
+
+"Speech synthesizer" = "Синтезатор речи";
+"Prefer Google text-to-speech" = "Предпочитать синтезатор речи Google";
+
+"Translation" = "Перевод";
+"Prefer Google Translator" = "Предпочитать Google переводчик";
+
+
+"Share" = "Поделиться";
+"Share this card" = "Поделиться карточкой";
+
+"Show images" = "Отображать изображения карточек ";
