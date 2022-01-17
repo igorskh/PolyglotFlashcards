@@ -49,6 +49,7 @@
 "Finish" = "Finish";
 
 "Active Languages" = "Active Languages";
+"Add active language" = "Add language";
 
 "Any" = "Any";
 
@@ -81,6 +82,9 @@
 
 
 "Choose 2 variants to play" = "Choose 2 variants to play";
+"Choose cards front and back side languages" = "Choose cards front and back side languages";
+"Front" = "Front";
+"Back" = "Back";
 
 "Choose game type" = "Choose game type";
 
@@ -89,3 +93,16 @@
 "Learn it" = "Learn it";
 
 "Translate" = "Translate";
+
+"Translation and speech synthesizer" = "Translation and speech synthesizer";
+
+"Speech synthesizer" = "Speech synthesizer";
+"Prefer Google text-to-speech" = "Prefer Google speech synthesizer";
+
+"Translation" = "Translation";
+"Prefer Google Translator" = "Prefer Google translator";
+
+"Share" = "Share";
+"Share this card" = "Share this card";
+
+"Show images" = "Display card images";
