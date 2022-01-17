@@ -73,7 +73,9 @@ struct ImageCarouselView: View {
                 .onChange(of: currentItemID) { _ in
                     selectedItemID = currentItemID
                     withAnimation {
-                        proxy.scrollTo(images[currentItemID].id, anchor: .center)
+                        if currentItemID < images.count {
+                            proxy.scrollTo(images[currentItemID].id, anchor: .center)
+                        }
                     }
                 }
             }
