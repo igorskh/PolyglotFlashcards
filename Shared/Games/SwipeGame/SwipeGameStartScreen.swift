@@ -23,7 +23,7 @@ struct SwipeGameStartScreen: View {
                         navigationController.pop()
                     }
                 } label: {
-                    Image(systemName: "chevron.backward")
+                    Image(systemName: "chevron.backward.circle.fill")
                 }
                 .buttonStyle(PlainButtonStyle())
                 
@@ -35,14 +35,24 @@ struct SwipeGameStartScreen: View {
             Text(LocalizedStringKey("Choos decks to play"))
                 .padding(.vertical)
             
-            DecksPicker(selectedDecks: $game.selectedDecks, canEdit: false, showAny: true)
+            DecksPicker(
+                selectedDecks: $game.selectedDecks,
+                canEdit: false,
+                showAny: true
+            )
             
-            Text(LocalizedStringKey("Choose 2 variants to play"))
+            Text(LocalizedStringKey("Choose cards front and back side languages"))
                 .padding(.vertical)
             
             
             LanguageFilter(
                 languages: languages,
+                maxSelected: 2,
+                labels: [
+                    NSLocalizedString("Front", comment: ""),
+                    NSLocalizedString("Back", comment: "")
+                ],
+                showIndecies: true,
                 selected: $game.selectedLanguages
             )
             

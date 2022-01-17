@@ -23,7 +23,7 @@ struct MatchPairsStartScreen: View {
                         navigationController.pop()
                     }
                 } label: {
-                    Image(systemName: "chevron.backward")
+                    Image(systemName: "chevron.backward.circle.fill")
                 }
                 .buttonStyle(PlainButtonStyle())
                 
@@ -36,6 +36,11 @@ struct MatchPairsStartScreen: View {
                 .padding(.vertical)
             
             DecksPicker(selectedDecks: $game.selectedDecks, canEdit: false, showAny: true)
+            
+            HStack {
+                Toggle("Show images", isOn: $game.showImages)
+            }
+            .padding(5)
             
             Text(LocalizedStringKey("Choose at least 2 variants to play"))
                 .padding(.vertical)

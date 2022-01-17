@@ -17,7 +17,8 @@ struct MatchPairsGameScreen: View {
     var stepView: some View {
         Group {
             VStack {
-                if let image = game.gameStep!.mainVariant.card?.image,
+                if game.showImages,
+                   let image = game.gameStep!.mainVariant.card?.image,
                    let uiImage = UIImage(data: image) {
                     Image(image: uiImage)
                         .resizable()

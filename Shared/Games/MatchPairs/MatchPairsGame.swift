@@ -30,6 +30,7 @@ class MatchPairsGame: ObservableObject {
     @Published var error: String = ""
     
     @Published var isCorrectSelected = false
+    @Published var showImages = false
     
     var cards: [Card] = []
     
@@ -102,14 +103,15 @@ class MatchPairsGame: ObservableObject {
             let variants = c.variants?.filter({
                 let language_code = ($0 as? CardVariant)?.language_code
                 return (language_code != selectedLanguage.rawValue && selectedLanguages.contains(Language(rawValue: language_code!)!))
-            }) as! [CardVariant]
+            }) as? [CardVariant]
             
-            let otherVariant = variants.randomElement()!
-            if mainVariant!.card == c {
+            let otherVariant = variants!.randomElement()!
+            if mainVariant?.card == c {
                 correctVariantID = otherVariant.id
             }
             return otherVariant
         }.shuffled()
+        
         
         if let mainVariant = mainVariant,
            let correctVariantID = correctVariantID {
