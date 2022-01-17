@@ -10,7 +10,7 @@ import Combine
 
 // https://www.avanderlee.com/swift/appstorage-explained/
 final class Preferences {
-    static var standard: Preferences = Preferences(userDefaults: .standard)
+    static var standard: Preferences = Preferences(userDefaults: UserDefaults(suiteName: appGroupIdentifier) ?? .standard)
     
     let userDefaults: UserDefaults
     
@@ -28,6 +28,9 @@ final class Preferences {
     
     @UserDefault("filteredLanguages")
     var filteredLanguages: [Language] = defaultActiveLanguages
+    
+    @UserDefault("servicePreferences")
+    var servicePreferences: ServicePreferences = defaultServicePreferences
 }
 
 @propertyWrapper
