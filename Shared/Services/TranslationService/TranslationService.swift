@@ -52,7 +52,7 @@ struct TranslationOptions: Codable, Identifiable {
     var id: UUID = .init()
     var formality: TranslationServiceFormality = .auto
     var locale: String
-    var engine: String = ""
+    var engine: PolyglotTranslatorEngine = .auto
     
     var isFormalityAvailable: Bool
     var isLocaleAvailable: Bool
