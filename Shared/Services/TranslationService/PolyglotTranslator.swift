@@ -21,6 +21,13 @@ struct PolyglotTranslationResponse: Codable {
     var target: String
 }
 
+enum PolyglotTranslatorEngine: String, Codable {
+    case auto = ""
+    case google = "google"
+    case deepL = "deepL"
+    case yandex = "yandex"
+}
+
 
 class PolyglotTranslator: TranslationService {
     static var baseURL = "https://\(Configuration.value(for: "POLYGLOT_API_BASE_URL") ?? "")"
@@ -32,7 +39,14 @@ class PolyglotTranslator: TranslationService {
                    target: Language,
                    options: TranslationOptions? = nil,
                    onResponse: @escaping (Result<[Translation]?, Error>) -> Void)  {
-        let url = URL(string: "\(PolyglotTranslator.baseURL)/translate")!
+        
+        var urlString = "\(PolyglotTranslator.baseURL)/translate"
+        if let options = options,
+            options.engine != .auto {
+            urlString.append("?engine=\(options.engine.rawValue)")
+        }
+        
+        let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         
         
