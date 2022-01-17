@@ -133,6 +133,16 @@ public struct NavControllerView<Content>: View where Content: View {
                     .environmentObject(viewModel)
             }
         }
+        .onTapGesture { }
+        .gesture(
+            DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onEnded({ value in
+                    if !isRoot && value.translation.width > 0 && value.startLocation.x < 20 {
+                        viewModel.pop()
+                                           
+                    }
+                })
+        )
     }
 }
 
