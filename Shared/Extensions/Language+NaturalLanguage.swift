@@ -79,6 +79,8 @@ extension NLLanguage {
             lang = NLLanguage.thai
         case .Vietnamese:
             lang = NLLanguage.vietnamese
+        default:
+            lang = NLLanguage.undetermined
         }
         self.init(rawValue: lang.rawValue)
     }
