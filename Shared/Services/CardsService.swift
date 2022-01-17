@@ -103,7 +103,9 @@ class CardsService {
     
     func saveDeck(
         context: NSManagedObjectContext,
+        deck: Deck? = nil,
         title: String,
+        imageData: Data? = nil,
         onFinished: (String) -> Void
     ) -> Deck? {
         let newDeckTitle = title.trimmingCharacters(in: [" "])
@@ -112,18 +114,47 @@ class CardsService {
             return nil
         }
         
-        let deck = Deck(context: context)
-        deck.title = newDeckTitle
+        var newDeck: Deck?
+        if let deck = deck {
+            newDeck = deck
+        } else {
+            newDeck = Deck(context: context)
+        }
+        if let imageData = imageData {
+            newDeck?.image = imageData
+        }
+        
+        newDeck?.title = newDeckTitle
         
         do {
             try context.save()
-            return deck
+            onFinished("")
+            return newDeck
         } catch {
             let nsError = error as NSError
             onFinished(nsError.userInfo.description)
             print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
             return nil
         }
+    }
     
+    func deleteDeck(context: NSManagedObjectContext, deck: Deck?, onFinished: @escaping (String) -> Void) {
+        if let deck = deck {
+            if let cards = deck.cards,
+               cards.count > 0 {
+                onFinished(NSLocalizedString("This deck contains cards", comment: "This deck contains cards"))
+                return
+            }
+            
+            context.delete(deck)
+            
+            do {
+                try context.save()
+            } catch {
+                let nsError = error as NSError
+                onFinished("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+            onFinished("")
+        }
     }
 }
