@@ -18,7 +18,7 @@ struct PersistenceController {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         
-        let storeURL = URL.storeURL(for: "group.one.beagile.polyglotflashcards", databaseName: "data")
+        let storeURL = URL.storeURL(for: appGroupIdentifier, databaseName: "data")
         let storeDescription = NSPersistentStoreDescription(url: storeURL)
         storeDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.icloud.one.beagile.polyglotflashcards")
         
@@ -26,6 +26,7 @@ struct PersistenceController {
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+                print("Unresolved error \(error), \(error.userInfo)")
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 
@@ -37,7 +38,7 @@ struct PersistenceController {
                 * The store could not be migrated to the current model version.
                 Check the error message to determine what the actual problem was.
                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
     }
