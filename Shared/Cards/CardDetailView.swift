@@ -14,13 +14,13 @@ struct CardDetailView: View {
     var namespace: Namespace.ID
     var deck: Deck?
     
-    @State private var offset = CGSize.zero
-    @State private var zoomFactor: CGFloat = 1.0
     @State private var editCardEnabled: Bool = false
+    @State private var showShareSheet: Bool = false
     
     @State private var showTranslationOptionsID: Int = -1
     @State private var showTranslationOptions: Bool = false
-    @State private var showDecks: Bool = false
+    
+    
     
     init(
         deck: Deck? = nil,
@@ -52,12 +52,12 @@ struct CardDetailView: View {
                 Image(image: uiImage)
                     .resizable()
                     .frame(maxWidth: .infinity)
-                    .offset(x: offset.width/6, y: -1*abs(offset.height)/6)
                     .aspectRatio(contentMode: .fill)
                     .clipped()
                     .matchedGeometryEffect(id: "\(card.id.hashValue)-title", in: namespace)
             } else {
                 Text(LocalizedStringKey("No image selected"))
+                    .padding(.horizontal)
             }
         }
     }
@@ -67,7 +67,7 @@ struct CardDetailView: View {
             ZStack(alignment: .topLeading) {
                 VStack {
                     if editCardEnabled {
-                        CardImagePicker(searchRequest: $viewModel.query, height: 200) { img in
+                        CardImagePicker(height: 200) { img in
                             viewModel.setImage(from: img.pngData()!)
                         }
                         .padding(.horizontal)
@@ -87,7 +87,19 @@ struct CardDetailView: View {
                         )
                             .font(.title)
                             .foregroundColor(.white)
+                        
                         Spacer()
+                        
+                        if viewModel.card != nil {
+                            Image(systemName: "square.and.arrow.up.circle.fill")
+                                .opacity(0.7)
+                                .font(.title)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        showShareSheet.toggle()
+                                    }
+                                }
+                        }
                         
                         Image(systemName: editCardEnabled ? "eye.circle.fill" : "pencil.circle.fill" )
                             .opacity(0.7)
@@ -109,11 +121,69 @@ struct CardDetailView: View {
                     .background(
                         Color.black.opacity(0.5)
                     )
-                    
-                    Spacer()
                 }
-                
             }
+        }
+    }
+    
+    func translationContextMenu(target: Language? = nil) -> some View {
+        Group {
+            Button("Auto", action: {
+                if let target = target {
+                    viewModel.getTranslation(
+                        from: target
+                    )
+                } else {
+                    viewModel.translateAll()
+                }
+            })
+            Button("DeepL", action: {
+                if let target = target {
+                    viewModel.getTranslation(
+                        from: target,
+                        engine: .deepL
+                    )
+                } else {
+                    viewModel.translateAll(engine: .deepL)
+                }
+            })
+            Button("Google", action: {
+                if let target = target {
+                    viewModel.getTranslation(
+                        from: target,
+                        engine: .google
+                    )
+                } else {
+                    viewModel.translateAll(engine: .google)
+                }
+            })
+            Button("Yandex", action: {
+                if let target = target {
+                    viewModel.getTranslation(
+                        from: target,
+                        engine: .yandex
+                    )
+                } else {
+                    viewModel.translateAll(engine: .yandex)
+                }
+            })
+        }
+    }
+    
+    func ttsContextMenu(index: Int) -> some View {
+        Group {
+            Button("Auto", action: {
+                viewModel.speak(at: index)
+                
+            })
+            Button("VoiceOver", action: {
+                viewModel.speak(at: index, engine: .voiceOver)
+                
+            })
+            Button("Google TTS", action: {
+                viewModel.speak(at: index, engine: .googleTTS)
+                
+            })
         }
     }
     
@@ -124,38 +194,47 @@ struct CardDetailView: View {
                     Text("\(viewModel.translations[i].target.flag)")
                     Spacer()
                     
-                    if editCardEnabled {
-                        TextField("", text: $viewModel.translations[i].translation,
-                                  onEditingChanged: { editingChanged in
-                            viewModel.isTranslationFieldFocused = editingChanged
-                        })
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    } else {
-                        AttributedText(viewModel.translations[i].attributedString)
-                            .padding(5)
-                            .background(Color.white)
+                    ZStack {
+                        TextField("", text: $viewModel.translations[i].translation)
                             .onTapGesture {
-                                editCardEnabled.toggle()
+                                viewModel.isTranslationFieldFocused = true
                             }
-                    }
-                    
-                    if editCardEnabled {
-                        Button {
-                            viewModel.getTranslation(from: viewModel.translations[i].target)
-                        } label: {
-                            Image(systemName: "globe")
-                        }
-                        .buttonStyle(PlainButtonStyle())
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        if viewModel.options[i].isFormalityAvailable || viewModel.options[i].isLocaleAvailable {
+                        HStack {
+                            Spacer()
+                            
                             Button {
-                                showTranslationOptionsID = i
+                                viewModel.clearTranslation(at: i)
                             } label: {
-                                Image(systemName: "ellipsis.circle.fill")
+                                Image(systemName: "xmark.circle.fill")
                             }
                             .buttonStyle(PlainButtonStyle())
+                            .padding(.trailing, 5)
                         }
                     }
+                
+                    Button {
+                        viewModel.getTranslation(
+                            from: viewModel.translations[i].target
+                        )
+                    } label: {
+                        Image(systemName: "globe")
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .contextMenu {
+                        translationContextMenu(target: viewModel.translations[i].target)
+                    }
+                    
+//                    if viewModel.options[i].isFormalityAvailable || viewModel.options[i].isLocaleAvailable {
+//                        Button {
+//                            showTranslationOptionsID = i
+//                        } label: {
+//                            Image(systemName: "ellipsis.circle.fill")
+//                        }
+//                        .buttonStyle(PlainButtonStyle())
+//                    }
+//
                     
                     Button {
                         viewModel.speak(at: i)
@@ -164,20 +243,7 @@ struct CardDetailView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .contextMenu {
-                        Group {
-                            Button("Auto", action: {
-                                viewModel.speak(at: i)
-                                
-                            })
-                            Button("VoiceOver", action: {
-                                viewModel.speak(at: i, engine: .voiceOver)
-                                
-                            })
-                            Button("Google TTS", action: {
-                                viewModel.speak(at: i, engine: .googleTTS)
-                                
-                            })
-                        }
+                        ttsContextMenu(index: i)
                     }
                 }
                 .matchedGeometryEffect(id: "\(viewModel.card?.id.hashValue ?? -1)-\(viewModel.translations[i].target.code)", in: namespace)
@@ -185,7 +251,11 @@ struct CardDetailView: View {
                 .font(.title3)
             }
         }
-        .onTapGesture {}
+        .onTapGesture {
+#if !os(macOS)
+            hideKeyboard()
+#endif
+        }
     }
     
     var buttons: some View {
@@ -195,6 +265,9 @@ struct CardDetailView: View {
                 color: Color.accentColor
             ) {
                 viewModel.translateAll()
+            }
+            .contextMenu {
+                translationContextMenu()
             }
             
             FilledButton(
@@ -223,39 +296,52 @@ struct CardDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            if !viewModel.isHeaderHidden {
+        ZStack(alignment: .bottom) {
+            VStack {
                 header
-            }
-            
-            if viewModel.errorMessage != "" {
-                Text(viewModel.errorMessage)
-                    .padding(.horizontal)
-                    .foregroundColor(.red)
-            }
-            
-            if viewModel.nQueuedRequests > 0 {
-                ProgressView()
-            } else if editCardEnabled {
-                Text(LocalizedStringKey("Enter text in the fields below"))
-            } else {
-                Text(" ")
-            }
-            
-            if !viewModel.isHeaderHidden {
-                DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
-                    .padding(.horizontal)
-                    .padding(.bottom)
-            }
+                    .onTapGesture {
+                        viewModel.isTranslationFieldFocused = false
+                    }
+                    .offset(y: viewModel.isHeaderHidden ? -250 : 0)
+                    .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
                 
-            translationsList
-                .padding(.horizontal)
-            
-            Spacer()
-            
-            if !viewModel.isHeaderHidden {
+                if viewModel.errorMessage != "" {
+                    Text(viewModel.errorMessage)
+                        .padding(.horizontal)
+                        .foregroundColor(.red)
+                }
+                
+                if viewModel.nQueuedRequests > 0 {
+                    ProgressView()
+                }
+                
+                if !viewModel.isHeaderHidden {
+                    DecksPicker(selectedDecks: $viewModel.decks, canEdit: false, showAny: false)
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                }
+                    
+                translationsList
+                    .padding(.horizontal)
+                
+                Spacer()
+                
                 buttons
                     .padding(.horizontal)
+            }
+            
+            if showShareSheet,
+               let card = viewModel.card {
+                VisualEffectView(effect: UIBlurEffect(style: .dark))
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            showShareSheet = false
+                        }
+                    }
+                
+                CardShareView(isPresented: $showShareSheet, card: card)
+                    .transition(.move(edge: .bottom))
             }
         }
         .onChange(of: showTranslationOptionsID) { value in
@@ -269,33 +355,35 @@ struct CardDetailView: View {
         }
         .frame(maxWidth: 600)
         .background(
-            Rectangle()
-                .colorInvert()
-                .ignoresSafeArea().onTapGesture {}
+            Color.primary.colorInvert()
+                .ignoresSafeArea()
         )
-        .offset(x: 0, y: offset.height)
-        .rotation3DEffect(.degrees(Double(offset.width / 5)), axis: (x: 0.0, y: 1.0, z: 0.0))
-        .scaleEffect(self.zoomFactor)
+        .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius))
         .gesture(
             DragGesture()
                 .onChanged { gesture in
-                    self.zoomFactor = gesture.startLocation.y/gesture.location.y
-                    self.offset = gesture.translation
-                    
-                    if abs(self.offset.height) > 50 {
+                    if gesture.startLocation.y > 200 {
+                        return
+                    }
+                    if gesture.translation.height > 50 {
                         closeCard()
                     }
                 }
-                .onEnded { _ in
-                    if abs(self.offset.height) < 50 {
-                        self.offset = .zero
-                        self.zoomFactor = 1.0
-                    }
-                }
         )
+#if !os(macOS)
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) {
+            viewModel.adjustForKeyboard(notification: $0)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) {
+            viewModel.adjustForKeyboard(notification: $0)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
+            withAnimation(.spring()) {
+                showShareSheet = true
+            }
+        }
+#endif
         .onAppear {
-            offset = CGSize.zero
-            zoomFactor = 1.0
             editCardEnabled = viewModel.card == nil
         }
     }

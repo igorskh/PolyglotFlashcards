@@ -8,13 +8,40 @@
 import SwiftUI
 
 struct CardView: View {
+    @Preference(\.servicePreferences) var servicePreferences
+    private let speechSynth: SpeechSynthesizer = .init()
+    
     var word: Card
     var translations: [Translation]
     var visibleLanguages: [Language]
     var namespace: Namespace.ID
     var show: Bool
+    var isLoading: Bool
+    var enableAudio: Bool
+    var alignment: HorizontalAlignment
     
-    init(word: Card, languages: [Language], visibleLanguages: [Language], namespace: Namespace.ID, show: Bool) {
+    func speak(translation: Translation, engine: SpeechEngine = .auto) {
+        var selectedEngine = engine
+        if servicePreferences.preferGoogleTTSEngine && engine == .auto {
+            selectedEngine = .googleTTS
+        }
+        
+        let text = translation.translation
+        let language = translation.target
+        
+        speechSynth.speak(string: text, language: language.code, engine: selectedEngine)
+    }
+    
+    init(
+        word: Card,
+        languages: [Language],
+        visibleLanguages: [Language],
+        namespace: Namespace.ID,
+        alignment: HorizontalAlignment = .trailing,
+        show: Bool = false,
+        enableAudio: Bool = false,
+        isLoading: Bool = false
+    ) {
         self.word = word
         self.translations = languages.map { lang in
             Translation(original: "", translation: "", source: .Unknown, target: .Unknown)
@@ -22,6 +49,9 @@ struct CardView: View {
         self.visibleLanguages = visibleLanguages
         self.namespace = namespace
         self.show = show
+        self.isLoading = isLoading
+        self.alignment = alignment
+        self.enableAudio = enableAudio
 
         if let trs = word.variants?.sortedArray(using: []) as? [CardVariant] {
             trs.forEach { tr in
@@ -44,8 +74,6 @@ struct CardView: View {
                 Image(image: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .clipped()
-                
             }
             
             Color.black
@@ -56,28 +84,48 @@ struct CardView: View {
     }
     
     var body: some View {
-        VStack {
-            ForEach(translations) { tr in
-                HStack {
-                    Text("\(tr.target.flag)")
-                    Spacer()
-                    Text("\(tr.translation)")
-                        .foregroundColor(Color.white)
-                        .fontWeight(.bold)
-                    
+        ZStack {
+            VStack {
+                ForEach(translations) { tr in
+                    HStack {
+                        Text("\(tr.target.flag)")
+                        
+                        if alignment == .trailing {
+                            Spacer()
+                        }
+                        
+                        Text("\(tr.translation)")
+                            .foregroundColor(Color.white)
+                            .fontWeight(.bold)
+                        
+                        if enableAudio {
+                            Button {
+                                speak(translation: tr)
+                            } label: {
+                                Image(systemName: "speaker.wave.3")
+                            }
+                            .foregroundColor(.white)
+                        }
+                        
+                        if alignment == .leading {
+                            Spacer()
+                        }
+                    }
+                    .matchedGeometryEffect(id: show ? "\(word.id.hashValue)-\(tr.target.code)" : "", in: namespace, isSource: false)
+                    .padding(.horizontal)
                 }
-                .matchedGeometryEffect(id: show ? "\(word.id.hashValue)-\(tr.target.code)" : "", in: namespace, isSource: false)
-                .padding(.horizontal)
+                
             }
             
+            if isLoading {
+                LoadingBackdropView()
+            }
         }
         .frame(maxWidth: .infinity, minHeight: 150)
         .background(
             background
         )
-        .clipped()
-        .clipShape(Rectangle())
-        .contentShape(Rectangle())
+        .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius))
         .shadow(color: Color.gray.opacity(0.15), radius: 15, x: 0, y: 0)
         .padding(10)
     }

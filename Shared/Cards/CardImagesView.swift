@@ -9,18 +9,18 @@ import SwiftUI
 
 struct CardImagesView: View {
     var title: String
-    var card: Card?
+    var cardImageData: Data?
     
     var background: some View {
         ZStack {
-            if let imageData = card?.image,
+            if let imageData = cardImageData,
                let uiImage = UIImage(data: imageData) {
                 Image(image: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipped()
             } else {
-                Image("question")
+                Image("card_placeholder")
             }
             
             Color.black
@@ -39,9 +39,8 @@ struct CardImagesView: View {
             background
         )
         .clipped()
-        .clipShape(Rectangle())
+        .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius))
         .contentShape(Rectangle())
-        .padding(10)
     }
     
 }

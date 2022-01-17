@@ -34,6 +34,7 @@ class CardDetailViewModel: ObservableObject {
     let card: Card?
 
     @Preference(\.languages) var languages
+    @Preference(\.servicePreferences) var servicePreferences
     
     init(card: Card? = nil) {
         self.card = card
@@ -55,22 +56,10 @@ class CardDetailViewModel: ObservableObject {
             }
             return Translation(original: "", translation: translation, source: .Unknown, target: lang)
         }
- 
-#if !os(macOS)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-#endif
-    }
-    
-    deinit {
-#if !os(macOS)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UITextView.keyboardWillShowNotification, object: nil)
-#endif
     }
     
 #if !os(macOS)
-    @objc func adjustForKeyboard(notification: Notification) {
+    func adjustForKeyboard(notification: Notification) {
         withAnimation {
             if notification.name == UIResponder.keyboardWillHideNotification {
                 isHeaderHidden = false
@@ -89,15 +78,17 @@ class CardDetailViewModel: ObservableObject {
         selectedImageData = data
     }
     
-    func getTranslation(text: String, from source: Language, for target: Language) {
+    func getTranslation(text: String, from source: Language, for target: Language, engine: PolyglotTranslatorEngine = .auto) {
         var sourceLang: Language? = nil
         if source != .Unknown {
             sourceLang = source
         }
         
         let targetIndex = self.languages.firstIndex(of: target)!
+        var options = options[targetIndex]
+        options.engine = engine
         
-        translator.Translate(text: text, source: sourceLang, target: target, options: options[targetIndex]) { result in
+        translator.Translate(text: text, source: sourceLang, target: target, options: options) { result in
             switch result {
             case .success(let remoteTranslations):
                 DispatchQueue.main.async {
@@ -126,35 +117,53 @@ class CardDetailViewModel: ObservableObject {
         }
     }
     
-    func getTranslation(from sourceLanguage: Language) {
+    func getTranslation(from sourceLanguage: Language, engine: PolyglotTranslatorEngine = .auto) {
         errorMessage = ""
         
-        let targetLanguages = self.languages.filter { lang in
-            lang != sourceLanguage
+        var selectedEngine = engine
+        if servicePreferences.preferGoogleTranslationEngine && engine == .auto {
+            selectedEngine = .google
         }
-        nQueuedRequests = targetLanguages.count
         
         let index = languages.firstIndex(of: sourceLanguage)
         if sourceLanguage == .English || !languages.contains(.English) {
             query = translations[index!].translation
         }
         
+        var requestTargetLanguages: [Language] = []
         translations.indices.forEach { idx in
-            if translations[idx].target != sourceLanguage {
-                translations[idx].translation = ""
+            if translations[idx].target != sourceLanguage && translations[idx].translation.isEmpty {
+                requestTargetLanguages.append(translations[idx].target)
             }
         }
+        nQueuedRequests = requestTargetLanguages.count
         
-        targetLanguages.forEach {
-            getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0)
+        requestTargetLanguages.forEach {
+            getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0, engine: selectedEngine)
         }
     }
     
-    func translateAll() {
-        if let sourceLanguage = translations.first(where: { tr in
-            !tr.translation.isEmpty
-        })?.target {
-            getTranslation(from: sourceLanguage)
+    func clearTranslation(at translationID: Int) {
+        translations[translationID].translation = ""
+    }
+    
+    func translateAll(engine: PolyglotTranslatorEngine = .auto) {
+        var selectedEngine = engine
+        if servicePreferences.preferGoogleTranslationEngine && engine == .auto {
+            selectedEngine = .google
+        }
+        
+        var sourceLanguage = translations.first { tr in
+            tr.target == .English && !tr.translation.isEmpty
+        }
+        if sourceLanguage == nil {
+            sourceLanguage = translations.first { tr in
+                !tr.translation.isEmpty
+            }
+        }
+        
+        if let sourceLanguageTarget = sourceLanguage?.target {
+            getTranslation(from: sourceLanguageTarget, engine: selectedEngine)
         }
     }
     
@@ -178,9 +187,14 @@ class CardDetailViewModel: ObservableObject {
     }
     
     func speak(at translationID: Int, engine: SpeechEngine = .auto) {
+        var selectedEngine = engine
+        if servicePreferences.preferGoogleTTSEngine && engine == .auto {
+            selectedEngine = .googleTTS
+        }
+        
         let translation = translations[translationID].translation
         let language = translations[translationID].target
         
-        speechSynth.speak(string: translation, language: language.code, engine: engine)
+        speechSynth.speak(string: translation, language: language.code, engine: selectedEngine)
     }
 }
