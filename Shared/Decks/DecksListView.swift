@@ -7,33 +7,36 @@
 
 import SwiftUI
 
+
 struct DecksListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Deck.createdAt, ascending: false)],
-        animation: .default)
-    private var decks: FetchedResults<Deck>
-    
-    @State var newDeckTitle: String = ""
+    @ObservedObject var viewModel: DecksListViewModel = .init()
     
     @State var errorText: String = ""
     @Binding var selectedDecks: [Deck]
     
     var canEdit: Bool
+    var canSelect: Bool = true
+    
+    init(selectedDecks: Binding<[Deck]>, canEdit: Bool, canSelect: Bool = true) {
+        self._selectedDecks = selectedDecks
+        self.canEdit = canEdit
+        self.canSelect = canSelect
+    }
     
     func addDeck() {
         errorText = ""
         
-        newDeckTitle = newDeckTitle.trimmingCharacters(in: [" "])
-        if newDeckTitle == "" {
+        viewModel.searchText = viewModel.searchText.trimmingCharacters(in: [" "])
+        if viewModel.searchText == "" {
             errorText = NSLocalizedString("Enter deck title", comment: "Enter deck title")
             return
         }
         
-        let exists = decks.contains { d in
-            d.title!.lowercased() == newDeckTitle.lowercased()
+        let exists = viewModel.decks.contains { d in
+            d.title!.lowercased() == viewModel.searchText.lowercased()
         }
         if exists {
             errorText = NSLocalizedString("Deck with this name already exists", comment: "Deck with this name already exists")
@@ -41,7 +44,7 @@ struct DecksListView: View {
         }
         
         let deck = Deck(context: viewContext)
-        deck.title = newDeckTitle
+        deck.title = viewModel.searchText
         
         do {
             try viewContext.save()
@@ -91,11 +94,11 @@ struct DecksListView: View {
                 .buttonStyle(PlainButtonStyle())
             }.font(.title)
             
-            if canEdit {
                 HStack {
-                    TextField(NSLocalizedString("Deck Title", comment: "Deck Title"), text: $newDeckTitle)
+                    TextField(NSLocalizedString("Deck Title", comment: "Deck Title"), text: $viewModel.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
+                if canEdit {
                     Button {
                         addDeck()
                     } label: { Text(LocalizedStringKey("Create")) }
@@ -108,10 +111,12 @@ struct DecksListView: View {
             }
             
             ScrollView {
-                ForEach(decks) { d in
+                ForEach(viewModel.searchResults) { d in
                     HStack {
                         Text(d.title ?? NSLocalizedString("N/A", comment: "N/A"))
+                        
                         Spacer()
+                        
                         if canEdit {
                             Button {
                                 deleteDeck(deck: d)
@@ -123,18 +128,23 @@ struct DecksListView: View {
                         }
                     }
                     .padding()
+                    .background(
+                        selectedDecks.contains(d)
+                        ? Color.green.opacity(0.5)
+                        : Color.clear
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius))
+                    .contentShape(Rectangle())
                     .onTapGesture {
+                        if !canSelect {
+                            return
+                        }
                         if selectedDecks.contains(d) {
                             selectedDecks.remove(at: selectedDecks.firstIndex(of: d)!)
                         } else {
                             selectedDecks.append(d)
                         }
                     }
-                    .background(
-                        selectedDecks.contains(d)
-                        ? Color.green.opacity(0.5)
-                        : Color.clear
-                    )
                 }
             }
         }.padding()

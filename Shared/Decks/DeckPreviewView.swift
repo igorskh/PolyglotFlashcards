@@ -8,36 +8,44 @@
 import SwiftUI
 
 struct DeckPreviewView: View {
-    var routerNamespace: Namespace.ID
-    
     var deck: Deck?
-    var cards: [Card]
+    var namespace: Namespace.ID
+    var show: Bool
+//    var cards: [Card]
     
-    init(deck: Deck?, routerNamespace: Namespace.ID) {
+    init(deck: Deck?, namespace: Namespace.ID, show: Bool = false) {
         self.deck = deck
-        self.routerNamespace = routerNamespace
-        
-        cards = deck?.cards?.prefix(3).map { element in
-            return element
-        } as? [Card] ?? []
+        self.namespace = namespace
+        self.show = show
+//        cards = deck?.cards?.prefix(3).map { element in
+//            return element
+//        } as? [Card] ?? []
     }
     
     var body: some View {
         ZStack {
-            if deck == nil {
-                CardImagesView(title: NSLocalizedString("Uncategorized", comment: "Uncategorized"))
-                    .font(.largeTitle)
-            }
+            CardImagesView(title: "", cardImageData: deck?.image)
+//            if let deck = deck {
+//                ForEach(cards.indices) { i in
+//                    CardImagesView(
+//                        title: "",
+//                        card: cards[i]
+//                    )
+//                    .offset(y: CGFloat(-10*(cards.count-i-1)))
+//                    .matchedGeometryEffect(id: "\(deck.id)-\(cards[i].id)", in: routerNamespace)
+//                }
+//            } else {
+//                CardImagesView(title: "")
+//            }
             
-            ForEach(cards.indices) { i in
-                CardImagesView(
-                    title: deck?.title ?? NSLocalizedString("Uncategorized", comment: "Uncategorized"),
-                    card: cards[i]
-                )
+            Text(deck?.title ?? NSLocalizedString("Uncategorized", comment: "Uncategorized"))
                 .font(.largeTitle)
-                .offset(y: CGFloat(-10*(cards.count-i-1)))
-                .matchedGeometryEffect(id: cards[i].id, in: routerNamespace)
-            }
+                .foregroundColor(.white)
         }
+        .matchedGeometryEffect(
+            id: deck != nil && show ? "deck-header-\(deck!.id)" : "",
+            in: namespace,
+            isSource: false
+        )
     }
 }

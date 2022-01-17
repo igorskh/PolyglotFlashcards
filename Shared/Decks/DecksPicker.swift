@@ -30,19 +30,26 @@ struct DecksPicker: View {
                     }
                 }
             }
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+            )
+            .onTapGesture {}
+            
             Spacer()
             
             Button {
                 showDecks.toggle()
             } label: {
-                Image(systemName: "ellipsis.circle.fill")
+                Image(systemName: "plus.circle.fill")
                     .font(.title)
             }
             .buttonStyle(PlainButtonStyle())
+            
             .sheet(isPresented: $showDecks) {
                 DecksListView(selectedDecks: $selectedDecks, canEdit: canEdit)
             }
-            
         }
+        .padding(5)
     }
 }

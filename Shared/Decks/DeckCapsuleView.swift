@@ -16,14 +16,9 @@ struct DeckCapsuleView: View {
             Text(title)
                 .foregroundColor(.white)
             
-            if let onDelete = onDelete {
-                Button {
-                    onDelete()
-                } label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(.red)
-                }
-                .buttonStyle(PlainButtonStyle())
+            if onDelete != nil {
+                Image(systemName: "xmark")
+                    .foregroundColor(.red)
             }
         }
         .padding(5)
@@ -31,5 +26,10 @@ struct DeckCapsuleView: View {
             Color.blue
                 .cornerRadius(10)
         )
+        .onTapGesture {
+            if let onDelete = onDelete {
+                onDelete()
+            }
+        }
     }
 }
