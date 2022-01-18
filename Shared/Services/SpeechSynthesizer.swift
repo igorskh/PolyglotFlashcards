@@ -19,6 +19,15 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
     private var audioPlayer: AVAudioPlayer? = nil
     private let ttsService: TextToSpeechService = PolyglotTTSService.shared
     
+    init(avSessionCategory: AVAudioSession.Category = .ambient) {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(avSessionCategory)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false) -> Bool {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
@@ -43,6 +52,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
             switch result {
             case .success(let data):
                 self.audioPlayer = try? AVAudioPlayer(data: data!, fileTypeHint: AVFileType.mp3.rawValue)
+                
                 self.audioPlayer?.prepareToPlay()
                 self.audioPlayer?.play()
             case .failure(let err):

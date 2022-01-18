@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @Preference(\.servicePreferences) var servicePreferences
-    private let speechSynth: SpeechSynthesizer = .init()
+    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
     
     var word: Card
     var translations: [Translation]
