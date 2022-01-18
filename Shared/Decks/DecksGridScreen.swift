@@ -24,9 +24,6 @@ struct DecksGridScreen: View {
     }
     @State var scaleDeckView: Deck?
     @State var isLoading: Bool = false
-    @State var scaleValue: CGFloat = 0.0
-    
-    @State var animationTimer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
     @Namespace var namespace
     var routerNamespace: Namespace.ID
@@ -68,24 +65,10 @@ struct DecksGridScreen: View {
                             DeckPreviewView(deck: item, namespace: namespace, show: selectedDeck != nil && selectedDeck!.id == item.id)
                                 .id(item.id)
                                 .padding(10)
-                                .scaleEffect(scaleDeckView != nil && scaleDeckView == item ? scaleValue : 1.0)
                                 .onTapGesture {
                                     openDeckCards(item)
                                 }
-                                .onLongPressGesture(maximumDistance: 100, pressing: { state in
-                                    scaleValue = 1.0
-                                    if state {
-                                        animationTimer = Timer.publish (every: 0.01, on: .current, in:
-                                                                                .common).autoconnect()
-                                        withAnimation(Animation.linear(duration: 1.0)) {
-                                            scaleDeckView = item
-                                        }
-                                    } else {
-                                        animationTimer.upstream.connect().cancel()
-                                        scaleDeckView = nil
-                                    }
-                                }) {
-                                    scaleDeckView = nil
+                                .animatedLongTap(onDismiss: {}) {
                                     openDeck(item)
                                 }
                             
@@ -112,9 +95,6 @@ struct DecksGridScreen: View {
                 }
                 Spacer()
                     .padding(.bottom, 50)
-            }
-            .onReceive(animationTimer) { _ in
-                scaleValue += 0.001
             }
             .onAppear {
                 if let id = tabRouter.selectedDeck?.id {

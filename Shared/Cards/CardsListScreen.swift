@@ -136,7 +136,7 @@ struct CardsListScreen: View {
                         .onTapGesture {
                             toggleCard(destination: item)
                         }
-                        .onLongPressGesture(maximumDistance: 100) {
+                        .animatedLongTap(onDismiss: {}) {
                             toggleCard(destination: item, mode: .preview)
                         }
                         .matchedGeometryEffect(
