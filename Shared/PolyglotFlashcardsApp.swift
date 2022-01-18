@@ -17,7 +17,6 @@ struct PolyglotFlashcardsApp: App {
         WindowGroup {
             if firstLaunch {
                 OnboardingScreen()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
                 ContentView()
                     .environmentObject(tabRouter)

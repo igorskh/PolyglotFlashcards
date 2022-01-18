@@ -10,7 +10,6 @@ import SwiftUI
 struct MatchPairsGameScreen: View {
     @Namespace private var animation
     @EnvironmentObject var tabRouter: TabRouter
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var navigationController: NavControllerViewModel
     @EnvironmentObject var game: MatchPairsGame
     

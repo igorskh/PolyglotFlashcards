@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CardDetailView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel: CardDetailViewModel
     var onClose: () -> Void = {}
     var namespace: Namespace.ID
@@ -276,7 +275,7 @@ struct CardDetailView: View {
                 : NSLocalizedString("Save", comment: "Save Card"),
                 color: Color.accentColor
             ) {
-                viewModel.saveCard(context: viewContext) {
+                viewModel.saveCard() {
                     closeCard()
                 }
             }
@@ -286,7 +285,7 @@ struct CardDetailView: View {
                     title: NSLocalizedString("Delete", comment: "Delete Card"),
                     color: Color.red
                 ) {
-                    viewModel.deleteCard(context: viewContext) {
+                    viewModel.deleteCard() {
                         closeCard()
                     }
                 }

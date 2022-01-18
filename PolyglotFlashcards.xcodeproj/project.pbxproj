@@ -156,6 +156,12 @@
 		CBF0EFFC27946D7C00CEE525 /* UIView+asImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EFFB27946D7C00CEE525 /* UIView+asImage.swift */; };
 		CBF0EFFE27946DA300CEE525 /* View+asImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EFFD27946DA300CEE525 /* View+asImage.swift */; };
 		CBF0F00127946DC700CEE525 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F00027946DC700CEE525 /* ShareSheet.swift */; };
+		CBF0F0032797534600CEE525 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0022797534600CEE525 /* LoggerService.swift */; };
+		CBF0F0042797534600CEE525 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0022797534600CEE525 /* LoggerService.swift */; };
+		CBF0F0052797534600CEE525 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0022797534600CEE525 /* LoggerService.swift */; };
+		CBF0F0082797624D00CEE525 /* AnimatedLongTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0072797624D00CEE525 /* AnimatedLongTap.swift */; };
+		CBF0F0092797624D00CEE525 /* AnimatedLongTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0072797624D00CEE525 /* AnimatedLongTap.swift */; };
+		CBF0F00A2797624D00CEE525 /* AnimatedLongTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0F0072797624D00CEE525 /* AnimatedLongTap.swift */; };
 		CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */; };
 		CBF469CD2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */; };
 		CBF469CF2765EDE000424EDF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF469CE2765EDE000424EDF /* ImagePicker.swift */; };
@@ -328,6 +334,8 @@
 		CBF0EFFB27946D7C00CEE525 /* UIView+asImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+asImage.swift"; sourceTree = "<group>"; };
 		CBF0EFFD27946DA300CEE525 /* View+asImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+asImage.swift"; sourceTree = "<group>"; };
 		CBF0F00027946DC700CEE525 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		CBF0F0022797534600CEE525 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
+		CBF0F0072797624D00CEE525 /* AnimatedLongTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLongTap.swift; sourceTree = "<group>"; };
 		CBF469CB2762922D00424EDF /* LanguageFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilterViewModel.swift; sourceTree = "<group>"; };
 		CBF469CE2765EDE000424EDF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CBF469D12765F0DE00424EDF /* CardImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImagePicker.swift; sourceTree = "<group>"; };
@@ -424,6 +432,7 @@
 		CB3824EE271C8B080022E3DA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				CBF0F0062797623D00CEE525 /* ViewModifiers */,
 				CBF469E227661E5C00424EDF /* pixabay-com.der */,
 				CB367368277DB17E004BB8E9 /* polyglot-api.der */,
 				CBF469DC27661B9500424EDF /* apideepl.der */,
@@ -579,6 +588,7 @@
 				CBF469DF27661E0A00424EDF /* URLSessionPinningDelegate.swift */,
 				CBF99B9F276D1126001A57B9 /* CardsService.swift */,
 				CBF0EFDF2794335C00CEE525 /* ServicePreferences.swift */,
+				CBF0F0022797534600CEE525 /* LoggerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -656,6 +666,14 @@
 				CBF0EFCD2792D21100CEE525 /* NewSettingsScreen.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		CBF0F0062797623D00CEE525 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				CBF0F0072797624D00CEE525 /* AnimatedLongTap.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		CBF469D72766173D00424EDF /* LanguageFilter */ = {
@@ -957,6 +975,7 @@
 				CB8D5F34277F1CEA0032AF3D /* SwipeGameCardView.swift in Sources */,
 				CBF0F00127946DC700CEE525 /* ShareSheet.swift in Sources */,
 				CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
+				CBF0F0082797624D00CEE525 /* AnimatedLongTap.swift in Sources */,
 				CBFFDCFC27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBF0EFD72793304300CEE525 /* DeckDetailView.swift in Sources */,
 				CBA3535C275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
@@ -975,6 +994,7 @@
 				CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */,
 				CBF99B9D276A740C001A57B9 /* OnboardingScreen.swift in Sources */,
 				CBF469D22765F0DE00424EDF /* CardImagePicker.swift in Sources */,
+				CBF0F0032797534600CEE525 /* LoggerService.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListScreen.swift in Sources */,
 				CBA3536827596D7C0036C9EE /* CardImagesView.swift in Sources */,
@@ -1060,11 +1080,13 @@
 				CBFFDCFA2753FFA4001607FA /* Image+nsImage.swift in Sources */,
 				CB382555271DEF560022E3DA /* CardsListScreen.swift in Sources */,
 				CBF0EFDE27936E3F00CEE525 /* LoadingBackdropView.swift in Sources */,
+				CBF0F0092797624D00CEE525 /* AnimatedLongTap.swift in Sources */,
 				CBC4CB71275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,
 				CBBD32012753CA0300F275E9 /* WordTagger.swift in Sources */,
 				CBBD32022753CA1200F275E9 /* Language+NaturalLanguage.swift in Sources */,
 				CB382552271DEF460022E3DA /* CardView.swift in Sources */,
 				CBC4CB6B27553978009CCB32 /* MatchPairsGameStep.swift in Sources */,
+				CBF0F0042797534600CEE525 /* LoggerService.swift in Sources */,
 				CBBD31FA2753C79100F275E9 /* UIImage.swift in Sources */,
 				CB8D5F38277F1D870032AF3D /* SwipeGameScreen.swift in Sources */,
 				CBA3535D275816700036C9EE /* Deck+awakeFromInsert.swift in Sources */,
@@ -1100,10 +1122,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB45C6C527879514003DCEBE /* PolyglotFlashcards.xcdatamodeld in Sources */,
+				CBF0F00A2797624D00CEE525 /* AnimatedLongTap.swift in Sources */,
 				CBCA98912788F6FE00ED874C /* Consts.swift in Sources */,
 				CBCA988D2788F14000ED874C /* PersistenceController.swift in Sources */,
 				CB4586EB27879FB900BB682A /* Language.swift in Sources */,
 				CBCA988A2788EC5F00ED874C /* Preferences.swift in Sources */,
+				CBF0F0052797534600CEE525 /* LoggerService.swift in Sources */,
 				CB4C84F62787768F00FB578D /* URL+storeURL.swift in Sources */,
 				CBF0EFE22794340900CEE525 /* ServicePreferences.swift in Sources */,
 				CBCA9898278B644200ED874C /* cardsWidget.intentdefinition in Sources */,
@@ -1276,7 +1300,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1313,7 +1337,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1514,7 +1538,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1544,7 +1568,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;

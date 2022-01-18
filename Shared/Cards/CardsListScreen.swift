@@ -16,7 +16,6 @@ enum CardOpenMode {
 
 struct CardsListScreen: View {    
     @EnvironmentObject var tabRouter: TabRouter
-    @Environment(\.managedObjectContext) private var viewContext
     @Namespace var namespace
     
     var routerNamespace: Namespace.ID
@@ -83,10 +82,8 @@ struct CardsListScreen: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation(.spring()) {
-                if mode == .detail {
-                    showDetailCard = destination != nil
-                }
                 if mode == .detail || mode == .both {
+                    showDetailCard = destination != nil
                     selectedCard = destination
                 }
                 if mode == .preview || mode == .both {

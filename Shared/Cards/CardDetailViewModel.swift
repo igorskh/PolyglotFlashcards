@@ -168,17 +168,15 @@ class CardDetailViewModel: ObservableObject {
         }
     }
     
-    func deleteCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
+    func deleteCard(onFinished: @escaping () -> Void) {
         cardsService.deleteCard(
-            context: context,
             card: card,
             onFinished: onFinished
         )
     }
     
-    func saveCard(context: NSManagedObjectContext, onFinished: @escaping () -> Void) {
+    func saveCard(onFinished: @escaping () -> Void) {
         cardsService.saveCard(
-            context: context,
             selectedImageData: selectedImageData,
             card: card,
             translations: translations,

@@ -11,12 +11,22 @@ import CoreData
 class CardsService {
     static var shared = CardsService()
     
-    func deleteCard(context: NSManagedObjectContext, card: Card?, onFinished: @escaping () -> Void) {
+    private var viewContext = PersistenceController.shared.container.viewContext
+    
+    func getDecks() -> [Deck] {
+        let fetchRequest: NSFetchRequest<Deck>
+        fetchRequest = Deck.fetchRequest()
+        
+        let objects = try? viewContext.fetch(fetchRequest)
+        return (objects ?? [])
+    }
+    
+    func deleteCard( card: Card?, onFinished: @escaping () -> Void) {
         if let card = card {
-            context.delete(card)
+            viewContext.delete(card)
             
             do {
-                try context.save()
+                try viewContext.save()
             } catch {
                 let nsError = error as NSError
                 print("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -26,7 +36,6 @@ class CardsService {
     }
     
     func saveCard(withImage imageData: Data?,
-                  context: NSManagedObjectContext,
                   card: Card?,
                   translations: [Translation],
                   decks: [Deck],
@@ -35,7 +44,7 @@ class CardsService {
         if let card = card {
             newWord = card
         } else {
-            newWord = Card(context: context)
+            newWord = Card(context: viewContext)
         }
         if let imageData = imageData {
             newWord?.image = imageData
@@ -55,7 +64,7 @@ class CardsService {
             }) as? CardVariant
             
             if newWordTranslation == nil {
-                newWordTranslation = CardVariant(context: context)
+                newWordTranslation = CardVariant(context: viewContext)
                 isCreating = true
             }
             
@@ -67,7 +76,7 @@ class CardsService {
         }
         
         do {
-            try context.save()
+            try viewContext.save()
         } catch {
             let nsError = error as NSError
             print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
@@ -76,7 +85,6 @@ class CardsService {
     }
     
     func saveCard(
-        context: NSManagedObjectContext,
         selectedImageData: Data,
         card: Card?,
         translations: [Translation],
@@ -93,7 +101,6 @@ class CardsService {
         }
         self.saveCard(
             withImage: imageData,
-            context: context,
             card: card,
             translations: translations,
             decks: decks,
@@ -102,7 +109,6 @@ class CardsService {
     }
     
     func saveDeck(
-        context: NSManagedObjectContext,
         deck: Deck? = nil,
         title: String,
         imageData: Data? = nil,
@@ -118,7 +124,7 @@ class CardsService {
         if let deck = deck {
             newDeck = deck
         } else {
-            newDeck = Deck(context: context)
+            newDeck = Deck(context: viewContext)
         }
         if let imageData = imageData {
             newDeck?.image = imageData
@@ -127,7 +133,7 @@ class CardsService {
         newDeck?.title = newDeckTitle
         
         do {
-            try context.save()
+            try viewContext.save()
             onFinished("")
             return newDeck
         } catch {
@@ -138,7 +144,7 @@ class CardsService {
         }
     }
     
-    func deleteDeck(context: NSManagedObjectContext, deck: Deck?, onFinished: @escaping (String) -> Void) {
+    func deleteDeck(deck: Deck?, onFinished: @escaping (String) -> Void) {
         if let deck = deck {
             if let cards = deck.cards,
                cards.count > 0 {
@@ -146,10 +152,10 @@ class CardsService {
                 return
             }
             
-            context.delete(deck)
+            viewContext.delete(deck)
             
             do {
-                try context.save()
+                try viewContext.save()
             } catch {
                 let nsError = error as NSError
                 onFinished("Unresolved error \(nsError), \(nsError.userInfo)")

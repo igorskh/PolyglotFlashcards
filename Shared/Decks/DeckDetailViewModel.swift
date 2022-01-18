@@ -71,7 +71,6 @@ class DeckDetailViewModel: ObservableObject {
     
     func saveDeck(onFinished: @escaping (Bool) -> Void) {
         _ = cardsService.saveDeck(
-            context: viewContext,
             deck: deck,
             title: deckTitle,
             imageData: deckImage) { message in
@@ -81,7 +80,7 @@ class DeckDetailViewModel: ObservableObject {
     }
     
     func deleteDeck(onFinished: @escaping (Bool) -> Void) {
-        cardsService.deleteDeck(context: viewContext, deck: deck) { message in
+        cardsService.deleteDeck(deck: deck) { message in
             self.errorText = message
             onFinished(message == "")
         }

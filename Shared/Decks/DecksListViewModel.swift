@@ -7,13 +7,13 @@
 
 import Foundation
 import Combine
-import CoreData
 
 class DecksListViewModel: ObservableObject {
     let didChange = PassthroughSubject<Void, Never>()
     
-    var viewContext = PersistenceController.shared.container.viewContext
     var decks: [Deck]
+    var cardsServices: CardsService = .shared
+    
     @Published var searchText: String = ""
     @Published var searchResults: [Deck] = []
     
@@ -30,11 +30,7 @@ class DecksListViewModel: ObservableObject {
     }
     
     init() {
-        let fetchRequest: NSFetchRequest<Deck>
-        fetchRequest = Deck.fetchRequest()
-        
-        let objects = try? viewContext.fetch(fetchRequest)
-        decks = (objects ?? [])
+        decks = cardsServices.getDecks()
         
         searchResults = decks
         

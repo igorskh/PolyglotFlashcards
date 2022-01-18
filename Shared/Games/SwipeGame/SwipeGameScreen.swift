@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SwipeGameScreen: View {
     @EnvironmentObject var tabRouter: TabRouter
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var navigationController: NavControllerViewModel
     @EnvironmentObject var game: SwipeGame
     

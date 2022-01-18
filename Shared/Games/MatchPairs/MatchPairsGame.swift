@@ -32,18 +32,20 @@ class MatchPairsGame: ObservableObject {
     @Published var isCorrectSelected = false
     @Published var showImages = false
     
+    private var viewContext = PersistenceController.shared.container.viewContext
+    
     var cards: [Card] = []
     
     var gameStep: MatchPairsGameStep?
     var numberOfCards: Int = 4
-
-    private let speechSynth: SpeechSynthesizer = .init()
+    
+    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
     
 #if !os(macOS)
     private let feedbackGenerator = UINotificationFeedbackGenerator()
 #endif
     
-    func start(limit: Int = 0, viewContext: NSManagedObjectContext, onSuccess: () -> Void) {
+    func start(limit: Int = 0, onSuccess: () -> Void) {
         error = ""
         if selectedLanguages.count < 2 {
             return

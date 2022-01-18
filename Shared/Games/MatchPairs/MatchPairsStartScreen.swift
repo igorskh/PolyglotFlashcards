@@ -12,7 +12,6 @@ struct MatchPairsStartScreen: View {
     
     @Preference(\.languages) var languages
     @EnvironmentObject var navigationController: NavControllerViewModel
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var game: MatchPairsGame = .init()
     
     var body: some View {
@@ -54,7 +53,7 @@ struct MatchPairsStartScreen: View {
             FilledButton(
                 title: NSLocalizedString("Start", comment: "Start game"),
                 color: game.selectedLanguages.count > 1 ? .green : .gray) {
-                    game.start(viewContext: viewContext) {
+                    game.start() {
                         tabRouter.isModal = true
                         navigationController.push(
                             MatchPairsGameScreen()

@@ -12,7 +12,6 @@ struct SwipeGameStartScreen: View {
     
     @Preference(\.languages) var languages
     @EnvironmentObject var navigationController: NavControllerViewModel
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var game: SwipeGame = .init()
     
     var body: some View {
@@ -59,7 +58,7 @@ struct SwipeGameStartScreen: View {
             FilledButton(
                 title: NSLocalizedString("Start", comment: "Start game"),
                 color: game.selectedLanguages.count == 2 ? .green : .gray) {
-                    game.start(viewContext: viewContext) {
+                    game.start() {
                         tabRouter.isModal = true
                         navigationController.push(
                             SwipeGameScreen()

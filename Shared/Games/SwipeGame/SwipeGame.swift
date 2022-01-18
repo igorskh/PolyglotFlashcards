@@ -42,17 +42,19 @@ class SwipeGame: ObservableObject {
     @Published var isNextCard: Bool = false
     @Published var triggerResetCard: Bool = false
     
+    private var viewContext = PersistenceController.shared.container.viewContext
+    
     var currentCardID: Int = 0
     var gameStep: SwipeGameStep?
     var cards: [Card] = []
     
-    private let speechSynth: SpeechSynthesizer = .init()
+    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
     
 #if !os(macOS)
     private let feedbackGenerator = UINotificationFeedbackGenerator()
 #endif
     
-    func start(limit: Int = 0, viewContext: NSManagedObjectContext, onSuccess: () -> Void) {
+    func start(limit: Int = 0, onSuccess: () -> Void) {
         error = ""
         if selectedLanguages.count != 2 {
             return

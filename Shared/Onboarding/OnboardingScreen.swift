@@ -6,19 +6,18 @@
 //
 
 import SwiftUI
-import CoreData
 
 class OnboardingViewModel: ObservableObject {
     private var cardsService: CardsService = .shared
     @Preference(\.firstLaunch) var firstLaunch
     
-    func createSampleCards(context: NSManagedObjectContext) {
-        if let deck = cardsService.saveDeck(context: context, title: "SampleAnimals", onFinished: { _ in }) {
+    func createSampleCards() {
+        if let deck = cardsService.saveDeck(title: "SampleAnimals", onFinished: { _ in }) {
             mockData.forEach { mock in
                 guard let img = UIImage(named: mock.imageName) else { return }
                 let data = img.pngData()!
                 
-                cardsService.saveCard(context: context, selectedImageData: data, card: nil, translations: mock.translations, decks: [deck]) {
+                cardsService.saveCard(selectedImageData: data, card: nil, translations: mock.translations, decks: [deck]) {
                     self.firstLaunch = false
                 }
             }
@@ -31,7 +30,6 @@ class OnboardingViewModel: ObservableObject {
 }
 
 struct OnboardingScreen: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel: OnboardingViewModel = .init()
     
     var body: some View {
