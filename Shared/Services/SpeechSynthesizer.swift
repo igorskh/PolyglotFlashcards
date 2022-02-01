@@ -14,18 +14,43 @@ enum SpeechEngine: String, Codable {
     case googleTTS
 }
 
-class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
+class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDelegate {
     private let synthesizer = AVSpeechSynthesizer()
     private var audioPlayer: AVAudioPlayer? = nil
     private let ttsService: TextToSpeechService = PolyglotTTSService.shared
+    private var avSessionCategory: AVAudioSession.Category
     
-    init(avSessionCategory: AVAudioSession.Category = .ambient) {
+    init(avSessionCategory: AVAudioSession.Category = .playback) {
+        self.avSessionCategory = avSessionCategory
+        super.init()
+        
+        self.synthesizer.delegate = self
+    }
+    
+    private func duckAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(avSessionCategory)
+            try audioSession.setCategory(avSessionCategory, options: .duckOthers)
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    private func unduckAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.ambient, options: .mixWithOthers)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.unduckAudioSession()
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        self.unduckAudioSession()
     }
     
     func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false) -> Bool {
@@ -42,6 +67,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
+        duckAudioSession()
         synthesizer.speak(utterance)
         
         return true
@@ -53,6 +79,8 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
             case .success(let data):
                 self.audioPlayer = try? AVAudioPlayer(data: data!, fileTypeHint: AVFileType.mp3.rawValue)
                 
+                self.audioPlayer?.delegate = self
+                self.duckAudioSession()
                 self.audioPlayer?.prepareToPlay()
                 self.audioPlayer?.play()
             case .failure(let err):
