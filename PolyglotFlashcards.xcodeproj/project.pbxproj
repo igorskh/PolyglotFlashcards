@@ -92,6 +92,8 @@
 		CBA3536C27596D8E0036C9EE /* DeckPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3536A27596D8E0036C9EE /* DeckPreviewView.swift */; };
 		CBA35370275971A20036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA3536F275971A20036C9EE /* CloudKit.framework */; };
 		CBA35372275976230036C9EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA35371275976230036C9EE /* CloudKit.framework */; };
+		CBAC3D5127A9FA7900092833 /* DismissibleTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC3D5027A9FA7900092833 /* DismissibleTextEditor.swift */; };
+		CBAC3D5227A9FA7900092833 /* DismissibleTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC3D5027A9FA7900092833 /* DismissibleTextEditor.swift */; };
 		CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */; };
 		CBBD31EB2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
 		CBBD31EC2752CF3D00F275E9 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */; };
@@ -298,6 +300,7 @@
 		CBA3536D2759719B0036C9EE /* PolyglotFlashcards (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PolyglotFlashcards (iOS).entitlements"; sourceTree = "<group>"; };
 		CBA3536F275971A20036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		CBA35371275976230036C9EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		CBAC3D5027A9FA7900092833 /* DismissibleTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissibleTextEditor.swift; sourceTree = "<group>"; };
 		CBAEBB24275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentCloudKitContainer.EventType+description.swift"; sourceTree = "<group>"; };
 		CBBD31EA2752CF3D00F275E9 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		CBBD31ED2752CFEF00F275E9 /* LanguageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFilter.swift; sourceTree = "<group>"; };
@@ -544,6 +547,7 @@
 				CBF0EFDC27936E3F00CEE525 /* LoadingBackdropView.swift */,
 				CBF0EFE32794437100CEE525 /* VisualEffectView.swift */,
 				CBF0F00027946DC700CEE525 /* ShareSheet.swift */,
+				CBAC3D5027A9FA7900092833 /* DismissibleTextEditor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -932,6 +936,7 @@
 			files = (
 				CBA3536B27596D8E0036C9EE /* DeckPreviewView.swift in Sources */,
 				CBFFDCE22753CB78001607FA /* AttributedText.swift in Sources */,
+				CBAC3D5127A9FA7900092833 /* DismissibleTextEditor.swift in Sources */,
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CBF469D52766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift in Sources */,
 				CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */,
@@ -1029,6 +1034,7 @@
 				CBF0EFE12794335C00CEE525 /* ServicePreferences.swift in Sources */,
 				CB367371277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
+				CBAC3D5227A9FA7900092833 /* DismissibleTextEditor.swift in Sources */,
 				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
 				CBF0EFE827944B4D00CEE525 /* CardShareView.swift in Sources */,
 				CBFFDCE62753CBE5001607FA /* Card+UIImage.swift in Sources */,
@@ -1300,7 +1306,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 69;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1318,7 +1324,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1337,7 +1343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 69;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1355,7 +1361,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1538,7 +1544,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 69;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1550,7 +1556,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1568,7 +1574,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 69;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1580,7 +1586,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

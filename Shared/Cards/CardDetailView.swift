@@ -19,8 +19,6 @@ struct CardDetailView: View {
     @State private var showTranslationOptionsID: Int = -1
     @State private var showTranslationOptions: Bool = false
     
-    
-    
     init(
         deck: Deck? = nil,
         card: Card? = nil,
@@ -193,12 +191,24 @@ struct CardDetailView: View {
                     Text("\(viewModel.translations[i].target.flag)")
                     Spacer()
                     
-                    ZStack {
-                        TextField("", text: $viewModel.translations[i].translation)
+                    ZStack(alignment: .top) {
+//                        TextField("", text: $viewModel.translations[i].translation)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .multilineTextAlignment(.leading)
+                        
+                        DismissibleTextEditor(text: $viewModel.translations[i].translation)
+                            { _ in
+                                viewModel.getTranslation(
+                                    from: viewModel.translations[i].target
+                                )
+                            }
                             .onTapGesture {
                                 viewModel.isTranslationFieldFocused = true
                             }
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.primary.opacity(0.5), lineWidth: 0.5)
+                            )
                         
                         HStack {
                             Spacer()
@@ -207,6 +217,7 @@ struct CardDetailView: View {
                                 viewModel.clearTranslation(at: i)
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
+                                    .opacity(0.4)
                             }
                             .buttonStyle(PlainButtonStyle())
                             .padding(.trailing, 5)
