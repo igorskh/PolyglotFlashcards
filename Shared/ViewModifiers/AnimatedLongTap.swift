@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+enum ScaleMode {
+    case scaleDown
+    case scaleUp
+}
+
 struct AnimatedLongTap: ViewModifier {
+    
     @State var timer: Timer?
     
     @State var scaleValue: CGFloat = 1.0
     
+    var scaleMode: ScaleMode = .scaleDown
     var onDismiss: () -> Void
     var onFinished: () -> Void
     
@@ -27,7 +34,7 @@ struct AnimatedLongTap: ViewModifier {
                 scaleValue = 1.0
                 if state {
                     timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
-                        scaleValue += 0.001
+                        scaleValue += 0.001 * (scaleMode == .scaleDown ? -1 : 1)
                     }
                 } else {
                     timer?.invalidate()
