@@ -30,6 +30,7 @@ class CardsService {
             } catch {
                 let nsError = error as NSError
                 print("Unresolved error \(nsError), \(nsError.userInfo)")
+                AppLogger.shared.error("Unresolved deleteCard error \(nsError), \(nsError.userInfo)")
             }
             onFinished()
         }
@@ -80,6 +81,7 @@ class CardsService {
         } catch {
             let nsError = error as NSError
             print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
+            AppLogger.shared.error("Unresolved saveCard error \(nsError), \(nsError.userInfo)")
         }
         onFinished()
     }
@@ -140,6 +142,8 @@ class CardsService {
             let nsError = error as NSError
             onFinished(nsError.userInfo.description)
             print("Unresolved error \(nsError.code) \(nsError), \(nsError.userInfo)")
+            AppLogger.shared.error("Unresolved saveDeck error \(nsError), \(nsError.userInfo)")
+            
             return nil
         }
     }
@@ -159,6 +163,8 @@ class CardsService {
             } catch {
                 let nsError = error as NSError
                 onFinished("Unresolved error \(nsError), \(nsError.userInfo)")
+                
+                AppLogger.shared.error("Unresolved deleteDeck error \(nsError), \(nsError.userInfo)")
             }
             onFinished("")
         }

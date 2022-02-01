@@ -8,29 +8,33 @@
 import Foundation
 import os
 
-class AppLogger {
+class AppLogger: ObservableObject {
     static var shared = AppLogger()
     
     private var logger = Logger()
+    @Published var history: [String] = []
+    @Published var showAlert = false
+    
+    func log(level: OSLogType, message: String) {
+        history.append(message)
+        logger.log(level: level, "\(message)")
+    }
     
     func debug(_ msg: String) {
-        logger.debug("\(msg)")
+        log(level: .debug, message: msg)
     }
     
     func info(_ msg: String) {
-        logger.info("\(msg)")
-    }
-    
-    func warning(_ msg: String) {
-        logger.warning("\(msg)")
+        log(level: .info, message: msg)
     }
     
     func error(_ msg: String) {
-        logger.error("\(msg)")
+        log(level: .error, message: msg)
+        showAlert = true
     }
     
     func fatal(_ msg: String) {
-        logger.fault("\(msg)")
+        log(level: .fault, message: msg)
+        showAlert = true
     }
-    
 }

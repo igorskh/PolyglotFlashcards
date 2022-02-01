@@ -11,6 +11,7 @@ import SwiftUI
 struct PolyglotFlashcardsApp: App {
     @Preference(\.firstLaunch) var firstLaunch
     @ObservedObject var tabRouter: TabRouter = .init()
+    @ObservedObject var appLogger: AppLogger = .shared
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -19,6 +20,12 @@ struct PolyglotFlashcardsApp: App {
                 OnboardingScreen()
             } else {
                 ContentView()
+                    .alert(isPresented: $appLogger.showAlert) {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(appLogger.history.last ?? "N/A")
+                        )
+                    }
                     .environmentObject(tabRouter)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .onOpenURL { url in
@@ -28,4 +35,3 @@ struct PolyglotFlashcardsApp: App {
         }
     }
 }
-//
