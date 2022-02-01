@@ -10,3 +10,4 @@ import SwiftUI
 
 let appGroupIdentifier = "group.one.beagile.polyglotflashcards"
 let cardCornerRadius: CGFloat = 18
+let appTransactionAuthorName = "app"
