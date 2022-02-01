@@ -85,7 +85,7 @@ struct CardView: View {
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 10) {
                 ForEach(translations) { tr in
                     HStack {
                         Text("\(tr.target.flag)")
