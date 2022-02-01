@@ -222,6 +222,7 @@ struct CardDetailView: View {
                             .buttonStyle(PlainButtonStyle())
                             .padding(.trailing, 5)
                         }
+                        .padding(.top, 8)
                     }
                 
                     Button {

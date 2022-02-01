@@ -85,7 +85,7 @@ struct CardView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 ForEach(translations) { tr in
                     HStack {
                         Text("\(tr.target.flag)")
@@ -116,6 +116,7 @@ struct CardView: View {
                 }
                 
             }
+            .padding(.vertical)
             
             if isLoading {
                 LoadingBackdropView()
