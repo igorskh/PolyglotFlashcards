@@ -38,7 +38,7 @@ class PolyglotTranslator: TranslationService {
                    source: Language?,
                    target: Language,
                    options: TranslationOptions? = nil,
-                   onResponse: @escaping (Result<[Translation]?, Error>) -> Void)  {
+                   onResponse: @escaping (Result<[Translation]?, Error>) -> Void) -> URLSessionDataTask?  {
         
         var urlString = "\(PolyglotTranslator.baseURL)/translate"
         if let options = options,
@@ -71,7 +71,8 @@ class PolyglotTranslator: TranslationService {
             }
             httpBody = try encoder.encode(trReq)
         } catch {
-            return onResponse(.failure(error))
+            onResponse(.failure(error))
+            return nil
         }
         
         request.httpMethod = "post"
@@ -83,7 +84,7 @@ class PolyglotTranslator: TranslationService {
             delegateQueue: .main
         )
         
-        urlSession.dataTask(with: request) { data, response, error in
+        let task = urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 return onResponse(.failure(error))
             }
@@ -105,6 +106,8 @@ class PolyglotTranslator: TranslationService {
             )
             
             onResponse(.success([translation]))
-        }.resume()
+        }
+        task.resume()
+        return task
     }
 }

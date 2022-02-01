@@ -27,10 +27,11 @@ class CardDetailViewModel: ObservableObject {
     
     private var translator: TranslationService = PolyglotTranslator.shared
     private var cardsService: CardsService = .shared
-    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
+    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .playback)
     
     private var selectedImageData: Data = .init()
     private let lock = NSLock()
+    private var tasks: [URLSessionDataTask?] = []
     
     let card: Card?
 
@@ -41,6 +42,9 @@ class CardDetailViewModel: ObservableObject {
         self.card = card
         self.decks = card?.decks?.sortedArray(using: []) as? [Deck] ?? []
         
+        tasks = languages.map { _ in
+            nil
+        }
         options = languages.map { lang in
             return TranslationOptions(
                 formality: .auto,
@@ -79,17 +83,21 @@ class CardDetailViewModel: ObservableObject {
         selectedImageData = data
     }
     
-    func getTranslation(text: String, from source: Language, for target: Language, engine: PolyglotTranslatorEngine = .auto) {
+    func getTranslation(translationIndex: Int, from source: Language, for target: Language, engine: PolyglotTranslatorEngine = .auto) {
+        let targetIndex = self.languages.firstIndex(of: target)!
+        
+        var options = options[targetIndex]
+        options.engine = engine
+        
         var sourceLang: Language? = nil
         if source != .Unknown {
             sourceLang = source
         }
         
-        let targetIndex = self.languages.firstIndex(of: target)!
-        var options = options[targetIndex]
-        options.engine = engine
-        
-        translator.Translate(text: text, source: sourceLang, target: target, options: options) { result in
+        let text = translations[translationIndex].translation
+            
+        tasks[targetIndex]?.cancel()
+        tasks[targetIndex] = translator.Translate(text: text, source: sourceLang, target: target, options: options) { result in
             switch result {
             case .success(let remoteTranslations):
                 DispatchQueue.main.async {
@@ -121,11 +129,6 @@ class CardDetailViewModel: ObservableObject {
     func getTranslation(from sourceLanguage: Language, engine: PolyglotTranslatorEngine = .auto) {
         errorMessage = ""
         
-        var selectedEngine = engine
-        if servicePreferences.preferGoogleTranslationEngine && engine == .auto {
-            selectedEngine = .google
-        }
-        
         let index = languages.firstIndex(of: sourceLanguage)
         if sourceLanguage == .English || !languages.contains(.English) {
             query = translations[index!].translation
@@ -139,8 +142,13 @@ class CardDetailViewModel: ObservableObject {
         }
         nQueuedRequests = requestTargetLanguages.count
         
-        requestTargetLanguages.forEach {
-            getTranslation(text: translations[index!].translation, from: sourceLanguage, for: $0, engine: selectedEngine)
+        requestTargetLanguages.forEach { targetIndex in
+            var selectedEngine = engine
+            if servicePreferences.preferGoogleTranslationEngine && engine == .auto {
+                selectedEngine = .google
+            }
+            getTranslation(translationIndex: index!, from: sourceLanguage, for: targetIndex, engine: selectedEngine)
+            
         }
     }
     

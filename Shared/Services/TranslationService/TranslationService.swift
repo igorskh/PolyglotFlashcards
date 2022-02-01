@@ -59,5 +59,5 @@ struct TranslationOptions: Codable, Identifiable {
 }
 
 protocol TranslationService {
-    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions?, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)
+    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions?, onResponse: @escaping (Result<[Translation]?, Error>) -> Void) -> URLSessionDataTask?
 }

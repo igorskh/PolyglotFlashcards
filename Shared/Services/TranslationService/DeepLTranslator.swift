@@ -38,7 +38,7 @@ class DeepLTranslator: TranslationService {
     
     static let shared = DeepLTranslator()
     
-    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions? = nil, onResponse: @escaping (Result<[Translation]?, Error>) -> Void)  {
+    func Translate(text: String, source: Language?, target: Language, options: TranslationOptions? = nil, onResponse: @escaping (Result<[Translation]?, Error>) -> Void) -> URLSessionDataTask?  {
         let url = URL(string: "\(DeepLTranslator.baseURL)/translate")!
         var request = URLRequest(url: url)
         request.addValue("DeepL-Auth-Key \(DeepLTranslator.apiKey)", forHTTPHeaderField: "Authorization")
@@ -54,7 +54,7 @@ class DeepLTranslator: TranslationService {
             delegateQueue: .main
         )
         
-        urlSession.dataTask(with: request) { data, response, error in
+        let task = urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 return onResponse(.failure(error))
             }
@@ -77,7 +77,9 @@ class DeepLTranslator: TranslationService {
                 )
             }
             onResponse(.success(translations))
-        }.resume()
+        }
+        task.resume()
+        return task
     }
 }
 
