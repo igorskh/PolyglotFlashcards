@@ -111,7 +111,7 @@ struct CardView: View {
             ZStack {
                 Color.black.opacity(0.5)
                 
-                VStack {
+                VStack(spacing: 8) {
                     ForEach(buildVariants()) { v in
                         if let language = Language(rawValue: v.language_code ?? ""),
                            storedFilteredLanguages.contains(language) {
@@ -119,6 +119,7 @@ struct CardView: View {
                                 Text("\(language.flag)")
                                 Text("\(v.text ?? "")")
                                     .foregroundColor(.white)
+                                    .fontWeight(.bold)
                                 
                                 Spacer()
                             }
