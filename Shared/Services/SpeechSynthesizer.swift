@@ -14,46 +14,59 @@ enum SpeechEngine: String, Codable {
     case googleTTS
 }
 
+enum SpeechSynthesizerState {
+    case started
+    case stopped
+}
+
+typealias SpeechSynthesizerStateCallback = (SpeechSynthesizerState, String?) -> Void
+
 class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDelegate {
     private let synthesizer = AVSpeechSynthesizer()
     private var audioPlayer: AVAudioPlayer? = nil
     private let ttsService: TextToSpeechService = PolyglotTTSService.shared
     private var avSessionCategory: AVAudioSession.Category
     
-    init(avSessionCategory: AVAudioSession.Category = .playback) {
+    private let stateCallback: SpeechSynthesizerStateCallback?
+    private var currentSessionID: String? = nil
+    
+    init(avSessionCategory: AVAudioSession.Category = .ambient, stateCallback: SpeechSynthesizerStateCallback? = nil) {
         self.avSessionCategory = avSessionCategory
+        self.stateCallback = stateCallback
         super.init()
         
         self.synthesizer.delegate = self
     }
     
-    private func duckAudioSession() {
+    private func startAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(avSessionCategory, options: .duckOthers)
+            stateCallback?(.started, currentSessionID)
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    private func unduckAudioSession() {
+    private func releaseAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.ambient, options: .mixWithOthers)
+            stateCallback?(.stopped, currentSessionID)
         } catch {
             print(error.localizedDescription)
         }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        self.unduckAudioSession()
+        self.releaseAudioSession()
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        self.unduckAudioSession()
+        self.releaseAudioSession()
     }
     
-    func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false) -> Bool {
+    func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false, sessionID: String = "") -> Bool {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         
@@ -66,21 +79,32 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
         
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
+            if currentSessionID != nil, sessionID != "", currentSessionID == sessionID {
+                return true
+            }
         }
-        duckAudioSession()
+        currentSessionID = sessionID
+        
+        startAudioSession()
         synthesizer.speak(utterance)
         
         return true
     }
     
-    func speakTTSService(string: String, language: String) {
+    func speakTTSService(string: String, language: String, sessionID: String = "") {
+        if audioPlayer != nil, currentSessionID != nil, sessionID != "", audioPlayer!.isPlaying, currentSessionID == sessionID {
+            audioPlayer!.stop()
+            return
+        }
+        currentSessionID = sessionID
+        
         ttsService.Generate(text: string, language: language) { result in
             switch result {
             case .success(let data):
                 self.audioPlayer = try? AVAudioPlayer(data: data!, fileTypeHint: AVFileType.mp3.rawValue)
                 
                 self.audioPlayer?.delegate = self
-                self.duckAudioSession()
+                self.startAudioSession()
                 self.audioPlayer?.prepareToPlay()
                 self.audioPlayer?.play()
             case .failure(let err):
@@ -89,15 +113,15 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
         }
     }
     
-    func speak(string: String, language: String, engine: SpeechEngine = .auto) {
+    func speak(string: String, language: String, engine: SpeechEngine = .auto, sessionID: String = "") {
         if engine == .voiceOver || engine == .auto {
-            if speakVoiceOver(string: string, language: language, ignoreCheck: engine == .voiceOver) {
+            if speakVoiceOver(string: string, language: language, ignoreCheck: engine == .voiceOver, sessionID: sessionID) {
                 return
             }
         }
         
         if engine == .googleTTS || engine == .auto {
-            speakTTSService(string: string, language: language)
+            speakTTSService(string: string, language: language, sessionID: sessionID)
         }
     }
 }
