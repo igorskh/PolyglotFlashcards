@@ -39,7 +39,7 @@ class MatchPairsGame: ObservableObject {
     var gameStep: MatchPairsGameStep?
     var numberOfCards: Int = 4
     
-    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
+    private let speechSynth: SpeechSynthesizer = .shared
     
 #if !os(macOS)
     private let feedbackGenerator = UINotificationFeedbackGenerator()

@@ -27,7 +27,7 @@ class CardDetailViewModel: ObservableObject {
     
     private var translator: TranslationService = PolyglotTranslator.shared
     private var cardsService: CardsService = .shared
-    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
+    private let speechSynth: SpeechSynthesizer = .shared
     
     private var selectedImageData: Data = .init()
     private let lock = NSLock()

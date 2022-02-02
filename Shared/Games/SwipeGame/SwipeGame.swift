@@ -48,7 +48,7 @@ class SwipeGame: ObservableObject {
     var gameStep: SwipeGameStep?
     var cards: [Card] = []
     
-    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
+    private let speechSynth: SpeechSynthesizer = .shared
     
 #if !os(macOS)
     private let feedbackGenerator = UINotificationFeedbackGenerator()

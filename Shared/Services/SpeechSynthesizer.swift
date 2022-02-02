@@ -22,6 +22,8 @@ enum SpeechSynthesizerState {
 typealias SpeechSynthesizerStateCallback = (SpeechSynthesizerState, String?) -> Void
 
 class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDelegate {
+    static var shared = SpeechSynthesizer()
+    
     private let synthesizer = AVSpeechSynthesizer()
     private var audioPlayer: AVAudioPlayer? = nil
     private let ttsService: TextToSpeechService = PolyglotTTSService.shared
@@ -30,7 +32,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
     private let stateCallback: SpeechSynthesizerStateCallback?
     private var currentSessionID: String? = nil
     
-    init(avSessionCategory: AVAudioSession.Category = .ambient, stateCallback: SpeechSynthesizerStateCallback? = nil) {
+    init(avSessionCategory: AVAudioSession.Category = .playback, stateCallback: SpeechSynthesizerStateCallback? = nil) {
         self.avSessionCategory = avSessionCategory
         self.stateCallback = stateCallback
         super.init()
@@ -42,6 +44,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(avSessionCategory, options: .duckOthers)
+            try audioSession.setActive(true)
             stateCallback?(.started, currentSessionID)
         } catch {
             print(error.localizedDescription)
@@ -51,22 +54,22 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
     private func releaseAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(.ambient, options: .mixWithOthers)
+            try audioSession.setActive(false, options: .notifyOthersOnDeactivation)
             stateCallback?(.stopped, currentSessionID)
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    internal func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.releaseAudioSession()
     }
     
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+    internal func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         self.releaseAudioSession()
     }
     
-    func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false, sessionID: String = "") -> Bool {
+    private func speakVoiceOver(string: String, language: String, ignoreCheck: Bool = false, sessionID: String = "") -> Bool {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         
@@ -91,7 +94,7 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
         return true
     }
     
-    func speakTTSService(string: String, language: String, sessionID: String = "") {
+    private func speakTTSService(string: String, language: String, sessionID: String = "") {
         if audioPlayer != nil, currentSessionID != nil, sessionID != "", audioPlayer!.isPlaying, currentSessionID == sessionID {
             audioPlayer!.stop()
             return
@@ -113,7 +116,14 @@ class SpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDel
         }
     }
     
+    func stop() {
+        audioPlayer?.stop()
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+    
     func speak(string: String, language: String, engine: SpeechEngine = .auto, sessionID: String = "") {
+        stop()
+        
         if engine == .voiceOver || engine == .auto {
             if speakVoiceOver(string: string, language: language, ignoreCheck: engine == .voiceOver, sessionID: sessionID) {
                 return

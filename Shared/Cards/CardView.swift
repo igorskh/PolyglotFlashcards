@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @Preference(\.servicePreferences) var servicePreferences
-    private let speechSynth: SpeechSynthesizer = .init(avSessionCategory: .ambient)
+    private let speechSynth: SpeechSynthesizer = .shared
     
     var word: Card
     var translations: [Translation]
@@ -29,7 +29,12 @@ struct CardView: View {
         let text = translation.translation
         let language = translation.target
         
-        speechSynth.speak(string: text, language: language.code, engine: selectedEngine)
+        speechSynth.speak(
+            string: text,
+            language: language.code,
+            engine: selectedEngine,
+            sessionID: "\(word.objectID)-\(language.code)"
+        )
     }
     
     init(
