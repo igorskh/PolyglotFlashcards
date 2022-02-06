@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -7,7 +7,7 @@
         <attribute name="languages" optional="YES" attributeType="String" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="decks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck"/>
-        <relationship name="variants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardVariant" inverseName="card" inverseEntity="CardVariant"/>
+        <relationship name="variants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CardVariant" inverseName="card" inverseEntity="CardVariant"/>
     </entity>
     <entity name="CardVariant" representedClassName="CardVariant" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

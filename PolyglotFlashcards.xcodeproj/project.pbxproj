@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CB15494A274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
 		CB15494B274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
+		CB231D6727B05CB1008C5C34 /* CardsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */; };
+		CB231D6927B05CC7008C5C34 /* CardsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */; };
+		CB231D6B27B05EC5008C5C34 /* DecksGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6A27B05EC5008C5C34 /* DecksGridView.swift */; };
 		CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
@@ -245,6 +248,9 @@
 		CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--iOS--Info.plist"; sourceTree = "<group>"; };
 		CB154946274E73060060706F /* Config.default.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.default.xcconfig; sourceTree = "<group>"; };
 		CB154949274E73550060706F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSearchView.swift; sourceTree = "<group>"; };
+		CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSearchViewModel.swift; sourceTree = "<group>"; };
+		CB231D6A27B05EC5008C5C34 /* DecksGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksGridView.swift; sourceTree = "<group>"; };
 		CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
 		CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTranslator.swift; sourceTree = "<group>"; };
@@ -405,6 +411,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB231D6527B05C9F008C5C34 /* CardsSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */,
+				CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */,
+			);
+			path = CardsSearchView;
+			sourceTree = "<group>";
+		};
 		CB36736B277DBD78004BB8E9 /* TextToSpeechService */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +550,7 @@
 		CB382544271DEEC50022E3DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CB231D6527B05C9F008C5C34 /* CardsSearchView */,
 				CBF469D82766175100424EDF /* CardImagePicker */,
 				CBF469D72766173D00424EDF /* LanguageFilter */,
 				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
@@ -651,6 +667,7 @@
 				CBF0EFD32793300E00CEE525 /* DecksListViewModel.swift */,
 				CBF0EFD62793304300CEE525 /* DeckDetailView.swift */,
 				CBF0EFD92793372300CEE525 /* DeckDetailViewModel.swift */,
+				CB231D6A27B05EC5008C5C34 /* DecksGridView.swift */,
 			);
 			path = Decks;
 			sourceTree = "<group>";
@@ -940,6 +957,7 @@
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CBF469D52766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift in Sources */,
 				CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */,
+				CB231D6927B05CC7008C5C34 /* CardsSearchViewModel.swift in Sources */,
 				CBCA988F2788F6FE00ED874C /* Consts.swift in Sources */,
 				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
@@ -992,6 +1010,7 @@
 				CB15494A274E73550060706F /* Configuration.swift in Sources */,
 				CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */,
 				CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */,
+				CB231D6727B05CB1008C5C34 /* CardsSearchView.swift in Sources */,
 				CBC4CB6A27553978009CCB32 /* MatchPairsGameStep.swift in Sources */,
 				CBC4CB6D2755398F009CCB32 /* GameCardView.swift in Sources */,
 				CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */,
@@ -1009,6 +1028,7 @@
 				CBF0EFE727944B4D00CEE525 /* CardShareView.swift in Sources */,
 				CBA3535F27582CA70036C9EE /* DecksListView.swift in Sources */,
 				CBCA9897278B644200ED874C /* cardsWidget.intentdefinition in Sources */,
+				CB231D6B27B05EC5008C5C34 /* DecksGridView.swift in Sources */,
 				CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */,
 				CBCA98A0278CE0FE00ED874C /* View+hideKeyboard.swift in Sources */,
 				CBC4CB70275539AB009CCB32 /* MatchPairsGameScreen.swift in Sources */,

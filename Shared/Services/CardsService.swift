@@ -21,6 +21,39 @@ class CardsService {
         return (objects ?? [])
     }
     
+    func cleanOrphanVariants() -> Int {
+        let fetchRequest: NSFetchRequest<CardVariant>
+        fetchRequest = CardVariant.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "card == null")
+        
+        let objects = try? viewContext.fetch(fetchRequest)
+        objects?.forEach({ variant in
+            viewContext.delete(variant)
+        })
+        
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo)")
+            AppLogger.shared.error("Unresolved deleteCard error \(nsError), \(nsError.userInfo)")
+        }
+        
+        return objects?.count ?? 0
+    }
+    
+    func getVariants(text: String) -> [CardVariant] {
+        let fetchRequest: NSFetchRequest<CardVariant>
+        fetchRequest = CardVariant.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \CardVariant.text, ascending: true)
+        ]
+        fetchRequest.predicate = NSPredicate(format: "text CONTAINS[cd] %@", text)
+        
+        let objects = try? viewContext.fetch(fetchRequest)
+        return (objects ?? [])
+    }
+    
     func deleteCard( card: Card?, onFinished: @escaping () -> Void) {
         if let card = card {
             viewContext.delete(card)

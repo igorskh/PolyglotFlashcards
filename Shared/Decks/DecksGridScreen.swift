@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct DecksGridScreen: View {
     @FetchRequest(
@@ -28,86 +27,22 @@ struct DecksGridScreen: View {
     @Namespace var namespace
     var routerNamespace: Namespace.ID
     
-    let columns = [
-        GridItem(.adaptive(minimum: 300))
-    ]
-    
     func openDeck(_ item: Deck?) {
         withAnimation(.spring()) {
             selectedDeck = item
         }
     }
     
-    func openDeckCards(_ item: Deck?) {
-        isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation {
-                tabRouter.selectedDeck = item
-                tabRouter.currentTab = .cards
-            }
-        }
-    }
-    
-    var decksView: some View {
-        ScrollViewReader { scrollView in
-            ScrollView {
-                VStack {}.frame(height: 60)
-                
-                LazyVGrid(columns: columns, spacing: 10) {
-                    DeckPreviewView(deck: nil, namespace: namespace)
-                        .padding(10)
-                        .onTapGesture {
-                            openDeckCards(nil)
-                        }
-                    
-                    ForEach(decks) { item in
-                        ZStack {
-                            DeckPreviewView(deck: item, namespace: namespace, show: selectedDeck != nil && selectedDeck!.id == item.id)
-                                .id(item.id)
-                                .padding(10)
-                                .onTapGesture {
-                                    openDeckCards(item)
-                                }
-                                .animatedLongTap(onDismiss: {}) {
-                                    openDeck(item)
-                                }
-                            
-                            if selectedDeck == nil {
-                                VStack {
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            openDeck(item)
-                                        }) {
-                                            Image(systemName: "pencil.circle.fill")
-                                        }
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                        .opacity(0.6)
-                                    }
-                                    .padding()
-                                    
-                                    Spacer()
-                                }
-                            }
-                        }
-                    }
-                }
-                Spacer()
-                    .padding(.bottom, 50)
-            }
-            .onAppear {
-                if let id = tabRouter.selectedDeck?.id {
-                    scrollView.scrollTo(id, anchor: .center)
-                }
-            }
-        }
-    }
-    
     var body: some View {
         ZStack {
             ZStack {
-                decksView
+                DecksGridView(
+                    selectedDeck: $selectedDeck,
+                    isLoading: $isLoading,
+                    decks: decks,
+                    namespace: namespace,
+                    openDeck: openDeck
+                )
                 
                 VStack {
                     HStack {
@@ -132,6 +67,8 @@ struct DecksGridScreen: View {
                     .sheet(isPresented: $showAddDecks) {
                         DecksListView(selectedDecks: .constant([]), canEdit: true, canSelect: false)
                     }
+                    
+                    CardsSearchView()
                     
                     Spacer()
                 }
