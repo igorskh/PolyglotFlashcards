@@ -108,3 +108,18 @@
 "Show images" = "Display card images";
 
 "Search card" = "Search card";
+"Search deck" = "Search deck";
+
+"Search:" = "Search:";
+
+"Import Cards" = "Import Cards";
+
+"Import" = "Import";
+
+"Cards Imported" = "Cards Imported";
+
+"Error" = "Error";
+"Debug" = "Debug";
+"Information" = "Information";
+"Fatal" = "Fatal";
+"Unknown" = "Unknown";
