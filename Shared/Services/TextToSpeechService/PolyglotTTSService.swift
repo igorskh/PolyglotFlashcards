@@ -41,7 +41,7 @@ class PolyglotTTSService: TextToSpeechService {
         
         let urlSession = URLSession(
             configuration: .default,
-            delegate: URLSessionPinningDelegate(forResource: "polyglot-api"),
+            delegate: nil, //URLSessionPinningDelegate(forResource: "polyglot-api"),
             delegateQueue: .main
         )
         

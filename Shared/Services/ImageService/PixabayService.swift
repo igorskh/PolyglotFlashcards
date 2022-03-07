@@ -43,7 +43,7 @@ class PixabayService: ImageService {
         
         let urlSession = URLSession(
             configuration: .default,
-            delegate: URLSessionPinningDelegate(forResource: "pixabay-com"),
+            delegate: nil,//URLSessionPinningDelegate(forResource: "pixabay-com"),
             delegateQueue: .main
         )
         
