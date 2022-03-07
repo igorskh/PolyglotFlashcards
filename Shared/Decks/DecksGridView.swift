@@ -10,18 +10,22 @@ import SwiftUI
 struct DecksGridView: View {
     @EnvironmentObject var tabRouter: TabRouter
     
+    @State var loadingDeckID: ObjectIdentifier?
     @Binding var selectedDeck: Deck?
-    @Binding var isLoading: Bool
-    var decks: FetchedResults<Deck>
+    var decks: [Deck]
     var namespace: Namespace.ID
-    var openDeck: (_ item: Deck?) -> Void
+    var openDeck: ((_ item: Deck?) -> Void)? = nil
+    var showNoCategory: Bool = true
+    var topPadding: CGFloat = 80
+    var bottomPadding: CGFloat = 50
     
     let columns = [
         GridItem(.adaptive(minimum: 300))
     ]
     
     func openDeckCards(_ item: Deck?) {
-        isLoading = true
+        loadingDeckID = item?.id
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
                 tabRouter.selectedDeck = item
@@ -30,53 +34,66 @@ struct DecksGridView: View {
         }
     }
     
+    func deckItemView(item: Deck) -> some View {
+        ZStack {
+            DeckPreviewView(deck: item, namespace: namespace, show: selectedDeck != nil && selectedDeck!.id == item.id)
+                .id(item.id)
+                .padding(10)
+                .onTapGesture {
+                    openDeckCards(item)
+                }
+                .animatedLongTap(onDismiss: {}) {
+                    openDeck?(item)
+                }
+            
+            if let openDeck = openDeck,
+               selectedDeck == nil {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            openDeck(item)
+                        }) {
+                            Image(systemName: "pencil.circle.fill")
+                        }
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .opacity(0.6)
+                    }
+                    .padding()
+                    
+                    Spacer()
+                }
+            }
+            
+            
+            if let loadingDeckID = loadingDeckID,
+               loadingDeckID == item.id {
+                LoadingBackdropView()
+            }
+        }
+    }
+    
     var body: some View {
         ScrollViewReader { scrollView in
             ScrollView {
-                VStack {}.frame(height: 100)
+                VStack {}.frame(height: topPadding)
                 
                 LazyVGrid(columns: columns, spacing: 10) {
-                    DeckPreviewView(deck: nil, namespace: namespace)
-                        .padding(10)
-                        .onTapGesture {
-                            openDeckCards(nil)
-                        }
+                    if showNoCategory {
+                        DeckPreviewView(deck: nil, namespace: namespace)
+                            .padding(10)
+                            .onTapGesture {
+                                openDeckCards(nil)
+                            }
+                    }
                     
                     ForEach(decks) { item in
-                        ZStack {
-                            DeckPreviewView(deck: item, namespace: namespace, show: selectedDeck != nil && selectedDeck!.id == item.id)
-                                .id(item.id)
-                                .padding(10)
-                                .onTapGesture {
-                                    openDeckCards(item)
-                                }
-                                .animatedLongTap(onDismiss: {}) {
-                                    openDeck(item)
-                                }
-                            
-                            if selectedDeck == nil {
-                                VStack {
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            openDeck(item)
-                                        }) {
-                                            Image(systemName: "pencil.circle.fill")
-                                        }
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                        .opacity(0.6)
-                                    }
-                                    .padding()
-                                    
-                                    Spacer()
-                                }
-                            }
-                        }
+                        deckItemView(item: item)
                     }
                 }
                 Spacer()
-                    .padding(.bottom, 50)
+                    .padding(.bottom, bottomPadding)
             }
             .onAppear {
                 if let id = tabRouter.selectedDeck?.id {
