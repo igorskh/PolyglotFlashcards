@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var tabRouter: TabRouter
     
     func onLaunch() {
-        print(CardsService.shared.cleanOrphanVariants())
+        print("Cleaned orphaned \(CardsService.shared.cleanOrphanVariants())")
     }
     
     var body: some View {
