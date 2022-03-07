@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		CB15494A274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
 		CB15494B274E73550060706F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB154949274E73550060706F /* Configuration.swift */; };
-		CB231D6727B05CB1008C5C34 /* CardsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */; };
-		CB231D6927B05CC7008C5C34 /* CardsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */; };
 		CB231D6B27B05EC5008C5C34 /* DecksGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6A27B05EC5008C5C34 /* DecksGridView.swift */; };
+		CB231D6E27B3CE66008C5C34 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6D27B3CE66008C5C34 /* SearchScreen.swift */; };
+		CB231D6F27B3CE66008C5C34 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D6D27B3CE66008C5C34 /* SearchScreen.swift */; };
+		CB231D7127B3D40C008C5C34 /* VariantsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D7027B3D40C008C5C34 /* VariantsListView.swift */; };
+		CB231D7227B3D40C008C5C34 /* VariantsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D7027B3D40C008C5C34 /* VariantsListView.swift */; };
+		CB231D7427B3D570008C5C34 /* SearchScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D7327B3D570008C5C34 /* SearchScreenViewModel.swift */; };
+		CB231D7527B3D570008C5C34 /* SearchScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB231D7327B3D570008C5C34 /* SearchScreenViewModel.swift */; };
+		CB231D7827B540CA008C5C34 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CB231D7727B540CA008C5C34 /* Introspect */; };
 		CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DAF2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */; };
 		CB233DB42748409B00EFCEFE /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */; };
@@ -64,6 +69,8 @@
 		CB7169CC275027D600F9F6CA /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */; };
 		CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
 		CB8493D02741597400A8FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8493CE2741597400A8FC7E /* ContentView.swift */; };
+		CB8C638727D4C0050060C6A3 /* CardsImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C638627D4C0050060C6A3 /* CardsImportView.swift */; };
+		CB8C638827D4C0050060C6A3 /* CardsImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C638627D4C0050060C6A3 /* CardsImportView.swift */; };
 		CB8D5F2B277F1B240032AF3D /* SwipeGameStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F2A277F1B240032AF3D /* SwipeGameStartScreen.swift */; };
 		CB8D5F2C277F1B240032AF3D /* SwipeGameStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F2A277F1B240032AF3D /* SwipeGameStartScreen.swift */; };
 		CB8D5F2E277F1BE60032AF3D /* SwipeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D5F2D277F1BE60032AF3D /* SwipeGame.swift */; };
@@ -248,9 +255,10 @@
 		CB154945274E71050060706F /* PolyglotFlashcards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PolyglotFlashcards--iOS--Info.plist"; sourceTree = "<group>"; };
 		CB154946274E73060060706F /* Config.default.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.default.xcconfig; sourceTree = "<group>"; };
 		CB154949274E73550060706F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSearchView.swift; sourceTree = "<group>"; };
-		CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSearchViewModel.swift; sourceTree = "<group>"; };
 		CB231D6A27B05EC5008C5C34 /* DecksGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksGridView.swift; sourceTree = "<group>"; };
+		CB231D6D27B3CE66008C5C34 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
+		CB231D7027B3D40C008C5C34 /* VariantsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantsListView.swift; sourceTree = "<group>"; };
+		CB231D7327B3D570008C5C34 /* SearchScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModel.swift; sourceTree = "<group>"; };
 		CB233DAD2747C62D00EFCEFE /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
 		CB367362277C3C14004BB8E9 /* PolyglotTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyglotTranslator.swift; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 		CB7169C92750276700F9F6CA /* WordTagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTagger.swift; sourceTree = "<group>"; };
 		CB7169CB275027D600F9F6CA /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		CB8493CE2741597400A8FC7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB8C638627D4C0050060C6A3 /* CardsImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsImportView.swift; sourceTree = "<group>"; };
 		CB8D5F2A277F1B240032AF3D /* SwipeGameStartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameStartScreen.swift; sourceTree = "<group>"; };
 		CB8D5F2D277F1BE60032AF3D /* SwipeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGame.swift; sourceTree = "<group>"; };
 		CB8D5F30277F1CA90032AF3D /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
@@ -374,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBA35370275971A20036C9EE /* CloudKit.framework in Frameworks */,
+				CB231D7827B540CA008C5C34 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,13 +421,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CB231D6527B05C9F008C5C34 /* CardsSearchView */ = {
+		CB231D6C27B3CE4F008C5C34 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				CB231D6627B05CB1008C5C34 /* CardsSearchView.swift */,
-				CB231D6827B05CC7008C5C34 /* CardsSearchViewModel.swift */,
+				CB231D6D27B3CE66008C5C34 /* SearchScreen.swift */,
+				CB231D7027B3D40C008C5C34 /* VariantsListView.swift */,
+				CB231D7327B3D570008C5C34 /* SearchScreenViewModel.swift */,
 			);
-			path = CardsSearchView;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		CB36736B277DBD78004BB8E9 /* TextToSpeechService */ = {
@@ -457,6 +468,7 @@
 				CBC1A98B275AC51F008C1A7C /* Localizable.strings */,
 				CB154946274E73060060706F /* Config.default.xcconfig */,
 				CB154942274E70310060706F /* Config.xcconfig */,
+				CB231D6C27B3CE4F008C5C34 /* Search */,
 				CBAEBB20275C22F800D2DB2E /* Onboarding */,
 				CBFFDCEF2753FA7B001607FA /* Games */,
 				CBBD31E92752CF1800F275E9 /* Settings */,
@@ -550,7 +562,6 @@
 		CB382544271DEEC50022E3DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				CB231D6527B05C9F008C5C34 /* CardsSearchView */,
 				CBF469D82766175100424EDF /* CardImagePicker */,
 				CBF469D72766173D00424EDF /* LanguageFilter */,
 				CB233DB32748409B00EFCEFE /* ImageCarouselView.swift */,
@@ -578,6 +589,7 @@
 				CBA3536727596D7C0036C9EE /* CardImagesView.swift */,
 				CB367365277CF5E4004BB8E9 /* TranslationOptionsEditView.swift */,
 				CBF0EFE627944B4D00CEE525 /* CardShareView.swift */,
+				CB8C638627D4C0050060C6A3 /* CardsImportView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -770,6 +782,9 @@
 				CB9D1B922786253C00858C2A /* PBXTargetDependency */,
 			);
 			name = "PolyglotFlashcards (iOS)";
+			packageProductDependencies = (
+				CB231D7727B540CA008C5C34 /* Introspect */,
+			);
 			productName = "PolyglotFlashcards (iOS)";
 			productReference = CB3824F9271C8B0B0022E3DA /* PolyglotFlashcards.app */;
 			productType = "com.apple.product-type.application";
@@ -883,6 +898,9 @@
 				ru,
 			);
 			mainGroup = CB3824E9271C8B080022E3DA;
+			packageReferences = (
+				CB231D7627B540CA008C5C34 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = CB3824FA271C8B0B0022E3DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -957,7 +975,6 @@
 				CB38254D271DEF260022E3DA /* CardDetailViewModel.swift in Sources */,
 				CBF469D52766150700424EDF /* UIIMage+scalePreservingAspectRatio.swift in Sources */,
 				CBC4CB7627558841009CCB32 /* WebImage.swift in Sources */,
-				CB231D6927B05CC7008C5C34 /* CardsSearchViewModel.swift in Sources */,
 				CBCA988F2788F6FE00ED874C /* Consts.swift in Sources */,
 				CB38251C271C8B0B0022E3DA /* PolyglotFlashcardsApp.swift in Sources */,
 				CB233DAE2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld in Sources */,
@@ -992,12 +1009,15 @@
 				CB367370277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */,
 				CBF469CC2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
 				CBAEBB25275CF34600D2DB2E /* NSPersistentCloudKitContainer.EventType+description.swift in Sources */,
+				CB8C638727D4C0050060C6A3 /* CardsImportView.swift in Sources */,
 				CBC4CB7327553E84009CCB32 /* TabRouter.swift in Sources */,
 				CBF0EFCE2792D21100CEE525 /* NewSettingsScreen.swift in Sources */,
+				CB231D6E27B3CE66008C5C34 /* SearchScreen.swift in Sources */,
 				CB382538271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CB8D5F34277F1CEA0032AF3D /* SwipeGameCardView.swift in Sources */,
 				CBF0F00127946DC700CEE525 /* ShareSheet.swift in Sources */,
 				CBBD31EE2752CFEF00F275E9 /* LanguageFilter.swift in Sources */,
+				CB231D7427B3D570008C5C34 /* SearchScreenViewModel.swift in Sources */,
 				CBF0F0082797624D00CEE525 /* AnimatedLongTap.swift in Sources */,
 				CBFFDCFC27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CBF0EFD72793304300CEE525 /* DeckDetailView.swift in Sources */,
@@ -1010,7 +1030,6 @@
 				CB15494A274E73550060706F /* Configuration.swift in Sources */,
 				CBFFDCE42753CB89001607FA /* Card+UIImage.swift in Sources */,
 				CB8493CF2741597400A8FC7E /* ContentView.swift in Sources */,
-				CB231D6727B05CB1008C5C34 /* CardsSearchView.swift in Sources */,
 				CBC4CB6A27553978009CCB32 /* MatchPairsGameStep.swift in Sources */,
 				CBC4CB6D2755398F009CCB32 /* GameCardView.swift in Sources */,
 				CBFFDCE92753D65C001607FA /* FilledButton.swift in Sources */,
@@ -1018,6 +1037,7 @@
 				CB7169C72750267F00F9F6CA /* Language+NaturalLanguage.swift in Sources */,
 				CBF99B9D276A740C001A57B9 /* OnboardingScreen.swift in Sources */,
 				CBF469D22765F0DE00424EDF /* CardImagePicker.swift in Sources */,
+				CB231D7127B3D40C008C5C34 /* VariantsListView.swift in Sources */,
 				CBF0F0032797534600CEE525 /* LoggerService.swift in Sources */,
 				CB382542271DEEB30022E3DA /* PixabayService.swift in Sources */,
 				CB382554271DEF560022E3DA /* CardsListScreen.swift in Sources */,
@@ -1053,6 +1073,7 @@
 				CBC4CB7427553E84009CCB32 /* TabRouter.swift in Sources */,
 				CBF0EFE12794335C00CEE525 /* ServicePreferences.swift in Sources */,
 				CB367371277DBDD4004BB8E9 /* PolyglotTTSService.swift in Sources */,
+				CB231D7527B3D570008C5C34 /* SearchScreenViewModel.swift in Sources */,
 				CB382539271DEE3A0022E3DA /* TranslationService.swift in Sources */,
 				CBAC3D5227A9FA7900092833 /* DismissibleTextEditor.swift in Sources */,
 				CBBD31F52753A30F00F275E9 /* Preferences.swift in Sources */,
@@ -1062,6 +1083,7 @@
 				CB8493D02741597400A8FC7E /* ContentView.swift in Sources */,
 				CB8D5F3B277F53D70032AF3D /* SwipeGameStep.swift in Sources */,
 				CB382535271DEE050022E3DA /* Language.swift in Sources */,
+				CB231D6F27B3CE66008C5C34 /* SearchScreen.swift in Sources */,
 				CB367364277C3C14004BB8E9 /* PolyglotTranslator.swift in Sources */,
 				CBFFDCFD27540478001607FA /* Card+awakeFromInsert.swift in Sources */,
 				CB36736E277DBD8A004BB8E9 /* TextToSpeechService.swift in Sources */,
@@ -1075,6 +1097,7 @@
 				CB38254B271DEF100022E3DA /* CardDetailView.swift in Sources */,
 				CB382540271DEE960022E3DA /* DeepLTranslator.swift in Sources */,
 				CBA3536627592A520036C9EE /* DecksGridScreen.swift in Sources */,
+				CB231D7227B3D40C008C5C34 /* VariantsListView.swift in Sources */,
 				CBC1A993275AD40A008C1A7C /* MatchPairsGameFinishedScreen.swift in Sources */,
 				CB8D5F32277F1CA90032AF3D /* ProgressBar.swift in Sources */,
 				CBA3536327582CBD0036C9EE /* DeckCapsuleView.swift in Sources */,
@@ -1089,6 +1112,7 @@
 				CBF469CD2762922D00424EDF /* LanguageFilterViewModel.swift in Sources */,
 				CBBD32002753C8FF00F275E9 /* AttributedText.swift in Sources */,
 				CB8D5F2C277F1B240032AF3D /* SwipeGameStartScreen.swift in Sources */,
+				CB8C638827D4C0050060C6A3 /* CardsImportView.swift in Sources */,
 				CBA3536C27596D8E0036C9EE /* DeckPreviewView.swift in Sources */,
 				CB15494B274E73550060706F /* Configuration.swift in Sources */,
 				CBC4CB6E2755398F009CCB32 /* GameCardView.swift in Sources */,
@@ -1326,7 +1350,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1344,7 +1368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.13;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1363,7 +1387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1381,7 +1405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.13;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1564,7 +1588,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1576,7 +1600,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.13;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1594,7 +1618,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 85;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1606,7 +1630,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.13;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1676,6 +1700,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB231D7627B540CA008C5C34 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB231D7727B540CA008C5C34 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB231D7627B540CA008C5C34 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CB233DAC2747C62D00EFCEFE /* PolyglotFlashcards.xcdatamodeld */ = {
