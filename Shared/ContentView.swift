@@ -11,6 +11,10 @@ struct ContentView: View {
     @Namespace var routerNamespace
     @EnvironmentObject var tabRouter: TabRouter
     
+    func onLaunch() {
+        print(CardsService.shared.cleanOrphanVariants())
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Group {
@@ -81,6 +85,9 @@ struct ContentView: View {
             }
             .offset(y: tabRouter.isModal ? 400 : 0)
             .animation(.spring(), value: tabRouter.isModal)
+        }
+        .onAppear {
+            onLaunch()
         }
     }
 }
