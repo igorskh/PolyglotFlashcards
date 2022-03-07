@@ -22,8 +22,8 @@ struct PolyglotFlashcardsApp: App {
                 ContentView()
                     .alert(isPresented: $appLogger.showAlert) {
                         Alert(
-                            title: Text("Error"),
-                            message: Text(appLogger.history.last ?? "N/A")
+                            title: Text(LocalizedStringKey(appLogger.history.last?.level.title ?? "N/A")),
+                            message: Text(appLogger.history.last?.message ?? "N/A")
                         )
                     }
                     .environmentObject(tabRouter)

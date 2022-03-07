@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
+import Combine
+
+class DecksGridScreenViewModel: ObservableObject {
+    @Published var decks: [Deck] = []
+    
+    private var viewContext = PersistenceController.shared.container.viewContext
+    
+    init() {
+        fetchDecks()
+    }
+    
+    func fetchDecks(_ searchText: String? = nil) {
+        decks = CardsService.shared.getDecks(searchText: searchText)
+    }
+}
 
 struct DecksGridScreen: View {
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)],
-//        predicate: NSPredicate(format: "(ANY cards.@count > 0)"),
-        animation: .default)
-    private var decks: FetchedResults<Deck>
-    
     @EnvironmentObject var tabRouter: TabRouter
+    
+    @ObservedObject var viewModel: DecksGridScreenViewModel = .init()
+    
     @State var showAddDecks: Bool = false
     @State var selectedDeck: Deck? {
         didSet {
@@ -22,7 +34,13 @@ struct DecksGridScreen: View {
         }
     }
     @State var scaleDeckView: Deck?
-    @State var isLoading: Bool = false
+    @State var showSearch: Bool = false {
+        didSet {
+            tabRouter.isModal = showSearch
+        }
+    }
+    @State private var showImporter = false
+    @State private var importText: String?
     
     @Namespace var namespace
     var routerNamespace: Namespace.ID
@@ -38,8 +56,7 @@ struct DecksGridScreen: View {
             ZStack {
                 DecksGridView(
                     selectedDeck: $selectedDeck,
-                    isLoading: $isLoading,
-                    decks: decks,
+                    decks: viewModel.decks,
                     namespace: namespace,
                     openDeck: openDeck
                 )
@@ -50,6 +67,25 @@ struct DecksGridScreen: View {
                             .matchedGeometryEffect(id: "router-title", in: routerNamespace)
                         
                         Spacer()
+                        
+                        Button {
+                            withAnimation {
+                                tabRouter.isModal = true
+                                showImporter.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "arrow.down.circle.fill")
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Button {
+                            withAnimation {
+                                showSearch.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "magnifyingglass.circle.fill")
+                        }
+                        .buttonStyle(PlainButtonStyle())
                         
                         Button(action: {
                             showAddDecks.toggle()
@@ -68,10 +104,17 @@ struct DecksGridScreen: View {
                         DecksListView(selectedDecks: .constant([]), canEdit: true, canSelect: false)
                     }
                     
-                    CardsSearchView()
-                    
                     Spacer()
                 }
+            }
+            
+            if showSearch {
+                SearchScreen(isPresented: $showSearch, routerNamespace: routerNamespace)
+                    .transition(.move(edge: .bottom))
+            }
+            
+            if importText != nil {
+                CardsImportView(inputText: $importText)
             }
             
             if let deck = selectedDeck {
@@ -89,9 +132,28 @@ struct DecksGridScreen: View {
                 .frame(maxWidth: 600, maxHeight: 800)
                 
             }
-            
-            if isLoading {
-                LoadingBackdropView()
+        }
+        .onChange(of: importText) { value in
+            if value == nil {
+                tabRouter.isModal = false
+            }
+        }
+        .fileImporter(
+            isPresented: $showImporter,
+            allowedContentTypes: [.plainText, .commaSeparatedText],
+            allowsMultipleSelection: false
+        ) { result in
+            do {
+                guard let selectedFile: URL = try result.get().first else { return }
+                guard selectedFile.startAccessingSecurityScopedResource() else { return }
+                
+                guard let message = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+                
+                importText = message
+                //                document.message = message
+            } catch {
+                // Handle failure.
+                print(error.localizedDescription)
             }
         }
     }
