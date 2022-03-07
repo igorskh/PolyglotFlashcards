@@ -13,9 +13,16 @@ class CardsService {
     
     private var viewContext = PersistenceController.shared.container.viewContext
     
-    func getDecks() -> [Deck] {
+    func getDecks(searchText: String? = nil) -> [Deck] {
         let fetchRequest: NSFetchRequest<Deck>
         fetchRequest = Deck.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Deck.text, ascending: true)
+        ]
+        if let searchText = searchText,
+           !searchText.isEmpty {
+            fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+        }
         
         let objects = try? viewContext.fetch(fetchRequest)
         return (objects ?? [])
