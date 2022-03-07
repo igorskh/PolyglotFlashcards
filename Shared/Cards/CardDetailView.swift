@@ -75,6 +75,8 @@ struct CardDetailView: View {
                     }
                 }
                 .clipped()
+                .offset(y: viewModel.isHeaderHidden ? -250 : 0)
+                .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
                 
                 VStack {
                     HStack {
@@ -196,7 +198,7 @@ struct CardDetailView: View {
 //                            .textFieldStyle(RoundedBorderTextFieldStyle())
 //                            .multilineTextAlignment(.leading)
                         
-                        DismissibleTextEditor(text: $viewModel.translations[i].translation)
+                        DismissibleTextEditor(text: $viewModel.translations[i].translation, preferredLanguage: viewModel.translations[i].target.code)
                             { _ in
                                 viewModel.getTranslation(
                                     from: viewModel.translations[i].target
@@ -313,8 +315,6 @@ struct CardDetailView: View {
                     .onTapGesture {
                         viewModel.isTranslationFieldFocused = false
                     }
-                    .offset(y: viewModel.isHeaderHidden ? -250 : 0)
-                    .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
                 
                 if viewModel.errorMessage != "" {
                     Text(viewModel.errorMessage)
