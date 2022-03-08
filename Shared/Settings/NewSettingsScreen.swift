@@ -17,10 +17,37 @@ struct NewSettingsScreen: View {
                 NavigationLink(destination: SettingsServicesView()) {
                     Text("Translation and speech synthesizer")
                 }
+                NavigationLink(destination: SettingsAppearanceView()) {
+                    Text("Appereance")
+                }
             }
             .navigationTitle("Settings")
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
+    }
+}
+
+struct SettingsAppearanceView: View {
+    @Preference(\.colorScheme) var storedColorScheme
+    @State var colorScheme: ColorSchemePreference = .auto
+
+    var body: some View {
+        Form {
+            Section {
+                Picker("Color Scheme", selection: $colorScheme) {
+                    ForEach([ColorSchemePreference.auto, ColorSchemePreference.dark, ColorSchemePreference.light], id: \.self) {
+                        Text(NSLocalizedString($0.rawValue, comment: $0.rawValue))
+                            .tag($0)
+                    }
+                }
+            }
+        }
+        .onChange(of: colorScheme) {
+            storedColorScheme = $0
+        }
+        .onAppear {
+            colorScheme = storedColorScheme
+        }
     }
 }
 
