@@ -142,11 +142,12 @@ class MatchPairsGame: ObservableObject {
     }
     
     func checkStep(variant: CardVariant, onSuccess: (Bool) -> Void) {
-        if selectedVariantIDs.contains(gameStep!.correctVariantID) {
-            return nextStep()
-        }
+//        if selectedVariantIDs.contains(gameStep!.correctVariantID) {
+//            return nextStep()
+//        }
+        speechSynth.speak(string: variant.text!, language: variant.language_code!)
         
-        if selectedVariantIDs.contains(variant.id) {
+        if selectedVariantIDs.contains(gameStep!.correctVariantID) || selectedVariantIDs.contains(variant.id) {
             return
         }
         
@@ -167,7 +168,6 @@ class MatchPairsGame: ObservableObject {
 #endif
         }
         
-        speechSynth.speak(string: variant.text!, language: variant.language_code!)
         selectedVariantIDs.append(variant.id)
         onSuccess(variant.id == gameStep!.correctVariantID)
     }
