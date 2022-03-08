@@ -8,6 +8,12 @@
 import SwiftUI
 import Combine
 
+enum ColorSchemePreference: String, Codable {
+    case dark
+    case light
+    case auto
+}
+
 // https://www.avanderlee.com/swift/appstorage-explained/
 final class Preferences {
     static var standard: Preferences = Preferences(userDefaults: UserDefaults(suiteName: appGroupIdentifier) ?? .standard)
@@ -31,6 +37,9 @@ final class Preferences {
     
     @UserDefault("servicePreferences")
     var servicePreferences: ServicePreferences = defaultServicePreferences
+    
+    @UserDefault("colorScheme")
+    var colorScheme: ColorSchemePreference = .auto
 }
 
 @propertyWrapper

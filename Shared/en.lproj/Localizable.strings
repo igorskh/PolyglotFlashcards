@@ -123,3 +123,11 @@
 "Information" = "Information";
 "Fatal" = "Fatal";
 "Unknown" = "Unknown";
+
+"Appereance" = "Appereance";
+
+"Color Scheme" = "Color Scheme";
+
+"auto" = "Auto";
+"dark" = "Dark";
+"light" = "Light";

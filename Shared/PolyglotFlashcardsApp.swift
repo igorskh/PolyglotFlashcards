@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct PolyglotFlashcardsApp: App {
     @Preference(\.firstLaunch) var firstLaunch
+    @Preference(\.colorScheme) var colorSchemePreference
+    
     @ObservedObject var tabRouter: TabRouter = .init()
     @ObservedObject var appLogger: AppLogger = .shared
     let persistenceController = PersistenceController.shared
@@ -31,6 +33,7 @@ struct PolyglotFlashcardsApp: App {
                     .onOpenURL { url in
                         tabRouter.redirectFromWidgetURL(url: url)
                     }
+                    .preferredColorScheme(colorSchemePreference == .auto ? .none : (colorSchemePreference == .dark ? .dark : .light))
             }
         }
     }
