@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-class ImageSaver: ObservableObject {
-    func writeToPhotoAlbum(image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
-    }
-
-    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print("Save finished!")
-    }
-}
-
 struct CardShareView: View {
     @Preference(\.languages) var languages
     @Preference(\.filteredLanguages) var filteredLanguages
@@ -100,7 +90,7 @@ struct CardShareView: View {
                 showShareSheet.toggle()
             }
             .sheet(isPresented: $showShareSheet) {
-                ShareView(uiImage: $uiImage)
+                ShareImageView(uiImage: $uiImage)
             }
             .padding()
         }
@@ -121,7 +111,7 @@ struct CardShareView: View {
 }
 
 
-struct ShareView: View {
+struct ShareImageView: View {
     @Binding var uiImage: UIImage?
     
     var body: some View {

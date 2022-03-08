@@ -327,7 +327,7 @@ struct CardDetailView: View {
                 }
                 
                 if !viewModel.isHeaderHidden {
-                    DecksPicker(selectedDecks: $viewModel.decks, canEdit: false, showAny: false)
+                    DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
                         .padding(.horizontal)
                         .padding(.bottom)
                 }

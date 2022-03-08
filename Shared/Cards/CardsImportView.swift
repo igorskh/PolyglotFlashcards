@@ -22,6 +22,8 @@ struct CardsImportView: View {
     @State var cards: [Card] = []
     @State var isImporting: [Bool] = []
     
+    @State var decks: [Deck] = []
+    
     @State var importingStatus: ImportingStatus = .ready
     
     @State var isImportingAll: Bool = true {
@@ -82,6 +84,7 @@ struct CardsImportView: View {
                 newVariant.text = el.text
                 return newVariant
             })
+            newCard.decks = NSSet(array: decks)
         }
         
         do {
@@ -113,10 +116,14 @@ struct CardsImportView: View {
     
     var body: some View {
         ZStack {
-            VisualEffectView(effect: UIBlurEffect(style: .dark))
-                .edgesIgnoringSafeArea(.all)
+            Color.primary.colorInvert()
+            
             VStack {
                 header
+                
+                DecksPicker(selectedDecks: $decks, canEdit: true, showAny: false)
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 
                 HStack {
                     Image(systemName: isImportingAll ? "checkmark.circle.fill" : "circle")

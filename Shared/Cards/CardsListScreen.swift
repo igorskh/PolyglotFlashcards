@@ -37,6 +37,9 @@ struct CardsListScreen: View {
     }
     @State var loadingCardID: ObjectIdentifier?
     
+    @State var exportTextURL: URL?
+    @State var showShareCSVSheet: Bool = false
+    
     
     @Preference(\.languages) var languages
     
@@ -68,6 +71,50 @@ struct CardsListScreen: View {
         } else {
             showAddCard()
         }
+    }
+    
+    func shareCards() {
+        var variantsLanguages: [String] = []
+        var exportText = ""
+        languages.forEach { lang in
+            variantsLanguages.append(lang.code)
+            exportText += "\(lang.code);"
+        }
+        exportText += "\n"
+        
+        items.forEach { card in
+            var variantsText = variantsLanguages.map { _ in
+                ""
+            }
+            card.variants?.forEach({ variant in
+                if let v = variant as? CardVariant,
+                   let langCode = v.language_code,
+                   let index = variantsLanguages.firstIndex(of: langCode) {
+                    variantsText[index] = v.text ?? ""
+                }
+            })
+            
+            variantsText.forEach { v in
+                exportText += "\(v);"
+            }
+            exportText += "\n"
+        }
+        
+        let filename = deck?.title ?? NSLocalizedString("Uncategorized", comment: "Uncategorized");
+        
+        let temporaryFolder = FileManager.default.temporaryDirectory
+        let fileName = "\(filename).csv"
+        let temporaryFileURL = temporaryFolder.appendingPathComponent(fileName)
+        
+        do {
+            try exportText.write(to: temporaryFileURL, atomically: false, encoding: .utf8)
+            
+            self.exportTextURL = temporaryFileURL
+            showShareCSVSheet = true
+        } catch {
+            print(error)
+        }
+        
     }
     
     func showAddCard() {
@@ -153,41 +200,53 @@ struct CardsListScreen: View {
         }
     }
     
+    var header: some View {
+        VStack {
+            HStack {
+                Button {
+                    withAnimation {
+                        tabRouter.currentTab = .decks
+                    }
+                } label: {
+                    Image(systemName: "chevron.backward.circle.fill")
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                Text("\(deck?.title ?? NSLocalizedString("Polyglot Cards", comment: "title"))")
+                
+                Spacer()
+                
+                Button(action: shareCards) {
+                    Image(systemName: "square.and.arrow.up.circle.fill")
+                }
+                .buttonStyle(PlainButtonStyle())
+                .sheet(isPresented: $showShareCSVSheet) {
+                    ShareURLView(url: $exportTextURL)
+                }
+                
+                Button(action: addCard) {
+                    Image(systemName: "plus.circle.fill")
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .font(.title)
+            .padding()
+            .background(
+                VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+                    .edgesIgnoringSafeArea(.all)
+            )
+            
+            Spacer()
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack {
                 ZStack {
                     cardsGrid
                     
-                    VStack {
-                        HStack {
-                            Button {
-                                withAnimation {
-                                    tabRouter.currentTab = .decks
-                                }
-                            } label: {
-                                Image(systemName: "chevron.backward.circle.fill")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            
-                            Text("\(deck?.title ?? NSLocalizedString("Polyglot Cards", comment: "title"))")
-                            
-                            Spacer()
-                            
-                            Button(action: addCard) {
-                                Image(systemName: "plus.circle.fill")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        .font(.title)
-                        .padding()
-                        .background(
-                            VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
-                                .edgesIgnoringSafeArea(.all)
-                        )
-                        
-                        Spacer()
-                    }
+                    header
                 }
             }
             
@@ -277,5 +336,15 @@ struct CardsListScreen: View {
                     }
                 })
         )
+    }
+}
+
+struct ShareURLView: View {
+    @Binding var url: URL?
+    
+    var body: some View {
+        VStack {
+            ShareSheet(activityItems: [url!])
+        }
     }
 }
