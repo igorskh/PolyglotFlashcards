@@ -198,7 +198,7 @@ struct CardDetailView: View {
 //                            .textFieldStyle(RoundedBorderTextFieldStyle())
 //                            .multilineTextAlignment(.leading)
                         
-                        DismissibleTextEditor(text: $viewModel.translations[i].translation, preferredLanguage: viewModel.translations[i].target.code)
+                        DismissibleTextEditor(text: $viewModel.translations[i].translation, tag: i, preferredLanguage: viewModel.translations[i].target.code)
                             { _ in
                                 viewModel.getTranslation(
                                     from: viewModel.translations[i].target
