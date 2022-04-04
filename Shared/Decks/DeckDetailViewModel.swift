@@ -18,6 +18,9 @@ class DeckDetailViewModel: ObservableObject {
     @Published var deckTitle: String
     @Published var errorText: String
     
+    @Published var showDeleteConfirm: Bool = false
+    @Published var deckToDelete: Deck? = nil
+    
     init(deck: Deck) {
         self.deck = deck
         self.deckTitle = deck.title ?? ""
@@ -79,10 +82,19 @@ class DeckDetailViewModel: ObservableObject {
             }
     }
     
-    func deleteDeck(onFinished: @escaping (Bool) -> Void) {
-        cardsService.deleteDeck(deck: deck) { message in
+    func deleteDeck(confirmed: Bool = false, onFinished: @escaping (Bool) -> Void) {
+        if let cards = deck.cards,
+           cards.count > 0 {
+            if !confirmed {
+                showDeleteConfirm = true
+                return
+            }
+        }
+        
+        cardsService.deleteDeck(deck: deck, deleteCards: true) { message in
             self.errorText = message
             onFinished(message == "")
         }
+        showDeleteConfirm = false
     }
 }

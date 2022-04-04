@@ -71,7 +71,12 @@ struct DecksGridScreen: View {
                         Button {
                             withAnimation {
                                 tabRouter.isModal = true
-                                showImporter.toggle()
+                                if showImporter {
+                                    showImporter = false
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    showImporter.toggle()
+                                }
                             }
                         } label: {
                             Image(systemName: "arrow.down.circle.fill")
@@ -100,7 +105,9 @@ struct DecksGridScreen: View {
                         VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
                             .edgesIgnoringSafeArea(.all)
                     )
-                    .sheet(isPresented: $showAddDecks) {
+                    .sheet(isPresented: $showAddDecks, onDismiss: {
+                        viewModel.fetchDecks()
+                    }) {
                         DecksListView(selectedDecks: .constant([]), canEdit: true, canSelect: false)
                     }
                     
@@ -150,10 +157,9 @@ struct DecksGridScreen: View {
                 guard let message = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
                 
                 importText = message
-                //                document.message = message
             } catch {
-                // Handle failure.
                 print(error.localizedDescription)
+                importText = nil
             }
         }
     }

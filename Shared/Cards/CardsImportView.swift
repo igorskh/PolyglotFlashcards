@@ -45,25 +45,38 @@ struct CardsImportView: View {
         cards = []
         isImporting = []
         
-        let separator: Character = ";"
-        let rows = inputText.split(separator: "\n")
-        if rows.count < 1 {
+        let separator: CharacterSet = [";"]
+        let rows = inputText.components(separatedBy: "\n")
+        
+        if rows.count < 2 {
             return
         }
             
-        let importLanguages = rows[0].split(separator: separator)
+        let importLanguages = rows[0].components(separatedBy: separator).map { langCode in
+            return langCode.trimmingCharacters(in: CharacterSet(charactersIn: "\r "))
+        }
         for i in 1..<rows.count {
-            let words = rows[i].split(separator: separator)
+            let words = rows[i].components(separatedBy: separator)
             if importLanguages.count != words.count {
                 continue
             }
             let newCard = Card(context: childContext)
-            newCard.variants =  NSSet(array: importLanguages.enumerated().map { el -> CardVariant in
-                let newVariant = CardVariant(context: childContext)
-                newVariant.language_code = String(el.element)
-                newVariant.text = String(words[el.offset])
-                return newVariant
-            })
+            
+            var cardVariants: [CardVariant] = []
+            importLanguages.enumerated().forEach { el in
+                let word = words[el.offset].trimmingCharacters(in: .controlCharacters)
+                let langCode = el.element.trimmingCharacters(in: .controlCharacters)
+                
+                if !langCode.isEmpty, !word.isEmpty {
+                    let newVariant = CardVariant(context: childContext)
+                
+                    newVariant.language_code = langCode
+                    newVariant.text = word
+                    cardVariants.append(newVariant)
+                }
+            }
+            
+            newCard.variants =  NSSet(array: cardVariants)
             cards.append(newCard)
             isImporting.append(true)
         }
@@ -76,24 +89,19 @@ struct CardsImportView: View {
             }
             let variants: [CardVariant] = cards[i].variants?.sortedArray(using: []) as? [CardVariant] ?? []
             
-            let newCard = Card(context: persistentContext)
-            newCard.variants = NSSet(array: variants.map { el -> CardVariant in
-                let newVariant = CardVariant(context: persistentContext)
-            
-                newVariant.language_code = el.language_code
-                newVariant.text = el.text
-                return newVariant
-            })
-            newCard.decks = NSSet(array: decks)
-        }
-        
-        do {
-            try persistentContext.save()
-            inputText = nil
-            AppLogger.shared.info(NSLocalizedString("Cards Imported", comment: "Cards Imported"), show: true)
-        } catch {
-            let nsError = error as NSError
-            AppLogger.shared.error("Unresolved saveCard error \(nsError), \(nsError.userInfo)")
+            let translations = variants.map { el -> Translation in
+                return Translation(
+                    original: "",
+                    translation: el.text ?? "",
+                    source: .Unknown,
+                    target: Language(rawValue: el.language_code ?? "") ?? .Unknown
+                )
+            }
+            CardsService.shared.saveCard(withImage: nil, card: nil, translations: translations, decks: decks) {
+                inputText = nil
+                AppLogger.shared.info(NSLocalizedString("Cards Imported", comment: "Cards Imported"), show: true)
+                
+            }
         }
     }
     

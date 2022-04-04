@@ -11,7 +11,7 @@ import Combine
 class DecksListViewModel: ObservableObject {
     let didChange = PassthroughSubject<Void, Never>()
     
-    var decks: [Deck]
+    var decks: [Deck] = []
     var cardsServices: CardsService = .shared
     
     @Published var searchText: String = ""
@@ -29,10 +29,15 @@ class DecksListViewModel: ObservableObject {
         })
     }
     
-    init() {
+    func updateDecks() {
         decks = cardsServices.getDecks()
         
         searchResults = decks
+        filterDecks(searchText)
+    }
+    
+    init() {
+        updateDecks()
         
         cancellable = AnyCancellable(
             $searchText

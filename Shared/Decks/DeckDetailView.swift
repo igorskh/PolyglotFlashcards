@@ -93,6 +93,23 @@ struct DeckDetailView: View {
             
             Spacer()
         }
+        .actionSheet(isPresented: $viewModel.showDeleteConfirm) {
+            ActionSheet(
+                title: Text("This deck contains cards"),
+                buttons: [
+                    .destructive(Text("Delete with cards")) {
+                        viewModel.deleteDeck(confirmed: true) { success in
+                            if success {
+                                onClose()
+                            }
+                        }
+                    },
+                    .default(Text("Cancel")) {
+                        viewModel.showDeleteConfirm = false
+                    }
+                ]
+            )
+        }
         .background(
             Rectangle()
                 .ignoresSafeArea()

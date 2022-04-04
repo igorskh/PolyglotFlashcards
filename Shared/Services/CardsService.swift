@@ -188,12 +188,15 @@ class CardsService {
         }
     }
     
-    func deleteDeck(deck: Deck?, onFinished: @escaping (String) -> Void) {
+    func deleteDeck(deck: Deck?, deleteCards: Bool = false, onFinished: @escaping (String) -> Void) {
         if let deck = deck {
-            if let cards = deck.cards,
-               cards.count > 0 {
-                onFinished(NSLocalizedString("This deck contains cards", comment: "This deck contains cards"))
-                return
+            if let cards = deck.cards {
+                if !deleteCards && cards.count > 0 {
+                    return onFinished(NSLocalizedString("This deck contains cards", comment: "This deck contains cards"))
+                }
+                (cards.sortedArray(using: []) as? [Card])?.forEach { card in
+                    deleteCard(card: card) { }
+                }
             }
             
             viewContext.delete(deck)

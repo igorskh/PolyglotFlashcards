@@ -15,6 +15,8 @@ struct DecksListView: View {
     @ObservedObject var viewModel: DecksListViewModel = .init()
     
     @State var errorText: String = ""
+    @State var showDeleteConfirm: Bool = false
+    @State var deckToDelete: Deck? = nil
     @Binding var selectedDecks: [Deck]
     
     var canEdit: Bool
@@ -48,7 +50,11 @@ struct DecksListView: View {
         
         do {
             try viewContext.save()
-            selectedDecks.append(deck)
+            
+            viewModel.updateDecks()
+            if canSelect {
+                selectedDecks.append(deck)
+            }
         } catch {
             let nsError = error as NSError
             errorText = nsError.userInfo.description
@@ -64,17 +70,13 @@ struct DecksListView: View {
         }
         if let cards = deck.cards,
            cards.count > 0 {
-            errorText = NSLocalizedString("This deck contains cards", comment: "This deck contains cards")
-            return
-        }
-        
-        viewContext.delete(deck)
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            errorText = nsError.userInfo.description
-            print("Unresolved error \(nsError), \(nsError.userInfo)")
+            deckToDelete = deck
+            showDeleteConfirm = true
+        } else {
+            CardsService.shared.deleteDeck(deck: deck, deleteCards: false) { err in
+                errorText = NSLocalizedString(err, comment: err)
+            }
+            viewModel.updateDecks()
         }
     }
     
@@ -94,20 +96,37 @@ struct DecksListView: View {
                 .buttonStyle(PlainButtonStyle())
             }.font(.title)
             
-                HStack {
-                    TextField(NSLocalizedString("Deck Title", comment: "Deck Title"), text: $viewModel.searchText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
+            HStack {
+                TextField(NSLocalizedString("Deck Title", comment: "Deck Title"), text: $viewModel.searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
                 if canEdit {
                     Button {
                         addDeck()
                     } label: { Text(LocalizedStringKey("Create")) }
                 }
                 
-                if errorText != "" {
-                    Text(errorText)
-                        .foregroundColor(.red)
-                }
+            }
+            .actionSheet(isPresented: $showDeleteConfirm) {
+                ActionSheet(
+                    title: Text("This deck contains cards"),
+                    buttons: [
+                        .destructive(Text("Delete with cards")) {
+                            CardsService.shared.deleteDeck(deck: deckToDelete, deleteCards: true) { err in
+                                errorText = NSLocalizedString(err, comment: err)
+                            }
+                            viewModel.updateDecks()
+                        },
+                        .default(Text("Cancel")) {
+                            showDeleteConfirm = false
+                        }
+                    ]
+                )
+            }
+            
+            if errorText != "" {
+                Text(errorText)
+                    .foregroundColor(.red)
             }
             
             ScrollView {
