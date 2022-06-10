@@ -26,7 +26,7 @@ struct MatchPairsStartScreen: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 
-                Text(LocalizedStringKey("Match Pairs Game"))
+                Text(LocalizedStringKey("Quiz Game"))
                 Spacer()
             }
             .font(.title)

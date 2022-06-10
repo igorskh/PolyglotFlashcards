@@ -701,6 +701,13 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		CBDAFD4B2813394A004D43B5 /* MatchPairsNew */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MatchPairsNew;
+			sourceTree = "<group>";
+		};
 		CBF0F0062797623D00CEE525 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +737,7 @@
 		CBFFDCEF2753FA7B001607FA /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				CBDAFD4B2813394A004D43B5 /* MatchPairsNew */,
 				CB850559277E595200A4BAD9 /* SwipeGame */,
 				CBFFDCF12753FAC1001607FA /* MatchPairs */,
 				CBFFDCF52753FE2A001607FA /* GamesScreen.swift */,
@@ -1350,7 +1358,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1368,7 +1376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.15;
+				MARKETING_VERSION = 1.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1387,7 +1395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PolyglotFlashcards (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1405,7 +1413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.15;
+				MARKETING_VERSION = 1.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards;
 				PRODUCT_NAME = PolyglotFlashcards;
 				SDKROOT = iphoneos;
@@ -1588,7 +1596,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1600,7 +1608,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.15;
+				MARKETING_VERSION = 1.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1618,7 +1626,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = cardsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = P3VKCDARX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cardsWidget/Info.plist;
@@ -1630,7 +1638,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.15;
+				MARKETING_VERSION = 1.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = one.beagile.PolyglotFlashcards.cardsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

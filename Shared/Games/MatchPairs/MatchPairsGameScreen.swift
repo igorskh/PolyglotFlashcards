@@ -69,7 +69,7 @@ struct MatchPairsGameScreen: View {
     var body: some View {
         ScrollView {
             HStack {
-                Text(LocalizedStringKey("Match Pairs Game"))
+                Text(LocalizedStringKey("Quiz Game"))
                     .font(.title)
                 
                 Spacer()

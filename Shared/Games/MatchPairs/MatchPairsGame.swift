@@ -128,6 +128,10 @@ class MatchPairsGame: ObservableObject {
     
     func nextCard() {
         gameStep = makeStep()
+        guard gameStep != nil else {
+            error = NSLocalizedString("Not enough cards to play", comment: "Not enough cards to play")
+            return
+        }
         
         speechSynth.speak(
             string: gameStep!.mainVariant.text!,

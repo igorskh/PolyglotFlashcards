@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -27,6 +27,16 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="decks" inverseEntity="Card"/>
     </entity>
+    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="languageCodes" optional="YES" attributeType="String"/>
+        <attribute name="variantsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="GameVariant" representedClassName="GameVariant" syncable="YES" codeGenerationType="class">
+        <attribute name="cardVariantID" optional="YES" attributeType="String"/>
+        <attribute name="isLearned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="languageCode" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Variant" representedClassName="Variant" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -43,5 +53,7 @@
         <element name="Deck" positionX="135" positionY="36" width="128" height="119"/>
         <element name="Variant" positionX="147.3982543945312" positionY="-114.2308502197266" width="128" height="103"/>
         <element name="VariantGroup" positionX="54.21453857421875" positionY="240.8954772949219" width="128" height="59"/>
+        <element name="GameVariant" positionX="135" positionY="36" width="128" height="74"/>
+        <element name="Game" positionX="144" positionY="45" width="128" height="74"/>
     </elements>
 </model>
