@@ -13,7 +13,6 @@ struct CardDetailView: View {
     var namespace: Namespace.ID
     var deck: Deck?
     
-    @State private var editCardEnabled: Bool = false
     @State private var showShareSheet: Bool = false
     
     @State private var showTranslationOptionsID: Int = -1
@@ -40,89 +39,6 @@ struct CardDetailView: View {
     
     func closeCard() {
         onClose()
-    }
-    
-    var image: some View {
-        ZStack {
-            if let card = viewModel.card,
-               let uiImage = card.uiImage {
-                Image(image: uiImage)
-                    .resizable()
-                    .frame(maxWidth: .infinity)
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-                    .matchedGeometryEffect(id: "\(card.id.hashValue)-title", in: namespace)
-            } else {
-                Text(LocalizedStringKey("No image selected"))
-                    .padding(.horizontal)
-            }
-        }
-    }
-    
-    var header: some View {
-        VStack {
-            ZStack(alignment: .topLeading) {
-                VStack {
-                    if editCardEnabled {
-                        CardImagePicker(height: 200) { img in
-                            viewModel.setImage(from: img.pngData()!)
-                        }
-                        .padding(.horizontal)
-                    }
-                    else {
-                        image
-                            .frame(height: 200)
-                    }
-                }
-                .clipped()
-                .offset(y: viewModel.isHeaderHidden ? -250 : 0)
-                .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
-                
-                VStack {
-                    HStack {
-                        Text(viewModel.card != nil
-                             ? LocalizedStringKey("Edit Card")
-                             : LocalizedStringKey("New Card")
-                        )
-                            .font(.title)
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                        
-                        if viewModel.card != nil {
-                            Image(systemName: "square.and.arrow.up.circle.fill")
-                                .opacity(0.7)
-                                .font(.title)
-                                .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        showShareSheet.toggle()
-                                    }
-                                }
-                        }
-                        
-                        Image(systemName: editCardEnabled ? "eye.circle.fill" : "pencil.circle.fill" )
-                            .opacity(0.7)
-                            .font(.title)
-                            .onTapGesture {
-                                editCardEnabled.toggle()
-                            }
-                        
-                        Image(systemName: "xmark.circle.fill")
-                            .opacity(0.7)
-                            .font(.title)
-                            .onTapGesture {
-                                closeCard()
-                            }
-                    }
-                    .padding(.vertical)
-                    .padding(.horizontal)
-                    .foregroundColor(Color.white)
-                    .background(
-                        Color.black.opacity(0.5)
-                    )
-                }
-            }
-        }
     }
     
     func translationContextMenu(target: Language? = nil) -> some View {
@@ -311,10 +227,17 @@ struct CardDetailView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
-                header
-                    .onTapGesture {
-                        viewModel.isTranslationFieldFocused = false
+                CardDetailHeaderView(onShare: {
+                    withAnimation(.spring()) {
+                        showShareSheet.toggle()
                     }
+                }, onClose: {
+                    closeCard()
+                })
+                .environmentObject(viewModel)
+                .onTapGesture {
+                    viewModel.isTranslationFieldFocused = false
+                }
                 
                 if viewModel.errorMessage != "" {
                     Text(viewModel.errorMessage)
@@ -327,7 +250,7 @@ struct CardDetailView: View {
                 }
                 
                 if !viewModel.isHeaderHidden {
-                    DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false)
+                    DecksPicker(selectedDecks: $viewModel.decks, canEdit: true, showAny: false, selectOnlyOne: true)
                         .padding(.horizontal)
                         .padding(.bottom)
                 }
@@ -394,8 +317,5 @@ struct CardDetailView: View {
             }
         }
 #endif
-        .onAppear {
-            editCardEnabled = viewModel.card == nil
-        }
     }
 }

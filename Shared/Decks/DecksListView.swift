@@ -21,11 +21,28 @@ struct DecksListView: View {
     
     var canEdit: Bool
     var canSelect: Bool = true
+    var selectOnlyOne: Bool = false
     
-    init(selectedDecks: Binding<[Deck]>, canEdit: Bool, canSelect: Bool = true) {
+    init(selectedDecks: Binding<[Deck]>, canEdit: Bool, canSelect: Bool = true, selectOnlyOne: Bool = false) {
         self._selectedDecks = selectedDecks
         self.canEdit = canEdit
         self.canSelect = canSelect
+        self.selectOnlyOne = selectOnlyOne
+    }
+    
+    func selectDeck(_ deck: Deck) {
+        guard canSelect else {
+            return
+        }
+        
+        if selectedDecks.contains(deck) {
+            selectedDecks.remove(at: selectedDecks.firstIndex(of: deck)!)
+        } else {
+            selectedDecks.append(deck)
+        }
+        if selectOnlyOne {
+            presentationMode.wrappedValue.dismiss()
+        }
     }
     
     func addDeck() {
@@ -52,9 +69,7 @@ struct DecksListView: View {
             try viewContext.save()
             
             viewModel.updateDecks()
-            if canSelect {
-                selectedDecks.append(deck)
-            }
+            selectDeck(deck)
         } catch {
             let nsError = error as NSError
             errorText = nsError.userInfo.description
@@ -155,14 +170,7 @@ struct DecksListView: View {
                     .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius))
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        if !canSelect {
-                            return
-                        }
-                        if selectedDecks.contains(d) {
-                            selectedDecks.remove(at: selectedDecks.firstIndex(of: d)!)
-                        } else {
-                            selectedDecks.append(d)
-                        }
+                        selectDeck(d)
                     }
                 }
             }

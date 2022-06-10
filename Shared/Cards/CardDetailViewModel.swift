@@ -29,7 +29,7 @@ class CardDetailViewModel: ObservableObject {
     private var cardsService: CardsService = .shared
     private let speechSynth: SpeechSynthesizer = .shared
     
-    private var selectedImageData: Data = .init()
+    var selectedImageData: Data = .init()
     private let lock = NSLock()
     private var tasks: [URLSessionDataTask?] = []
     
@@ -41,6 +41,8 @@ class CardDetailViewModel: ObservableObject {
     init(card: Card? = nil) {
         self.card = card
         self.decks = card?.decks?.sortedArray(using: []) as? [Deck] ?? []
+        
+        resetImage()
         
         tasks = languages.map { _ in
             nil
@@ -61,6 +63,15 @@ class CardDetailViewModel: ObservableObject {
             }
             return Translation(original: "", translation: translation, source: .Unknown, target: lang)
         }
+    }
+    
+    func resetImage() {
+        
+        if let card = card,
+           let uiImage = card.uiImage {
+            setImage(from: uiImage.pngData()!)
+        }
+        
     }
     
 #if !os(macOS)

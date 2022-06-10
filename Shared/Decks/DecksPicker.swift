@@ -13,6 +13,7 @@ struct DecksPicker: View {
     
     var canEdit: Bool
     var showAny: Bool
+    var selectOnlyOne: Bool = false
     
     var body: some View {
         HStack {
@@ -47,7 +48,7 @@ struct DecksPicker: View {
             .buttonStyle(PlainButtonStyle())
             
             .sheet(isPresented: $showDecks) {
-                DecksListView(selectedDecks: $selectedDecks, canEdit: canEdit)
+                DecksListView(selectedDecks: $selectedDecks, canEdit: canEdit, selectOnlyOne: selectOnlyOne)
             }
         }
         .padding(5)
