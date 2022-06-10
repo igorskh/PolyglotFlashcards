@@ -106,8 +106,6 @@ struct CardView: View {
     }
     
     var body: some View {
-        if let imageData = card.image,
-           let uiImage = UIImage(data: imageData) {
             ZStack {
                 Color.black.opacity(0.5)
                 
@@ -148,15 +146,20 @@ struct CardView: View {
                 }
             }
             .background(
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-            
+                Group {
+                    if let imageData = card.image,
+                       let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                    }
+                    else {
+                        Color.black
+                    }
+                }
             )
-        } else {
-            Text("Card not found")
-        }
+        
     }
 }
 
