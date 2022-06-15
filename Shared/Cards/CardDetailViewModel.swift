@@ -32,6 +32,7 @@ class CardDetailViewModel: ObservableObject {
     var selectedImageData: Data = .init()
     private let lock = NSLock()
     private var tasks: [URLSessionDataTask?] = []
+    private var triggerClearImage: Bool = false
     
     let card: Card?
 
@@ -65,13 +66,19 @@ class CardDetailViewModel: ObservableObject {
         }
     }
     
+    func clearImage() {
+        selectedImageData = .init()
+        triggerClearImage = true
+    }
+    
     func resetImage() {
-        
+        guard !triggerClearImage else {
+            return
+        }
         if let card = card,
            let uiImage = card.uiImage {
             setImage(from: uiImage.pngData()!)
         }
-        
     }
     
 #if !os(macOS)
@@ -200,6 +207,7 @@ class CardDetailViewModel: ObservableObject {
             card: card,
             translations: translations,
             decks: decks,
+            clearImage: triggerClearImage,
             onFinished: onFinished
         )
     }

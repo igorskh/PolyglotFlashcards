@@ -12,19 +12,22 @@ struct CardDetailHeaderView: View {
 
     var onShare: () -> Void
     var onClose: () -> Void
+    var onClear: () -> Void
+    
+    func onImageChanged(img: UIImage?) {
+        if let imgData = img?.pngData() {
+            viewModel.setImage(from: imgData)
+        } else {
+            viewModel.resetImage()
+        }
+    }
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            CardImagePicker(height: 200, initialImageData: viewModel.selectedImageData) { img in
-                if let imgData = img?.pngData() {
-                    viewModel.setImage(from: imgData)
-                } else {
-                    viewModel.resetImage()
-                }
-            }
-            .clipped()
-            .offset(y: viewModel.isHeaderHidden ? -250 : 0)
-            .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
+            CardImagePicker(height: 200, initialImageData: viewModel.selectedImageData, onImageChanged: onImageChanged, onImageCleared: onClear)
+                .clipped()
+                .offset(y: viewModel.isHeaderHidden ? -250 : 0)
+                .padding(.top, viewModel.isHeaderHidden ? -250 : 0)
             
             HStack {
                 Text(viewModel.card != nil

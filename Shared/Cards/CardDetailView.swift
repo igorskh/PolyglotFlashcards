@@ -104,9 +104,9 @@ struct CardDetailView: View {
     
     var translationsList: some View {
         ScrollView {
-            ForEach(viewModel.translations.indices) { i in
+            ForEach(Array(viewModel.translations.enumerated()), id: \.offset) { i, e in
                 HStack {
-                    Text("\(viewModel.translations[i].target.flag)")
+                    Text("\(e.target.flag)")
                     Spacer()
                     
                     ZStack(alignment: .top) {
@@ -145,14 +145,14 @@ struct CardDetailView: View {
                 
                     Button {
                         viewModel.getTranslation(
-                            from: viewModel.translations[i].target
+                            from: e.target
                         )
                     } label: {
                         Image(systemName: "globe")
                     }
                     .buttonStyle(PlainButtonStyle())
                     .contextMenu {
-                        translationContextMenu(target: viewModel.translations[i].target)
+                        translationContextMenu(target: e.target)
                     }
                     
 //                    if viewModel.options[i].isFormalityAvailable || viewModel.options[i].isLocaleAvailable {
@@ -174,8 +174,9 @@ struct CardDetailView: View {
                     .contextMenu {
                         ttsContextMenu(index: i)
                     }
+                    
                 }
-                .matchedGeometryEffect(id: "\(viewModel.card?.id.hashValue ?? -1)-\(viewModel.translations[i].target.code)", in: namespace)
+                .matchedGeometryEffect(id: "\(viewModel.card?.id.hashValue ?? -1)-\(e.target.code)", in: namespace)
                 .padding(.vertical, 5)
                 .font(.title3)
             }
@@ -233,6 +234,8 @@ struct CardDetailView: View {
                     }
                 }, onClose: {
                     closeCard()
+                }, onClear: {
+                    viewModel.clearImage()
                 })
                 .environmentObject(viewModel)
                 .onTapGesture {

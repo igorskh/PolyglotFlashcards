@@ -80,6 +80,7 @@ class CardsService {
                   card: Card?,
                   translations: [Translation],
                   decks: [Deck],
+                  clearImage: Bool = false,
                   onFinished: @escaping () -> Void) {
         var newWord: Card?
         if let card = card {
@@ -89,6 +90,9 @@ class CardsService {
         }
         if let imageData = imageData {
             newWord?.image = imageData
+        }
+        if clearImage {
+            newWord?.image = nil
         }
         
         newWord?.languages = translations.reduce("|", { partialResult, tr in
@@ -131,6 +135,7 @@ class CardsService {
         card: Card?,
         translations: [Translation],
         decks: [Deck],
+        clearImage: Bool = false,
         onFinished: @escaping () -> Void) {
             
         var imageData: Data? = nil
@@ -146,6 +151,7 @@ class CardsService {
             card: card,
             translations: translations,
             decks: decks,
+            clearImage: clearImage,
             onFinished: onFinished
         )
     }

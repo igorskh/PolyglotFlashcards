@@ -24,14 +24,16 @@ struct CardImagePicker: View {
     @State private var searchRequest: String = ""
     
     var onImageChanged: ((UIImage?) -> Void)?
+    var onImageCleared: (() -> Void)?
     
     var height: CGFloat
-    var initialImageData: Data?
+    @State var initialImageData: Data?
     
-    init(height: CGFloat, initialImageData: Data? = nil, onImageChanged: @escaping (UIImage?) -> Void) {
+    init(height: CGFloat, initialImageData: Data? = nil, onImageChanged: @escaping (UIImage?) -> Void, onImageCleared: (() -> Void)? = nil) {
         self.height = height
-        self.initialImageData = initialImageData
+        self._initialImageData = State<Data?>(wrappedValue: initialImageData)
         self.onImageChanged = onImageChanged
+        self.onImageCleared = onImageCleared
     }
     
     var imageSelector: some View {
@@ -89,11 +91,22 @@ struct CardImagePicker: View {
     func search() {
         viewModel.searchRequest = searchRequest
         viewModel.getImages()
-        
     }
     
     var imageSelectorSwitch: some View {
         HStack {
+            Button {
+                initialImageData = nil
+                
+                onImageCleared?()
+                imageEditMode = .imagePicker
+            } label: {
+                Image(systemName:  "xmark.circle.fill")
+                    .font(.title)
+                    .foregroundColor(.primary)
+            }
+            .buttonStyle(PlainButtonStyle())
+            
             Button {
                 viewModel.resetImage()
                 imageEditMode = .imagePicker
@@ -103,7 +116,7 @@ struct CardImagePicker: View {
                     .foregroundColor(.primary)
             }
             .buttonStyle(PlainButtonStyle())
-//
+            
             if imageEditMode == .imageSearch {
                 Button {
                     withAnimation {
